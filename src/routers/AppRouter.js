@@ -6,13 +6,15 @@ import {
     Link
 } from 'react-router-dom';
 
+import HomePage from '../components/HomePage';
+
 const AppRouter = () => (
     <Router>
         <div>
             {/* TODO: create layout wrapper */}
             <Switch>
                 <Route path="/home">
-                    <h1>Homepage Here!</h1>
+                    <HomePage />
                 </Route>
                 <Route path="/">
                     <h1>Root Route Here!</h1>

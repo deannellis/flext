@@ -1,5 +1,3 @@
-$dat-purp: purple;
-
-* {
-    color: $dat-purp;
-}
+@import './settings';
+@import './global';
+@import './components/tabs.scss';

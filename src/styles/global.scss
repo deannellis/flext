@@ -1,0 +1,23 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+//   padding-bottom: 7.5rem; /* Height of Footer */
+  min-height: 100%;
+  min-width: 100vw;
+  font-size: $m-size;
+  font-family: 'Roboto', sans-serif;
+  background-color: $bg-black;
+  color: #fff;
+}
