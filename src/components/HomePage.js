@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Tabs from './Tabs';
+import Button from './Button';
 import Calendar from './Calendar';
+import Tabs from './Tabs';
 
 class HomePage extends Component {
     constructor(props) {
@@ -23,6 +24,10 @@ class HomePage extends Component {
                     {this.state.activeTab === 1 && <p>Tab 2 content</p>}
                 </Tabs>
                 <Calendar />
+                <Button variant="primary">primary button</Button>
+                <Button>default button</Button>
+                <Button variant="text">tertiary button</Button>
+                <Button disabled={true}>disabled button</Button>
             </>
         );
     }
