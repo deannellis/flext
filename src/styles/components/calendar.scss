@@ -1,0 +1,35 @@
+.calendar {
+    max-width: 36.8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+}
+
+.calendar__month-year {
+    grid-column: 2 / span 5;
+    font-weight: 700;
+}
+
+.calendar__month-year, .calendar__prev-month, .calendar__next-month, .calendar__weekday-short-name {
+    margin-bottom: 2.4rem;
+}
+
+.calendar__weekday-short-name {
+    opacity: .54;
+}
+
+.calendar div {
+    justify-self: center;
+    align-self: center;
+}
+
+.calendar__day {
+    height: 3.2rem;
+    width: 100%;
+    text-align: center;
+    line-height: 3.2rem;
+}
+
+.calendar__day--today {
+    @extend .calendar__day;
+    background: $bg-secondary;
+}
