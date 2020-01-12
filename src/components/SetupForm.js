@@ -36,7 +36,6 @@ const SignupForm = () => {
                         label="First Name"
                         name="firstName"
                         type="text"
-                        
                     />
                     <TextInput 
                         label="Last Name"
