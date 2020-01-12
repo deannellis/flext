@@ -1,0 +1,1 @@
+export const updateLiftVariant = () => ({ type: 'UPDATE_LIFT_VARIANT' });
