@@ -1,10 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './styles/styles.scss';
+import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
+import configureStore from './store/configureStore';
+import './styles/styles.scss';
 
-const App = () => {
-  return <div>Hello React,Webpack 4 & Babel 7!</div>;
-};
+const store = configureStore();
+console.log(store.getState());
 
-ReactDOM.render(<AppRouter />, document.querySelector("#root"));
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
+
+ReactDOM.render(jsx, document.querySelector("#root"));
