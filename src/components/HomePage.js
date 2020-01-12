@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import Calendar from './Calendar';
+import SetupForm from './SetupForm';
 import Tabs from './Tabs';
 
 class HomePage extends Component {
@@ -28,6 +29,7 @@ class HomePage extends Component {
                 <Button>default button</Button>
                 <Button variant="text">tertiary button</Button>
                 <Button disabled={true}>disabled button</Button>
+                <SetupForm />
             </>
         );
     }

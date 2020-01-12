@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: $s-size $m-size;
+    max-width: 28rem;
+    background-color: $bg-tertiary;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column-reverse;
+}
