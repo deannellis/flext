@@ -44,8 +44,9 @@ input:focus + .label {
 }
 
 .input__helper-text, .input__error {
-    margin-bottom: $s-size;
+    margin-bottom: $m-size;
     font-size: 1.2rem;
+    line-height: 1.6rem;
 }
 
 .input__helper-text {
@@ -56,4 +57,9 @@ input:focus + .label {
 
 .input__error {
     color: $danger;
+}
+
+input:disabled {
+    opacity: .4;
+    pointer-events: none;
 }

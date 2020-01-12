@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setMasterWeights } from '../actions/masterWeights';
 import Button from './Button';
 import Calendar from './Calendar';
 import SetupForm from './SetupForm';
@@ -14,6 +15,11 @@ class HomePage extends Component {
         }
     }
 
+    onMasterWeightsSubmit = (masterWeights) => {
+        console.log('Huzzah', masterWeights);
+        this.props.dispatch(setMasterWeights(masterWeights));
+    }
+
     render() { 
         return (
             <>
@@ -23,7 +29,7 @@ class HomePage extends Component {
                     labels={['Dashboard', 'Tab 2']}
                 >
                     {this.state.activeTab === 0 && 
-                        <DashboardTab masterWeights={this.props.masterWeights} />
+                        <DashboardTab masterWeights={this.props.masterWeights} onMasterWeightsSubmit={this.onMasterWeightsSubmit} />
                     }
                     {this.state.activeTab === 1 && <p>Tab 2 content</p>}
                 </Tabs>
