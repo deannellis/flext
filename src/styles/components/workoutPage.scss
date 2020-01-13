@@ -1,0 +1,21 @@
+.workout-page {
+    margin: $l-size $m-size;
+}
+
+.workout-page h2 {
+    margin: 0 0 $s-size;
+    font-weight: 400;
+}
+
+.workout-page p {
+    color: #FFFFFF99;
+}
+
+.workout-page__lift {
+    background: $bg-tertiary;
+    padding: $m-size;
+    border-radius: 4px;
+    box-shadow: $depth-2;
+    margin: 0 $s-size $s-size 0;
+    width: 34.4rem;
+}
