@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 
-const TextInput = ({ label, ...props }) => {
+const NumberInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
     return (
         <div className="input-group">
@@ -10,7 +10,7 @@ const TextInput = ({ label, ...props }) => {
             ) : (
                 <div className="input__helper-text">{props.helperText}</div>
             )}
-            <input className={`text-input ${meta.touched && meta.error ? 'input--error' : ''}`} {...field} {...props} />
+            <input className={`number-input ${meta.touched && meta.error ? 'input--error' : ''}`} {...field} {...props} />
             <label 
                 htmlFor={props.id || props.name} 
                 className={`label ${meta.touched && 'label--active'}`}
@@ -20,9 +20,5 @@ const TextInput = ({ label, ...props }) => {
         </div>
     );
 }
-
-TextInput.defaultProps = {
-    helperText: ''
-}
  
-export default TextInput;
+export default NumberInput;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Button from './Button';
-import Calendar from './Calendar';
-import SetupForm from './SetupForm';
+import { connect } from 'react-redux';
+import { setMasterWeights } from '../actions/masterWeights';
 import Tabs from './Tabs';
+import DashboardTab from './DashboardTab';
 
 class HomePage extends Component {
     constructor(props) {
@@ -12,27 +12,38 @@ class HomePage extends Component {
         }
     }
 
+    onMasterWeightsSubmit = (masterWeights) => {
+        console.log('Huzzah', masterWeights);
+        this.props.dispatch(setMasterWeights(masterWeights));
+    }
+
     render() { 
         return (
             <>
-                <h1>Homepage Here</h1>
                 <Tabs 
                     activeIndex={this.state.activeTab} 
                     handleSelect={i => this.setState({ activeTab: i })}
-                    labels={['Tab 1', 'Tab 2']}
+                    labels={['Dashboard', 'Tab 2']}
                 >
-                    {this.state.activeTab === 0 && <p>Tab 1 content</p>}
+                    {this.state.activeTab === 0 && 
+                        <DashboardTab 
+                            masterWeights={this.props.masterWeights} 
+                            liftVariant={this.props.liftVariant}
+                            onMasterWeightsSubmit={this.onMasterWeightsSubmit} 
+                        />
+                    }
                     {this.state.activeTab === 1 && <p>Tab 2 content</p>}
                 </Tabs>
-                <Calendar />
-                <Button variant="primary">primary button</Button>
-                <Button>default button</Button>
-                <Button variant="text">tertiary button</Button>
-                <Button disabled={true}>disabled button</Button>
-                <SetupForm />
             </>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        masterWeights: state.masterWeights,
+        liftVariant: state.liftVariant
+    };
+}
  
-export default HomePage;
+export default connect(mapStateToProps)(HomePage);

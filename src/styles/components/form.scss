@@ -10,3 +10,56 @@
     display: flex;
     flex-direction: column-reverse;
 }
+
+// Shared Input Styles
+.text-input, .number-input {
+    height: 5.6rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid $bg-black;
+    transition: all 0.30s ease-in-out;
+    color: #fff;
+    font-size: 1.6rem;
+    margin-top: -1.6rem;
+    padding: 1.6rem 1.2rem 0;
+    line-height: 2rem;
+}
+
+.text-input:focus, .number-input:focus {
+    border-bottom: 2px solid $secondary-accent;
+    outline: none;
+}
+
+.input--error {
+    border-bottom: 2px solid $danger;
+}
+
+.label {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+input:focus + .label {
+    color: $secondary-accent;
+}
+
+.input__helper-text, .input__error {
+    margin-bottom: $m-size;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+}
+
+.input__helper-text {
+    color: #fff;
+    opacity: .54;
+    font-weight: 300;
+}
+
+.input__error {
+    color: $danger;
+}
+
+input:disabled {
+    opacity: .4;
+    pointer-events: none;
+}

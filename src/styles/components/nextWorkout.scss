@@ -1,0 +1,24 @@
+.next-workout h2 {
+    margin: 0 0 $m-size;
+    font-weight: 400;
+}
+
+.next-workout__lifts {
+    margin-bottom: $l-size;
+}
+
+.next-workout__lift {
+    margin: 0;
+    line-height: 3.2rem;
+    padding: 0 $s-size;
+}
+
+.next-workout__lift:nth-child(odd) {
+    background: $bg-secondary;
+
+}
+
+.next-workout__weight {
+    opacity: .64;
+    font-weight: 300;
+}
