@@ -5,7 +5,11 @@ import NextWorkout from './NextWorkout';
 const Dashboard = (props) => {
     return (
         <div className="dashboard__container">
-            <NextWorkout liftVariant={props.liftVariant} masterWeights={props.masterWeights} />
+            <NextWorkout 
+                liftVariant={props.liftVariant} 
+                masterWeights={props.masterWeights} 
+                onStartWorkout={props.onStartWorkout}
+            />
             <div className="dashboard__card">
                 <Calendar />
             </div>

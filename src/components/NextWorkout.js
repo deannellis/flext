@@ -3,7 +3,6 @@ import { getWorkouts, getDisplayName } from '../utils/workout';
 import Button from './Button';
 
 const NextWorkout = (props) => {
-    console.log('var', getWorkouts(props.liftVariant));
     return (  
         <div className="next-workout dashboard__card">
             <h2>Next Workout</h2>
@@ -19,7 +18,7 @@ const NextWorkout = (props) => {
                     );
                 })}
             </div>
-            <Button variant="primary" className="next-workout__button">Start workout</Button>
+            <Button variant="primary" className="next-workout__button" clickHandler={() => {props.onStartWorkout()}}>Start workout</Button>
         </div>
     );
 }

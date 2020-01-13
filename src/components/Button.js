@@ -5,6 +5,7 @@ const Button = (props) => {
         <button 
             className={`button ${props.variant ? 'button--' + props.variant : ''} ${props.disabled ? 'button--disabled' : ''}`}
             type={props.type}
+            onClick={props.clickHandler}
         >
             {props.children}
         </button>
@@ -13,7 +14,8 @@ const Button = (props) => {
 
 Button.defaultProps = {
     disabled: false,
-    type: 'button'
+    type: 'button',
+    onClick: () => {console.log(`${props.children} clicked`)}
 }
  
 export default Button;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 import { setMasterWeights } from '../actions/masterWeights';
+import { startWorkout } from '../actions/inProgressWorkout';
 import Tabs from './Tabs';
 import DashboardTab from './DashboardTab';
 
@@ -12,8 +14,12 @@ class HomePage extends Component {
         }
     }
 
+    onStartWorkout = () => {
+        this.props.dispatch(startWorkout(this.props.liftVariant));
+        this.props.history.push('/workout');
+    }
+
     onMasterWeightsSubmit = (masterWeights) => {
-        console.log('Huzzah', masterWeights);
         this.props.dispatch(setMasterWeights(masterWeights));
     }
 
@@ -29,7 +35,8 @@ class HomePage extends Component {
                         <DashboardTab 
                             masterWeights={this.props.masterWeights} 
                             liftVariant={this.props.liftVariant}
-                            onMasterWeightsSubmit={this.onMasterWeightsSubmit} 
+                            onMasterWeightsSubmit={this.onMasterWeightsSubmit}
+                            onStartWorkout={this.onStartWorkout}
                         />
                     }
                     {this.state.activeTab === 1 && <p>Tab 2 content</p>}
@@ -46,4 +53,4 @@ const mapStateToProps = state => {
     };
 }
  
-export default connect(mapStateToProps)(HomePage);
+export default withRouter(connect(mapStateToProps)(HomePage));
