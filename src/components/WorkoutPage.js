@@ -38,7 +38,17 @@ class WorkoutPage extends Component {
 
                                 `    
                             }</p>
-                            <Button variant="primary" clickHandler={() => {this.onStartLift(lift)}}>begin lift</Button>
+                            {this.props.inProgressWorkout[lift] !== null ? (
+                                <p>
+                                    Completed: Last set 
+                                    {this.props.inProgressWorkout[lift] === 0 && ' less than 5 '} 
+                                    {this.props.inProgressWorkout[lift] === 1 && ' greater than 5 '} 
+                                    {this.props.inProgressWorkout[lift] === 2 && ' greater than 10 '} 
+                                    reps
+                                </p>
+                            ) : (
+                                <Button variant="primary" clickHandler={() => {this.onStartLift(lift)}}>begin lift</Button>
+                            )}
                         </div>
                     );
                 })}
@@ -52,7 +62,8 @@ const mapStateToProps = state => {
     return {
         masterWeights: state.masterWeights,
         liftVariant: state.liftVariant,
-        workouts: state.workouts
+        workouts: state.workouts,
+        inProgressWorkout: state.inProgressWorkout
     };
 }
  

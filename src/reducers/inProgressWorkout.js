@@ -32,7 +32,7 @@ const inProgressWorkoutReducer = (state = {}, action) => {
             const { updates } = action;
             let updatedState = { ...state };
             for(let key in updates) {
-                if(updates.hasOwnProperty(key)) {
+                if(updatedState.hasOwnProperty(key)) {
                     updatedState[key] = updates[key];
                 }
             }
