@@ -13,7 +13,7 @@ const DashboardTab = (props) => {
                 Object.entries(masterWeights).length === 0 && masterWeights.constructor === Object ? (
                     <StartingWeightForm onSubmit={submitMasterWeights}/>
                 ) : (
-                    <Dashboard />
+                    <Dashboard liftVariant={props.liftVariant} masterWeights={props.masterWeights} />
                 )
             }
         </>

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setMasterWeights } from '../actions/masterWeights';
-import Button from './Button';
-import Calendar from './Calendar';
-import SetupForm from './SetupForm';
 import Tabs from './Tabs';
 import DashboardTab from './DashboardTab';
 
@@ -29,16 +26,14 @@ class HomePage extends Component {
                     labels={['Dashboard', 'Tab 2']}
                 >
                     {this.state.activeTab === 0 && 
-                        <DashboardTab masterWeights={this.props.masterWeights} onMasterWeightsSubmit={this.onMasterWeightsSubmit} />
+                        <DashboardTab 
+                            masterWeights={this.props.masterWeights} 
+                            liftVariant={this.props.liftVariant}
+                            onMasterWeightsSubmit={this.onMasterWeightsSubmit} 
+                        />
                     }
                     {this.state.activeTab === 1 && <p>Tab 2 content</p>}
                 </Tabs>
-                {/* <Calendar />
-                <Button variant="primary">primary button</Button>
-                <Button>default button</Button>
-                <Button variant="text">tertiary button</Button>
-                <Button disabled={true}>disabled button</Button>
-                <SetupForm /> */}
             </>
         );
     }
@@ -46,7 +41,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        masterWeights: state.masterWeights
+        masterWeights: state.masterWeights,
+        liftVariant: state.liftVariant
     };
 }
  

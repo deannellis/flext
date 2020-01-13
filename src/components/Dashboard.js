@@ -1,10 +1,15 @@
 import React from 'react';
+import Calendar from './Calendar';
+import NextWorkout from './NextWorkout';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     return (
-        <>
-            <h1>Dash Here</h1>
-        </>
+        <div className="dashboard__container">
+            <NextWorkout liftVariant={props.liftVariant} masterWeights={props.masterWeights} />
+            <div className="dashboard__card">
+                <Calendar />
+            </div>
+        </div>
     );
 }
  
