@@ -82,3 +82,32 @@
         margin: $s-size 0;
     }
 }
+
+.lift-page__chinup {
+    display: flex;
+    color: $main-accent;
+    p {
+        font-size: 6.4rem;
+        margin: 0;
+    }
+    span {
+        align-self: flex-end;
+        margin: 0 0.6rem 1.2rem;
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+}
+
+.lift-page__chinups {
+    display: flex;
+    background: $bg-secondary;
+    padding: $s-size $xs-size;
+}
+
+.lift-page__chinup-title {
+    background: $bg-secondary;
+    margin: 0;
+    padding: $s-size $xs-size 0;
+    text-transform: uppercase;
+    font-weight: 300;
+}

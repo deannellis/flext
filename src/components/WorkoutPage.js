@@ -7,12 +7,24 @@ import Button from '../components/Button';
 class WorkoutPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        console.log('Here ', props.inProgressWorkout[0]);
+        this.state = {
+             complete: false
+        }
     }
 
     onStartLift = lift => {
         console.log(lift);
         this.props.history.push(`/workout/${lift}`);
+    }
+
+    componentDidMount() {
+        let complete = true;
+        const { inProgressWorkout } = this.props;
+        for(let lift in inProgressWorkout) {
+            if(inProgressWorkout[lift] === null) complete = false;
+        }
+        if(complete) {this.setState({complete});}
     }
 
     render() { 
@@ -40,11 +52,12 @@ class WorkoutPage extends Component {
                             }</p>
                             {this.props.inProgressWorkout[lift] !== null ? (
                                 <p>
-                                    Completed: Last set 
-                                    {this.props.inProgressWorkout[lift] === 0 && ' less than 5 '} 
-                                    {this.props.inProgressWorkout[lift] === 1 && ' greater than 5 '} 
-                                    {this.props.inProgressWorkout[lift] === 2 && ' greater than 10 '} 
-                                    reps
+                                    Completed:  
+                                    {this.props.inProgressWorkout[lift] === 0 && lift !== 'chinup' ? ' Last set less than 5 reps' : ''} 
+                                    {this.props.inProgressWorkout[lift] === 1 && lift !== 'chinup' ? ' Last set greater than 5 reps' : ''} 
+                                    {this.props.inProgressWorkout[lift] === 2 && lift !== 'chinup' ? ' Last set greater than 10 reps' : ''} 
+                                    {this.props.inProgressWorkout[lift] === 0 && lift === 'chinup' ? ' Better luck next time' : ''} 
+                                    {this.props.inProgressWorkout[lift] === 1 && lift === 'chinup' ? ' All reps completed!' : ''} 
                                 </p>
                             ) : (
                                 <Button variant="primary" clickHandler={() => {this.onStartLift(lift)}}>begin lift</Button>
@@ -52,6 +65,13 @@ class WorkoutPage extends Component {
                         </div>
                     );
                 })}
+                {}
+                {this.state.complete && 
+                    <div className="workout-page__lift">
+                        <h2>Hell Yeah!</h2>
+                        <Button variant="primary">Finish Workout</Button>
+                    </div>
+                }
             </div>
         );
     }
