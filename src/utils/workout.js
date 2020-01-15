@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const getWorkouts = ({ a = 0, b = 0 }) => {
     let workouts = []
     if(a == 0) {
@@ -46,3 +48,37 @@ export const getWeightDistribution = weight => {
     const oneSide = (weight - 44) / 2;
     return [ oneSide, 44, oneSide ];
 }
+
+export const getMonthWorkouts = workouts => {
+    let dates = {};
+    workouts.forEach(workout => {
+        let month = moment(workout.created).format("MMMM");
+        let day = parseInt(moment(workout.created).format("D"));
+        if(dates.hasOwnProperty(month)) {
+            dates[month].push(day);
+        } else {
+            dates[month] = [ day ];
+        }
+    });
+    // console.log(dates);
+    return dates;
+}
+
+export const getWorkoutDays = (start, daysInMonth) => {
+    let workoutDays = [];
+    let checkEven = false;
+    let weekday = start + 1;
+    for(let d = 1; d <= daysInMonth; d++) {
+        if(checkEven) {
+            if(d%2 == 0) workoutDays.push(d)
+        } else {
+            if(d%2 !== 0) workoutDays.push(d)
+        }
+        if(weekday == 7){
+            weekday = 0;
+            checkEven = !checkEven;
+        };
+        weekday ++;
+    }
+    return workoutDays;
+};

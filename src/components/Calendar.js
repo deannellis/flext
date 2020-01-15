@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { getMonthWorkouts, getWorkoutDays } from '../utils/workout';
 
 class Calendar extends Component {
     constructor(props) {
@@ -40,6 +41,9 @@ class Calendar extends Component {
 
     render() { 
         const weekdaysAbbreviated = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        const workouts = getMonthWorkouts(this.props.workouts);
+        const daysWorkedOut = workouts[this.state.dateObject.format("MMMM")] ? workouts[this.state.dateObject.format("MMMM")] : [];
+        const workoutDays = getWorkoutDays(parseInt(this.getFirstDayOfMonth()), this.getDaysInMonth());
         let emptyCells = [];
         let daysInMonth = [];
         for(let i = 0; i < this.getFirstDayOfMonth(); i++) {
@@ -48,14 +52,22 @@ class Calendar extends Component {
             );
         }
         for(let d = 1; d <= this.getDaysInMonth(); d++) {
+            let workedOut = false;
             let isToday = false;
+            let workOutDay = false;
             if(moment().format("MMMM") == this.getMonth()) {
                 if(d == this.getCurrentDay()) {
                     isToday = true;
                 }
             }
+            if(daysWorkedOut.includes(d)) workedOut = true;
+            if(workoutDays.includes(d)) workOutDay = true;
             daysInMonth.push(
-                <div className={isToday ? 'calendar__day--today' : 'calendar__day'} key={d}>{d}</div>
+                <div className={`calendar__day
+                    ${isToday ? 'calendar__day--today' : ''}
+                    ${workedOut ? 'calendar__day--worked-out' : ''}
+                    ${workOutDay ? 'calendar__day--work-out' : ''}
+                `} key={d}>{d}</div>
             );
         }
         return (

@@ -2,16 +2,16 @@ import React from 'react';
 import Calendar from './Calendar';
 import NextWorkout from './NextWorkout';
 
-const Dashboard = (props) => {
+const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts }) => {
     return (
         <div className="dashboard__container">
             <NextWorkout 
-                liftVariant={props.liftVariant} 
-                masterWeights={props.masterWeights} 
-                onStartWorkout={props.onStartWorkout}
+                liftVariant={liftVariant} 
+                masterWeights={masterWeights} 
+                onStartWorkout={onStartWorkout}
             />
             <div className="dashboard__card">
-                <Calendar />
+                <Calendar workouts={workouts} />
             </div>
         </div>
     );

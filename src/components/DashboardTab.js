@@ -2,8 +2,7 @@ import React from 'react';
 import Dashboard from './Dashboard';
 import StartingWeightForm from './StartingWeightForm';
 
-const DashboardTab = (props) => {
-    const { masterWeights } = props;
+const DashboardTab = ({ masterWeights, liftVariant, onStartWorkout, workouts }) => {
     const submitMasterWeights = (masterWeights) => {
         props.onMasterWeightsSubmit(masterWeights);
     }
@@ -14,9 +13,10 @@ const DashboardTab = (props) => {
                     <StartingWeightForm onSubmit={submitMasterWeights}/>
                 ) : (
                     <Dashboard
-                        liftVariant={props.liftVariant}
-                        masterWeights={props.masterWeights} 
-                        onStartWorkout={props.onStartWorkout}
+                        liftVariant={liftVariant}
+                        masterWeights={masterWeights} 
+                        onStartWorkout={onStartWorkout}
+                        workouts={workouts}
                     />
                 )
             }

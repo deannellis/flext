@@ -37,6 +37,7 @@ class HomePage extends Component {
                             liftVariant={this.props.liftVariant}
                             onMasterWeightsSubmit={this.onMasterWeightsSubmit}
                             onStartWorkout={this.onStartWorkout}
+                            workouts={this.props.workouts}
                         />
                     }
                     {this.state.activeTab === 1 && <p>Tab 2 content</p>}
@@ -49,7 +50,8 @@ class HomePage extends Component {
 const mapStateToProps = state => {
     return {
         masterWeights: state.masterWeights,
-        liftVariant: state.liftVariant
+        liftVariant: state.liftVariant,
+        workouts: state.workouts,
     };
 }
  
