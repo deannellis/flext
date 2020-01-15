@@ -8,11 +8,12 @@ import {
 import Button from '../components/Button';
 import HomePage from '../components/HomePage';
 import WorkoutRouter from './WorkoutRouter';
+import AppHeader from '../components/AppHeader';
 
 const AppRouter = () => (
     <Router>
         <div>
-            {/* TODO: create layout wrapper */}
+            <AppHeader/>
             <Switch>
                 <Route path="/home">
                     <HomePage />

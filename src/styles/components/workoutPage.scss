@@ -4,10 +4,11 @@
     flex-direction: column;
     align-items: center;
     background: rgb(15,19,27);
-    background: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 43%, rgba(17,20,27,1) 100%);
+    background: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 24%, rgba(35,44,61,1) 52%, rgba(17,20,27,1) 100%);
     min-height: 100vh;
     h1 {
         text-shadow: $depth-3;
+        font-family: 'Ubuntu', sans-serif;
     }
 }
 

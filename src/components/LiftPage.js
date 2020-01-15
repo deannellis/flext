@@ -109,7 +109,7 @@ class LiftPage extends Component {
                                 </div>
                             </div>
                             <p>*as many reps as possible </p>
-                            <h3>Enter your results</h3>
+                            <h3 className="lift-page__results-title">Enter your results</h3>
                             <p>On your last set how many reps did you complete?</p>
                             <Button clickHandler={() => {this.completeLift(0)}}>Less than 5</Button>
                             <Button clickHandler={() => {this.completeLift(1)}}>Greater than 5</Button>

@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
+import moment from 'moment'
 import { getWorkouts, getDisplayName } from '../utils/workout';
 import Button from '../components/Button';
+import { addWorkout } from '../actions/workouts';
+import { resetWorkout } from '../actions/inProgressWorkout';
+import { updateMasterWeights } from '../actions/masterWeights';
+import { updateLiftVariant } from '../actions/liftVariant';
+
 
 class WorkoutPage extends Component {
     constructor(props) {
         super(props);
         console.log('Here ', props.inProgressWorkout[0]);
         this.state = {
-             complete: false
+             complete: false,
+             created: moment()
         }
     }
 
     onStartLift = lift => {
-        console.log(lift);
         this.props.history.push(`/workout/${lift}`);
+    }
+
+    completeWorkout = () => {
+        const { inProgressWorkout, masterWeights } = this.props;
+        const { created } = this.state;
+        const workoutPayload = {
+            workout: inProgressWorkout,
+            currentWeight: masterWeights,
+            created,
+        }
+        console.log('dbidnes', workoutPayload);
+        this.props.dispatch(addWorkout(workoutPayload));
+        this.props.dispatch(updateMasterWeights(inProgressWorkout));
+        this.props.dispatch(updateLiftVariant());
+        this.props.dispatch(resetWorkout());
+        this.props.history.push(`/home`);
     }
 
     componentDidMount() {
@@ -69,7 +91,7 @@ class WorkoutPage extends Component {
                 {this.state.complete && 
                     <div className="workout-page__lift">
                         <h2>Hell Yeah!</h2>
-                        <Button variant="primary">Finish Workout</Button>
+                        <Button variant="primary" clickHandler={this.completeWorkout}>Finish Workout</Button>
                     </div>
                 }
             </div>

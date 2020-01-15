@@ -12,7 +12,8 @@
     h2 {
         font-weight: 700;
         margin: 0;
-        color: $active-text;
+        color: $secondary-accent;
+        font-family: 'Ubuntu', sans-serif;
     }
     h3 {
         // margin: $s-size;
@@ -81,6 +82,10 @@
         font-size: 1.8rem;
         margin: $s-size 0;
     }
+}
+
+.lift-page__results-title {
+    margin: $l-size 0 0;
 }
 
 .lift-page__chinup {
