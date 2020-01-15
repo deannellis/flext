@@ -31,3 +31,18 @@ export const getDisplayName = name => {
             return name;
     }
 };
+
+export const getWarmupWeights = workWeight => {
+    const warmup25 = workWeight * 0.25 > 44 ? workWeight * 0.25 : 44;
+    const warmup50 = workWeight * 0.50 > 44 ? workWeight * 0.50 : 44;
+    const warmup75 = workWeight * 0.75 > 44 ? workWeight * 0.75 : 44;
+    return [ warmup25, warmup50, warmup75 ];
+}
+
+export const getWeightDistribution = weight => {
+    if(weight === 44) {
+        return [ 0, 44, 0]
+    }
+    const oneSide = (weight - 44) / 2;
+    return [ oneSide, 44, oneSide ];
+}

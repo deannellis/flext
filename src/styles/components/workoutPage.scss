@@ -1,5 +1,15 @@
 .workout-page {
-    margin: $l-size $m-size;
+    padding: $l-size $m-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(15,19,27);
+    background: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 24%, rgba(35,44,61,1) 52%, rgba(17,20,27,1) 100%);
+    min-height: 100vh;
+    h1 {
+        text-shadow: $depth-3;
+        font-family: 'Ubuntu', sans-serif;
+    }
 }
 
 .workout-page h2 {
@@ -15,7 +25,7 @@
     background: $bg-tertiary;
     padding: $m-size;
     border-radius: 4px;
-    box-shadow: $depth-2;
-    margin: 0 $s-size $s-size 0;
+    box-shadow: $depth-4;
+    margin: 0 $s-size $m-size 0;
     width: 34.4rem;
 }
