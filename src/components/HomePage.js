@@ -5,12 +5,13 @@ import { setMasterWeights } from '../actions/masterWeights';
 import { startWorkout } from '../actions/inProgressWorkout';
 import Tabs from './Tabs';
 import DashboardTab from './DashboardTab';
+import WorkoutsTab from './WorkoutsTab';
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeTab: 0
+            activeTab: 1
         }
     }
 
@@ -29,7 +30,7 @@ class HomePage extends Component {
                 <Tabs 
                     activeIndex={this.state.activeTab} 
                     handleSelect={i => this.setState({ activeTab: i })}
-                    labels={['Dashboard', 'Tab 2']}
+                    labels={['Dashboard', 'Workouts']}
                 >
                     {this.state.activeTab === 0 && 
                         <DashboardTab 
@@ -40,7 +41,11 @@ class HomePage extends Component {
                             workouts={this.props.workouts}
                         />
                     }
-                    {this.state.activeTab === 1 && <p>Tab 2 content</p>}
+                    {this.state.activeTab === 1 && 
+                        <WorkoutsTab 
+                            workouts={this.props.workouts}
+                        />
+                    }
                 </Tabs>
             </>
         );
