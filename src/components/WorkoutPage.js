@@ -32,7 +32,6 @@ class WorkoutPage extends Component {
             currentWeight: masterWeights,
             created,
         }
-        console.log('dbidnes', workoutPayload);
         this.props.dispatch(addWorkout(workoutPayload));
         this.props.dispatch(updateMasterWeights(inProgressWorkout));
         this.props.dispatch(updateLiftVariant());
