@@ -16,6 +16,14 @@
     &:hover {
         background-color: $bg-secondary;
     }
+
+    a {
+        text-decoration: none;
+        &:active {
+            color: #fff;
+        }
+    }
+
 }
 
 .button--primary {
@@ -27,6 +35,12 @@
         background-color: $secondary-accent;
     }
     box-shadow: $depth-1;
+    a {
+        text-decoration: none;
+        &:active {
+            color: $text-black;
+        }
+    }
 }
 
 .button--text {

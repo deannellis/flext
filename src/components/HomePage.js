@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link} from "react-router-dom";
 import { startWorkout } from '../actions/inProgressWorkout';
 import Tabs from './Tabs';
 import Dashboard from './Dashboard';
 import WorkoutsTab from './WorkoutsTab';
+import Button from './Button';
 
 class HomePage extends Component {
     constructor(props) {
@@ -19,13 +20,24 @@ class HomePage extends Component {
         this.props.history.push('/workout');
     }
 
-    componentDidMount() {
-        if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
-            this.props.history.push('/onboarding');
-        }
-    }
+    // componentDidMount() {
+    //     if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
+    //         this.props.history.push('/onboarding');
+    //     }
+    // }
 
     render() { 
+        if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
+            return (
+                <>
+                    <h2>Welcome to flext!</h2>
+                    <p>Let's begin by entering your starting weights</p>
+                    <Button variant="primary">
+                        <Link to="/onboarding">Enter Weights</Link>
+                    </Button>
+                </>
+            );
+        }
         return (
             <>
                 <Tabs 

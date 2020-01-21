@@ -157,10 +157,10 @@ const WeightsForm = (props) => {
                         .required('Required')
                 })}
                 onSubmit={(values, { setSubmitting }) => {
+                    props.submitWeights(values);
+                    setSubmitting(false);
                     setTimeout(() => {
                     //   alert(JSON.stringify(values, null, 2));
-                        props.submitWeights(values);
-                        setSubmitting(false);
                     }, 400);
                 }}
             >

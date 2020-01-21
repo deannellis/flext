@@ -10,7 +10,7 @@ const WorkoutsTab = ({ workouts }) => {
                 {workouts.map((workout, i) => {
                     const workoutKeys = Object.keys(workout);
                     return (
-                        <div className="workouts-tab__workout">
+                        <div className="workouts-tab__workout" key={i}>
                             <p className="workouts-tab__workout-number">Workout #{i+1}</p>
                             <div className="empty-grid-cell"></div>
                             <div className="workouts-tab__date">
