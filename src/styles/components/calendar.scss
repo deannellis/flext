@@ -37,9 +37,13 @@
 }
 
 .calendar__day--worked-out {
-    background: $secondary-accent;
+    background: $main-accent-o82;
 }
 
 .calendar__day--work-out {
     border: .5px solid #ffffff7A;
+}
+
+.calendar__day--work-out .calendar__day--today {
+    border: .5px solid $main-accent-o82;
 }
