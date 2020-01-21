@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Button from '../components/Button';
 import HomePage from '../components/HomePage';
+import OnboardingPage from '../components/OnboardingPage';
 import WorkoutRouter from './WorkoutRouter';
 import AppHeader from '../components/AppHeader';
 
@@ -17,6 +18,9 @@ const AppRouter = () => (
             <Switch>
                 <Route path="/home">
                     <HomePage />
+                </Route>
+                <Route path="/onboarding" >
+                    <OnboardingPage />
                 </Route>
                 <Route path="/workout" >
                     <WorkoutRouter />
