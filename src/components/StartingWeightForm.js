@@ -10,32 +10,36 @@ class StartingWeightForm extends Component {
         super(props);
         this.state = {
             weights: null,
-            chinups: {}
+            chinups: null
         }
     }
 
     submitWeights = (weights) => {
-        this.setState({
-            weights
-        });
+        const masterWeights = {
+            ...weights,
+            chinups: this.state.chinups 
+        }
+        this.props.onSubmit(masterWeights);
     }
 
     submitChinups = (chinups) => {
-        const masterWeights = {
-            ...this.state.weights,
+        this.setState({
             chinups
-        }
-        // console.log(masterWeights);
-        this.props.onSubmit(masterWeights);
+        });
+        // const masterWeights = {
+        //     ...this.state.weights,
+        //     chinups
+        // }
+        // this.props.onSubmit(masterWeights);
     }
 
     render() { 
         return (
             <>
-                {this.state.weights === null ? (
-                    <WeightsForm submitWeights={this.submitWeights}/>
-                ) : (
+                {this.state.chinups === null ? (
                     <ChinupForm submitChinups={this.submitChinups}/>
+                ) : (
+                    <WeightsForm submitWeights={this.submitWeights}/>
                 )}
             </>
         );
