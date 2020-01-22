@@ -5,13 +5,14 @@ import { startWorkout } from '../actions/inProgressWorkout';
 import Tabs from './Tabs';
 import Dashboard from './Dashboard';
 import WorkoutsTab from './WorkoutsTab';
+import LiftsTab from './LiftsTab';
 import Button from './Button';
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeTab: 1
+            activeTab: 0
         }
     }
 
@@ -19,12 +20,6 @@ class HomePage extends Component {
         this.props.dispatch(startWorkout(this.props.liftVariant));
         this.props.history.push('/workout');
     }
-
-    // componentDidMount() {
-    //     if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
-    //         this.props.history.push('/onboarding');
-    //     }
-    // }
 
     render() { 
         if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
@@ -43,7 +38,7 @@ class HomePage extends Component {
                 <Tabs 
                     activeIndex={this.state.activeTab} 
                     handleSelect={i => this.setState({ activeTab: i })}
-                    labels={['Dashboard', 'Workouts']}
+                    labels={['Dashboard', 'Workouts', 'Lifts']}
                 >
                     {this.state.activeTab === 0 && 
                         <Dashboard
@@ -57,6 +52,9 @@ class HomePage extends Component {
                         <WorkoutsTab 
                             workouts={this.props.workouts}
                         />
+                    }
+                    {this.state.activeTab === 2 && 
+                        <LiftsTab />
                     }
                 </Tabs>
             </>
