@@ -1,0 +1,33 @@
+.page--with-side-nav {
+    display: grid;
+    grid-template-columns: 27.2rem auto;
+}
+
+.side-nav {
+    background-color: $bg-tertiary;
+    height: 100vh;
+    box-shadow: $depth-2;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-nav__nav-item {
+    padding: $m-size;
+    margin-left: 4px;
+    a {
+        text-decoration: none;
+        color: #fff;
+        opacity: .64;
+        i {
+            margin-right: $s-size;
+        }
+    }
+}
+
+.side-nav__nav-item--selected {
+    border-left: 4px solid $main-accent;
+    margin-left: 0;
+    a {
+        opacity: 1;
+    }
+}
