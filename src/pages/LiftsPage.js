@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
+import LineGraph from '../components/LineGraph';
 
 class LiftsPage extends Component {
     constructor(props) {
@@ -11,6 +12,24 @@ class LiftsPage extends Component {
             activeTab: 0
         }
     }
+
+    getData = () => {
+        const { workouts } = this.props;
+        let filteredWorkouts = [];
+        workouts.map(workout => {
+            let workoutWithDate = {}
+            if(workout.hasOwnProperty('squat')) {
+                workoutWithDate = {
+                    ...workout['squat'],
+                    date: workout.created
+                }
+                filteredWorkouts.push(workoutWithDate)
+            }
+        })
+        // console.log('fw', filteredWorkouts);
+        return filteredWorkouts
+    }
+
     render() { 
         return (
             <div className="page--with-side-nav">
@@ -21,7 +40,9 @@ class LiftsPage extends Component {
                         handleSelect={i => this.setState({ activeTab: i })}
                         labels={['Bench Press', 'Deadlift', 'Overhead Press', 'Row', 'Squat']}
                     >
-                        {this.state.activeTab === 0 && 
+                        <LineGraph data={this.getData()}/>
+
+                        {/* {this.state.activeTab === 0 && 
                             <p>1</p>
                         }
                         {this.state.activeTab === 1 && 
@@ -35,7 +56,7 @@ class LiftsPage extends Component {
                         }
                         {this.state.activeTab === 4 && 
                             <p>5</p>
-                        }
+                        } */}
                     </Tabs>
                 </div>
             </div>

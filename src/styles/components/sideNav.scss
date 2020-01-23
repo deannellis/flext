@@ -25,6 +25,7 @@
     padding: $m-size;
     margin-left: 4px;
     opacity: .64;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     &:hover {
         opacity: .84;
         background-color: $bg-secondary;

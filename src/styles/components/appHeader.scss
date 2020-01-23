@@ -3,6 +3,7 @@
     align-items: center;
     height: 7.2rem;
     background: $bg-black;
+    position: relative;
     z-index: $z-top;
     h1 {
         font-family: 'Ubuntu', sans-serif;
@@ -12,5 +13,5 @@
         letter-spacing: .5px;
     }
     padding: 0 $m-size;
-    box-shadow: $depth-5;
+    box-shadow: $depth-2;
 }
