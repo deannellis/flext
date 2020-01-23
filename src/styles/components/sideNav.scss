@@ -1,0 +1,38 @@
+.page--with-side-nav {
+    display: grid;
+    grid-template-columns: 25rem auto;
+}
+
+.side-nav {
+    background-color: $bg-tertiary;
+    height: calc(100vh - 7.2rem);
+    box-shadow: $depth-2;
+    display: flex;
+    flex-direction: column;
+    a {
+        text-decoration: none;
+        color: #fff;
+        i {
+            margin-right: $s-size;
+        }
+    }
+}
+
+.side-nav__nav-item {
+    padding: $m-size;
+    margin-left: 4px;
+    opacity: .64;
+    &:hover {
+        opacity: .84;
+        background-color: $bg-secondary;
+    }
+}
+
+.side-nav__nav-item--selected {
+    border-left: 4px solid $main-accent;
+    margin-left: 0;
+    opacity: 1;
+    &:hover {
+        opacity: 1;
+    }
+}
