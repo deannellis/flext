@@ -5,7 +5,6 @@ import { startWorkout } from '../actions/inProgressWorkout';
 import Tabs from './Tabs';
 import Dashboard from './Dashboard';
 import WorkoutsTab from './WorkoutsTab';
-import LiftsTab from './LiftsTab';
 import Button from './Button';
 import SideNav from './SideNav';
 
@@ -37,9 +36,12 @@ class HomePage extends Component {
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
-                <div>
-                    <h1>Page Content</h1>
-                </div>
+                <Dashboard
+                    liftVariant={this.props.liftVariant}
+                    masterWeights={this.props.masterWeights} 
+                    workouts={this.props.workouts}
+                    onStartWorkout={this.onStartWorkout}
+                />
                 {/* <Tabs 
                     activeIndex={this.state.activeTab} 
                     handleSelect={i => this.setState({ activeTab: i })}

@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import Button from '../components/Button';
 import HomePage from '../components/HomePage';
+import WorkoutsPage from '../components/WorkoutsPage';
+import LiftsPage from '../components/LiftsPage';
 import OnboardingPage from '../components/OnboardingPage';
 import WorkoutRouter from './WorkoutRouter';
 import AppHeader from '../components/AppHeader';
@@ -25,7 +27,12 @@ const AppRouter = () => (
                 <Route path="/workout" >
                     <WorkoutRouter />
                 </Route>
-                {/* <Route path="/workout/:id" component={Lift} /> */}
+                <Route path="/workouts" >
+                    <WorkoutsPage />
+                </Route>
+                <Route path="/lifts" >
+                    <LiftsPage />
+                </Route>
                 <Route path="/">
                     <h1>Root Route Here!</h1>
                     <Link to="/home">

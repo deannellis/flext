@@ -23,12 +23,12 @@ const SideNav = (props) => {
     return (
         <div className="side-nav">
             {navList.map(item => (
-                <div className={`side-nav__nav-item ${props.path == item.path ? 'side-nav__nav-item--selected' : ''}`}>
-                    <Link to={item.path}>
+                <Link to={item.path} key={item.path}>
+                    <div className={`side-nav__nav-item ${props.path == item.path ? 'side-nav__nav-item--selected' : ''}`}>
                         <i className={`fas ${item.icon}`}></i>
                         {item.label}
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             ))}
         </div>
     );
