@@ -9,9 +9,7 @@ import SideNav from '../components/SideNav';
 class HomePage extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            activeTab: 0
-        }
+        this.state = {}
     }
 
     onStartWorkout = () => {
@@ -40,28 +38,6 @@ class HomePage extends Component {
                     workouts={this.props.workouts}
                     onStartWorkout={this.onStartWorkout}
                 />
-                {/* <Tabs 
-                    activeIndex={this.state.activeTab} 
-                    handleSelect={i => this.setState({ activeTab: i })}
-                    labels={['Dashboard', 'Workouts', 'Lifts']}
-                >
-                    {this.state.activeTab === 0 && 
-                        <Dashboard
-                            liftVariant={this.props.liftVariant}
-                            masterWeights={this.props.masterWeights} 
-                            workouts={this.props.workouts}
-                            onStartWorkout={this.onStartWorkout}
-                        />
-                    }
-                    {this.state.activeTab === 1 && 
-                        <WorkoutsTab 
-                            workouts={this.props.workouts}
-                        />
-                    }
-                    {this.state.activeTab === 2 && 
-                        <LiftsTab />
-                    }
-                </Tabs> */}
             </div>
         );
     }
