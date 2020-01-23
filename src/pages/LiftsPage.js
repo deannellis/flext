@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
-import SideNav from './SideNav';
+import SideNav from '../components/SideNav';
 
 const LiftsPage = ({ match }) => {
     return (

@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link} from "react-router-dom";
 import { startWorkout } from '../actions/inProgressWorkout';
-import Tabs from './Tabs';
-import Dashboard from './Dashboard';
-import WorkoutsTab from './WorkoutsTab';
-import Button from './Button';
-import SideNav from './SideNav';
+import Dashboard from '../components/Dashboard';
+import Button from '../components/Button';
+import SideNav from '../components/SideNav';
 
 class HomePage extends Component {
     constructor(props) {

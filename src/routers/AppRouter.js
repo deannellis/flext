@@ -5,13 +5,13 @@ import {
     Route, 
     Link
 } from 'react-router-dom';
-import Button from '../components/Button';
-import HomePage from '../components/HomePage';
-import WorkoutsPage from '../components/WorkoutsPage';
-import LiftsPage from '../components/LiftsPage';
-import OnboardingPage from '../components/OnboardingPage';
 import WorkoutRouter from './WorkoutRouter';
+import HomePage from '../pages/HomePage';
+import WorkoutsPage from '../pages/WorkoutsPage';
+import LiftsPage from '../pages/LiftsPage';
+import OnboardingPage from '../pages/OnboardingPage';
 import AppHeader from '../components/AppHeader';
+import Button from '../components/Button';
 
 const AppRouter = () => (
     <Router>

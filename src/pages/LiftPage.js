@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { updateWorkout } from '../actions/inProgressWorkout';
 import { getDisplayName, getWarmupWeights, getWeightDistribution } from '../utils/workout';
-import Button from './Button';
+import Button from '../components/Button';
 
 class LiftPage extends Component {
     constructor(props) {

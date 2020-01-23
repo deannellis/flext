@@ -5,8 +5,8 @@ import {
     Route,
     useRouteMatch,
 } from "react-router-dom";
-import Lift from '../components/LiftPage';
-import WorkoutPage from '../components/WorkoutPage';
+import Lift from '../pages/LiftPage';
+import WorkoutPage from '../pages/WorkoutPage';
 
 const WorkoutRouter = (props) => {
     let match = useRouteMatch();

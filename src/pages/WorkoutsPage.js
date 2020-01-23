@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import moment from 'moment';
 import { getDisplayName } from '../utils/workout';
-import SideNav from './SideNav';
+import SideNav from '../components/SideNav';
 
 const WorkoutsPage = ({ workouts, match }) => {
     return (
