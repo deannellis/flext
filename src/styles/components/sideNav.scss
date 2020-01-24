@@ -1,14 +1,19 @@
 .page--with-side-nav {
     display: grid;
     grid-template-columns: 25rem auto;
+    // background: $gradient-fallback;
+    // background: $gradient-bg;
+    
 }
 
 .side-nav {
     background-color: $bg-tertiary;
-    height: calc(100vh - 7.2rem);
-    box-shadow: $depth-2;
+    height: 100%;
+    min-height: calc(100vh - 7.2rem);
+    box-shadow: $depth-3;
     display: flex;
     flex-direction: column;
+    z-index: 49;
     a {
         text-decoration: none;
         color: #fff;
@@ -22,6 +27,7 @@
     padding: $m-size;
     margin-left: 4px;
     opacity: .64;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     &:hover {
         opacity: .84;
         background-color: $bg-secondary;
