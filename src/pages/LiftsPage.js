@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
 import LineGraph from '../components/LineGraph';
+import { getDisplayName } from '../utils/workout'
+
+const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat']
 
 class LiftsPage extends Component {
     constructor(props) {
@@ -15,12 +18,14 @@ class LiftsPage extends Component {
 
     getData = () => {
         const { workouts } = this.props;
+        let selectedLift = lifts[this.state.activeTab];
+        console.log(selectedLift);
         let filteredWorkouts = [];
         workouts.map(workout => {
             let workoutWithDate = {}
-            if(workout.hasOwnProperty('squat')) {
+            if(workout.hasOwnProperty(selectedLift)) {
                 workoutWithDate = {
-                    ...workout['squat'],
+                    ...workout[selectedLift],
                     date: workout.created
                 }
                 filteredWorkouts.push(workoutWithDate)
@@ -38,9 +43,12 @@ class LiftsPage extends Component {
                     <Tabs 
                         activeIndex={this.state.activeTab} 
                         handleSelect={i => this.setState({ activeTab: i })}
-                        labels={['Bench Press', 'Deadlift', 'Overhead Press', 'Row', 'Squat']}
-                    >
-                        <LineGraph data={this.getData()}/>
+                        labels={lifts.map(lift => (getDisplayName(lift)))}
+                    >   
+                        <div className="card">
+                            <p>Weight Over Time</p>
+                            <LineGraph data={this.getData()}/>
+                        </div>
 
                         {/* {this.state.activeTab === 0 && 
                             <p>1</p>

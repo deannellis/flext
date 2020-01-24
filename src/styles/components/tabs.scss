@@ -25,3 +25,8 @@
     font-weight: 700;
     opacity: 1;
 }
+
+.tabs__tab-content {
+    display: flex;
+    padding: $m-size;
+}

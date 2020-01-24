@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-// import update from '../d3/lineGraph';
 
 class LineGraph extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
 
-    update(props) {
-        const margin = { top: 40, right: 20, bottom: 50, left: 100 };
+    draw(props) {
+        // SETTINGS
+        const margin = { top: 40, right: 20, bottom: 50, left: 50 };
         const graphWidth = 560 - margin.left - margin.right;
         const graphHeight = 400 - margin.top - margin.bottom;
+        const transitionDuration = 200;
+        const lineColor = '#64FF6C';
+        const secondaryColor = '#ccc';
+        const hoverColor = '#fff';
 
+        // GRAPH
+        
         const svg = d3.select(this.refs.lineGraph)
             .append('svg')
             .attr('width', graphWidth + margin.left + margin.right)
             .attr('height', graphHeight + margin.top + margin.bottom);
-
+        
         const graph = svg.append('g')
             .attr('width', graphWidth)
             .attr('height', graphHeight)
@@ -37,19 +47,33 @@ class LineGraph extends Component {
             .y(function(d){ return y(d.weight) });
 
         const path = graph.append('path');
+
+        // DOTTED REFERENCE LINES
+        const dottedLines = graph.append('g')
+            .style('opacity', 0);
+
+        const xDottedLine = dottedLines.append('line')
+            .attr('stroke', secondaryColor)
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', 4);
+
+        const yDottedLine = dottedLines.append('line')
+            .attr('stroke', secondaryColor)
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', 4);
+
+        // START DRAWING
         const { data } = props;
+        data.sort((a, b) => new Date(a.date) - new Date(b.date));
         
         // set scale domains
         x.domain(d3.extent(data, d => new Date(d.date)));
         y.domain([0, d3.max(data, d => d.weight)])
 
-        // const date = data[0].date
-        // console.log('lgd', new Date (date));
-
         // update path data
         path.data([data])
             .attr('fill', 'none')
-            .attr('stroke', '#64FF6C')
+            .attr('stroke', lineColor)
             .attr('stroke-width', 2)
             .attr('d', line);
 
@@ -69,15 +93,51 @@ class LineGraph extends Component {
                 .attr('r', 4)
                 .attr('cx', d => x(new Date(d.date)))
                 .attr('cy', d => y(d.weight))
-                .attr('fill', '#ccc')
+                .attr('fill', secondaryColor)
+
+        // show dotted reference lines on hover
+        graph.selectAll('circle')
+            .on('mouseover', (d,i,n) => {
+                console.log('hovered!!!')
+                d3.select(n[i])
+                    .transition().duration(transitionDuration)
+                    .attr('r', 8)
+                    .attr('fill', hoverColor)
+
+                xDottedLine
+                    .attr('x1', x(new Date(d.date)))
+                    .attr('x2', x(new Date(d.date)))
+                    .attr('y1', graphHeight)
+                    .attr('y2', y(d.weight));
+                
+                yDottedLine
+                    .attr('x1', 0)
+                    .attr('x2', x(new Date(d.date)))
+                    .attr('y1', y(d.weight))
+                    .attr('y2', y(d.weight));
+
+                dottedLines
+                    .transition().duration(transitionDuration)
+                        .style('opacity', 1);
+            })
+            .on('mouseleave', (d,i,n) => {
+                d3.select(n[i])
+                    .transition().duration(transitionDuration)
+                        .attr('r', 4)
+                        .attr('fill', secondaryColor);
+                dottedLines
+                    .transition().duration(transitionDuration)
+                        .style('opacity', 0);
+            })
 
         // create axis
         const xAxis = d3.axisBottom(x)
-            .ticks(4);
-            // .tickFormat(d => d+ '')
+            .ticks(4)
+            .tickFormat(d3.timeFormat('%b %d'));
 
         const yAxis = d3.axisLeft(y)
             .ticks(4)
+            .tickFormat(d => d + 'lbs');
         
         // create axis
         xAxisGroup.call(xAxis);
@@ -90,16 +150,15 @@ class LineGraph extends Component {
     }
 
     componentDidMount() {
-        this.update(this.props, this.refs.lineGraph)
+        this.draw(this.props)
     }
 
     componentDidUpdate() {
-        this.update(this.props, this.refs.lineGraph)
+        d3.select('svg').remove();
+        this.draw(this.props)
     }
 
-    render() { 
-        return (<div className="lineGraph" ref="lineGraph"></div>);
-    }
+    render() { return (<div className="lineGraph" ref="lineGraph"></div>) }
 }
  
 export default LineGraph;
