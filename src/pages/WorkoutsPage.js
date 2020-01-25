@@ -2,32 +2,43 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import moment from 'moment';
+import { startWorkout } from '../actions/inProgressWorkout';
 import { getDisplayName } from '../utils/workout';
 import SideNav from '../components/SideNav';
+import Button from '../components/button';
 
-const WorkoutsPage = ({ workouts, match }) => {
+const WorkoutsPage = ({ workouts, match, dispatch, history, liftVariant }) => {
+
+    const onStartWorkout = () => {
+        dispatch(startWorkout(liftVariant));
+        history.push('/workout');
+    }
+
     return (
         <div className="page--with-side-nav">
             <SideNav path={match.path} />
         
-            <div className="workouts-tab">
-                <div className="workouts-tab__list">
-                    <h1>{workouts.length} total workouts</h1>
+            <div className="workouts-page">
+                <div className="workouts-page__list">
+                    <div className="workouts-page__header">
+                        <h1>{workouts.length} total workouts</h1>
+                        <Button variant="primary" clickHandler={onStartWorkout}>Start Next Workout</Button>
+                    </div>
                     {workouts.map((workout, i) => {
                         const workoutKeys = Object.keys(workout);
                         return (
-                            <div className="workouts-tab__workout" key={i}>
-                                <p className="workouts-tab__workout-number">Workout #{i+1}</p>
+                            <div className="workouts-page__workout card" key={i}>
+                                <p className="workouts-page__workout-number">Workout #{i+1}</p>
                                 <div className="empty-grid-cell"></div>
-                                <div className="workouts-tab__date">
+                                <div className="workouts-page__date">
                                     <p>{moment(workout.created).format("MMMM, D")}</p>
                                 </div>
                                 {workoutKeys.map(key => {
                                     if(key == 'id' || key == 'created') return
                                     return (
-                                        <div className="workouts-tab__lift" key={key}>
-                                            <p className="workouts-tab__workout-name">{getDisplayName(key)}</p>
-                                            <p>
+                                        <div className="workouts-page__lift" key={key}>
+                                            <p className="workouts-page__lift-name">{getDisplayName(key)}</p>
+                                            <p className="workouts-page__result">
                                                 Result:  
                                                 {workout[key].result === 0 && key !== 'chinup' ? ' Last set less than 5 reps' : ''} 
                                                 {workout[key].result === 1 && key !== 'chinup' ? ' Last set greater than 5 reps' : ''} 
@@ -38,7 +49,6 @@ const WorkoutsPage = ({ workouts, match }) => {
                                         </div>
                                     );
                                 })}
-                    
                             </div>
                         );
                     })}
@@ -51,6 +61,7 @@ const WorkoutsPage = ({ workouts, match }) => {
 const mapStateToProps = state => {
     return {
         workouts: state.workouts,
+        liftVariant: state.liftVariant,
     };
 }
  

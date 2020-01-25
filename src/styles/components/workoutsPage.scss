@@ -1,20 +1,16 @@
-.workouts-tab {
+.workouts-page {
     display: flex;
     justify-content: center;
 }
 
-.workouts-tab__list {
+.workouts-page__list {
     width: 70%;
 }
 
-.workouts-tab__workout {
+.workouts-page__workout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: $m-size;
-    background: $bg-tertiary;
-    padding: $m-size;
-    border-radius: 4px;
-    box-shadow: $depth-3;
     margin-bottom: $m-size;
     font-weight: 300;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -27,21 +23,31 @@
     }
 }
 
-.workouts-tab__lift {
+.workouts-page__lift {
     margin-right: $s-size;
 }
 
-.workouts-tab__date {
+.workouts-page__date {
     justify-self: end;
     opacity: .64;
 }
 
-.workouts-tab__workout-number {
+.workouts-page__workout-number {
     text-transform: uppercase;
     font-weight: 300;
     color: $active-text;
 }
 
-.workouts-tab__workout-name {
+.workouts-page__lift-name {
     font-weight: 700;
+}
+
+.workouts-page__result {
+    opacity: .84;
+}
+
+.workouts-page__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -4,7 +4,7 @@ import Button from './Button';
 
 const NextWorkout = (props) => {
     return (  
-        <div className="next-workout dashboard__card">
+        <div className="next-workout card">
             <h2>Next Workout</h2>
             <div className="next-workout__lifts">
                 {getWorkouts(props.liftVariant).map(workout => {

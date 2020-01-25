@@ -1,5 +1,6 @@
 .tabs__tablist {
     display: flex;
+    align-items: center;
     height: 4.8rem;
     margin: 0 0 $m-size;
     padding: 0 $m-size;
@@ -10,13 +11,14 @@
 .tabs__tab {
     text-transform: uppercase;
     text-align: center;
-    padding: $s-size $m-size;
+    padding: $s-size $m-size $xs-size;
     font-weight: 400;
     opacity: .54;
     letter-spacing: 0.5px;
     cursor: pointer;
     min-width: 9rem;
     max-width: 36rem;
+    // line-height: 2.4rem;
 }
 
 .tabs__tab--active {

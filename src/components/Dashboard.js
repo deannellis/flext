@@ -10,7 +10,7 @@ const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts }) => 
                 masterWeights={masterWeights} 
                 onStartWorkout={onStartWorkout}
             />
-            <div className="dashboard__card">
+            <div className="card">
                 <Calendar workouts={workouts} />
             </div>
         </div>

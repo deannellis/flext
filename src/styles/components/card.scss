@@ -1,7 +1,11 @@
 .card {
     background: $bg-tertiary;
-    padding: $s-size;
+    padding: $m-size;
     border-radius: 4px;
     box-shadow: $depth-2;
     margin: 0 $s-size $s-size 0;
+    h2 {
+        margin: 0 0 $m-size;
+        font-weight: 400;
+    }
 }
