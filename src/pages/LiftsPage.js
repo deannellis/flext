@@ -46,7 +46,7 @@ class LiftsPage extends Component {
                         labels={lifts.map(lift => (getDisplayName(lift)))}
                     >   
                         <div className="card">
-                            <p>Weight Over Time</p>
+                            <h2>Weight Over Time</h2>
                             <LineGraph data={this.getData()}/>
                         </div>
 
