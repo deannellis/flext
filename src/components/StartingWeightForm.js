@@ -159,9 +159,6 @@ const WeightsForm = (props) => {
                 onSubmit={(values, { setSubmitting }) => {
                     props.submitWeights(values);
                     setSubmitting(false);
-                    setTimeout(() => {
-                    //   alert(JSON.stringify(values, null, 2));
-                    }, 400);
                 }}
             >
                 <Form className="form">
@@ -172,28 +169,28 @@ const WeightsForm = (props) => {
                         min="44"
                         helperText="Enter weight in pounds"
                     />
-                    <TextInput 
+                    <NumberInput 
                         label="Deadlift"
                         name="deadlift"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
                     />
-                    <TextInput 
+                    <NumberInput 
                         label="Overhead Press"
                         name="overhead"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
                     />
-                    <TextInput 
+                    <NumberInput 
                         label="Row"
                         name="row"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
                     />
-                    <TextInput 
+                    <NumberInput 
                         label="Squat"
                         name="squat"
                         type="number"
