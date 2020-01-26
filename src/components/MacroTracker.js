@@ -20,7 +20,7 @@ const MacroTracker = ({ macros, updateMacros }) => {
                 <>
                     <p>Your Daily Macros</p>
                     {targetKeys.map((macro, i) => (
-                        <p>{`${macro}: ${target[macro]}`}</p>
+                        <p>{`${macro}: ${target[macro]} grams`}</p>
                     ))}
                 </>
             )}
