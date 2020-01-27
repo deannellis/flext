@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link} from "react-router-dom";
-import { startWorkout } from '../actions/inProgressWorkout';
-import { setTargetMacros } from '../actions/macros';
+import moment from 'moment';
 
+import { startWorkout } from '../actions/inProgressWorkout';
+import { setTargetMacros, updateMacro, setCurrentDate } from '../actions/macros';
 import Dashboard from '../components/Dashboard';
 import Button from '../components/Button';
 import SideNav from '../components/SideNav';
@@ -11,7 +12,9 @@ import SideNav from '../components/SideNav';
 class HomePage extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            today: moment()
+        }
     }
 
     onStartWorkout = () => {
@@ -19,9 +22,19 @@ class HomePage extends Component {
         this.props.history.push('/workout');
     }
 
-    onUpdateMacros = macros => {
-        console.log(macros);
-        this.props.dispatch(setTargetMacros(macros));
+    onSetMacros = macros => { this.props.dispatch(setTargetMacros(macros)); }
+
+    onUpdateMacro = update => {
+        this.props.dispatch(updateMacro(update))
+    }
+
+    componentDidMount() {
+        const { date } = this.props.macros.current;
+        if(date === null || date === 0) {
+            this.props.dispatch(setCurrentDate({ currentDate: moment() }))
+        }else if(!moment(date).isSame(this.state.today, 'day')) {
+            console.log('blorp');
+        }
     }
 
     render() { 
@@ -47,7 +60,8 @@ class HomePage extends Component {
                     workouts={this.props.workouts}
                     onStartWorkout={this.onStartWorkout}
                     macros={this.props.macros}
-                    onUpdateMacros={this.onUpdateMacros}
+                    onSetMacros={this.onSetMacros}
+                    onUpdateMacro={this.onUpdateMacro}
                 />
             </div>
         );
