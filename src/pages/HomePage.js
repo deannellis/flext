@@ -4,7 +4,7 @@ import { withRouter, Link} from "react-router-dom";
 import moment from 'moment';
 
 import { startWorkout } from '../actions/inProgressWorkout';
-import { setTargetMacros, updateMacro, setCurrentDate } from '../actions/macros';
+import { setTargetMacros, updateMacro, setCurrentDate, resetCurrent } from '../actions/macros';
 import Dashboard from '../components/Dashboard';
 import Button from '../components/Button';
 import SideNav from '../components/SideNav';
@@ -22,18 +22,19 @@ class HomePage extends Component {
         this.props.history.push('/workout');
     }
 
-    onSetMacros = macros => { this.props.dispatch(setTargetMacros(macros)); }
+    onSetMacros = macros => { this.props.dispatch(setTargetMacros(macros)) }
 
     onUpdateMacro = update => {
         this.props.dispatch(updateMacro(update))
     }
 
     componentDidMount() {
-        const { date } = this.props.macros.current;
-        if(date === null || date === 0) {
-            this.props.dispatch(setCurrentDate({ currentDate: moment() }))
-        }else if(!moment(date).isSame(this.state.today, 'day')) {
-            console.log('blorp');
+        const { day } = this.props.macros.current;
+        if(day === null || day === 0) {
+            this.props.dispatch(setCurrentDate({ currentDate: this.state.today }));
+        }else if(!moment(day).isSame(this.state.today, 'day')) {
+            this.props.dispatch(resetCurrent());
+            this.props.dispatch(setCurrentDate({ currentDate: this.state.today }));
         }
     }
 

@@ -1,33 +1,109 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Button from './Button';
 import NumberInput from './NumberInput';
 import SelectInput from './SelectInput';
+import PieChart from './PieChart';
 
-const MacroTracker = ({ macros, setMacros, updateMacro }) => {
-    const { target, current } = macros;
-    const targetKeys = Object.keys(target);
-    return (
-        <div className="macro-tracker">
-            <h2>Macros</h2>
-            {target.protein === null ? (
-                <>
-                    <p>Enter Your Macros</p>
-                    <p className="macro-tracker__helper-text">Not sure what your macros are? There are <a href="https://www.google.com/search?q=calculating+macros+for+muscle+gain" target="blank">several calculators</a> online.</p>
-                    <SetMacroForm submitMacros={macros => {setMacros(macros)}}/>
-                </>
-            ) : (
-                <>
-                    <p>Your Daily Macros</p>
-                    {targetKeys.map((macro, i) => (
-                        <p key={i}>{`${macro}: ${target[macro]} grams`}</p>
-                    ))}
-                    <UpdateMacroForm updateMacro={update => {updateMacro(update)}} />
-                </>
-            )}
-        </div>
-    );
+class MacroTracker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            displayUpdateForm: false,
+        }
+        // this.onSubmitMacros = this.onSubmitMacros.bind(this);
+    }
+
+    onSubmitMacros = macros => {
+        this.setState({ displayUpdateForm: false });
+        this.props.updateMacro(macros);
+    }
+
+    render() { 
+        const { target, current } = this.props.macros;
+        delete current.day;
+        const targetKeys = Object.keys(target);
+        let pieData = []
+
+        for(let key in current) {
+            let item = {}
+            item.macro = key;
+            if(current[key] !== null) {
+                item.amount = current[key]
+            } else {
+                item.amount = 0;
+            }
+            pieData.push(item);
+        }
+        
+        return (
+            <div className="macro-tracker">
+                <h2>Macros</h2>
+                {target.protein === null ? (
+                    <>
+                        <p>Enter Your Macros</p>
+                        <p className="macro-tracker__helper-text">Not sure what your macros are? There are <a href="https://www.google.com/search?q=calculating+macros+for+muscle+gain" target="blank">several calculators</a> online.</p>
+                        <SetMacroForm submitMacros={macros => {this.props.setMacros(macros)}}/>
+                    </>
+                ) : (
+                    <>
+                        {this.state.displayUpdateForm ? (
+                            <UpdateMacroForm updateMacro={this.onSubmitMacros} />
+                        ) : (
+                            <>
+                                <PieChart data={getPieSlices(target, current)} />
+                                <div className="macro-tracker__macros">
+                                    {targetKeys.map((macro, i) => (
+                                        <div className="macro-tracker__macro" key={i}>
+                                            <div className="macro-tracker__macro-key" id={'macro-key-' + i}></div>
+                                            <p> 
+                                                <span>{macro}</span>
+                                                {` ${current[macro]} of ${target[macro]} grams`}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <Button 
+                                    clickHandler={ () => { this.setState({ displayUpdateForm: true }) } }
+                                >Add macros</Button>
+                            </>
+                        )}
+                    </>
+                )}
+            </div>
+        );
+    }
+}
+
+const getPieSlices = (target, current) => {
+    let leftover = 0;
+    let pieData = []
+
+    for(let key in current) {
+        let item = {}
+        item.macro = key;
+        if(current[key] !== null) {
+            if(current[key] <= target[key]) {
+                item.amount = current[key]
+                const diff = target[key] - current[key];
+                leftover = leftover + diff;
+            } else {
+                item.amount = target[key]
+            }
+        } else {
+            item.amount = 0;
+        }
+        pieData.push(item);
+    }
+    if(leftover !== 0) {
+        const leftoverObject = {
+            macro: 'leftover',
+            amount: leftover
+        }
+        pieData.push(leftoverObject)
+    }
+    return pieData;
 }
 
 const UpdateMacroForm = ({ updateMacro }) => (

@@ -1,0 +1,7 @@
+.pie-chart__tooltip {
+    background: $bg-secondary;
+    p {
+        margin: 0 0 $xs-size;
+        text-transform: capitalize;
+    }
+}

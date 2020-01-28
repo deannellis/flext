@@ -1,3 +1,5 @@
+import { setCurrentDate } from "../actions/macros";
+
 const macrosReducerDefaultState = {
     target: {
         protein: null,
@@ -5,7 +7,7 @@ const macrosReducerDefaultState = {
         fat: null,
     },
     current: {
-        date: null,
+        day: null,
         protein: null,
         carbs: null,
         fat: null,
@@ -33,11 +35,12 @@ const macrosReducer = (state = macrosReducerDefaultState, action) => {
         case 'SET_CURRENT_DATE':
             const { currentDate } = action;
             let setCurrentDateUpdates = { ...state };
-            setCurrentDateUpdates.current.date = currentDate;
+            setCurrentDateUpdates.current.day = currentDate;
+            console.log('RRRRRR', setCurrentDateUpdates)
             return setCurrentDateUpdates;
         case 'RESET_CURRENT':
             let resetCurrentUpdates = {
-                target: { ...action.target },
+                target: { ...state.target },
                 current: { ...macrosReducerDefaultState.current }
             };
             return resetCurrentUpdates;
