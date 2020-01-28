@@ -13,7 +13,6 @@ import { updateLiftVariant } from '../actions/liftVariant';
 class WorkoutPage extends Component {
     constructor(props) {
         super(props);
-        console.log('Here ', props.inProgressWorkout[0]);
         this.state = {
              complete: false,
              created: moment()

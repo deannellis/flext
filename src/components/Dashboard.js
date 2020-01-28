@@ -1,8 +1,9 @@
 import React from 'react';
 import Calendar from './Calendar';
 import NextWorkout from './NextWorkout';
+import MacroTracker from './MacroTracker';
 
-const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts }) => {
+const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macros, onSetMacros, onUpdateMacro }) => {
     return (
         <div className="dashboard__container">
             <NextWorkout 
@@ -12,6 +13,13 @@ const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts }) => 
             />
             <div className="card">
                 <Calendar workouts={workouts} />
+            </div>
+            <div className="card">
+                <MacroTracker 
+                    macros={macros} 
+                    setMacros={onSetMacros}
+                    updateMacro={onUpdateMacro}
+                ></MacroTracker>
             </div>
         </div>
     );

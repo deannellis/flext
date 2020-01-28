@@ -7,6 +7,17 @@ class LineGraph extends Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        this.draw(this.props)
+    }
+
+    componentDidUpdate() {
+        d3.select('svg').remove();
+        this.draw(this.props)
+    }
+
+    render() { return (<div className="lineGraph" ref="lineGraph"></div>) }
+    
     draw(props) {
         // SETTINGS
         const margin = { top: 40, right: 20, bottom: 50, left: 50 };
@@ -148,17 +159,6 @@ class LineGraph extends Component {
             .attr('text-anchor', 'end')
             .attr('transform', 'rotate(-40)');
     }
-
-    componentDidMount() {
-        this.draw(this.props)
-    }
-
-    componentDidUpdate() {
-        d3.select('svg').remove();
-        this.draw(this.props)
-    }
-
-    render() { return (<div className="lineGraph" ref="lineGraph"></div>) }
 }
  
 export default LineGraph;
