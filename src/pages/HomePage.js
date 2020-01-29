@@ -29,12 +29,16 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        const { day } = this.props.macros.current;
-        if(day === null || day === 0) {
-            this.props.dispatch(setCurrentDate({ currentDate: this.state.today }));
-        }else if(!moment(day).isSame(this.state.today, 'day')) {
+        const { dateObject } = this.props.macros;
+        const storedDate = dateObject._d
+        const { today } = this.state;
+        if(dateObject === null || dateObject === 0) {
+            console.log('SETTING DATE DUE TO NULL OR 0 VALUE');
+            this.props.dispatch(setCurrentDate({ currentDate: today }));
+        }else if(!(moment().isSame(storedDate, 'day'))) {
+            console.log('RESETING CURRENT MACROS BASED ON OUTDATED DATE');
             this.props.dispatch(resetCurrent());
-            this.props.dispatch(setCurrentDate({ currentDate: this.state.today }));
+            this.props.dispatch(setCurrentDate({ currentDate: today }));
         }
     }
 

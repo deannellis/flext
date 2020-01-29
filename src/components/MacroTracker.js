@@ -22,20 +22,7 @@ class MacroTracker extends Component {
 
     render() { 
         const { target, current } = this.props.macros;
-        delete current.day;
         const targetKeys = Object.keys(target);
-        let pieData = []
-
-        for(let key in current) {
-            let item = {}
-            item.macro = key;
-            if(current[key] !== null) {
-                item.amount = current[key]
-            } else {
-                item.amount = 0;
-            }
-            pieData.push(item);
-        }
         
         return (
             <div className="macro-tracker">
@@ -48,29 +35,28 @@ class MacroTracker extends Component {
                     </>
                 ) : (
                     <>
-                        {this.state.displayUpdateForm ? (
-                            <UpdateMacroForm updateMacro={this.onSubmitMacros} />
-                        ) : (
-                            <>
-                                <PieChart data={getPieSlices(target, current)} />
-                                <div className="macro-tracker__macros">
-                                    {targetKeys.map((macro, i) => (
-                                        <div className="macro-tracker__macro" key={i}>
-                                            <div className="macro-tracker__macro-key" id={'macro-key-' + i}></div>
-                                            <p> 
-                                                <span>{macro}</span>
-                                                {` ${current[macro]} of ${target[macro]} grams`}
-                                            </p>
-                                        </div>
-                                    ))}
+                        <PieChart data={getPieSlices(target, current)} />
+                        <div className="macro-tracker__macros">
+                            {targetKeys.map((macro, i) => (
+                                <div className="macro-tracker__macro" key={i}>
+                                    <div className="macro-tracker__macro-key" id={'macro-key-' + i}></div>
+                                    <p> 
+                                        <span>{macro}</span>
+                                        {` ${current[macro]} of ${target[macro]} grams`}
+                                    </p>
                                 </div>
-                                <Button 
-                                    clickHandler={ () => { this.setState({ displayUpdateForm: true }) } }
-                                >Add macros</Button>
-                            </>
-                        )}
+                            ))}
+                        </div>
+                        <Button 
+                            clickHandler={ () => { this.setState({ displayUpdateForm: true }) } }
+                        >Add macros</Button>
                     </>
                 )}
+                <div className={this.state.displayUpdateForm ? 'macro-tracker__update-form' : 'macro-tracker__update-form macro-tracker__update-form--hidden'}>
+                    <UpdateMacroForm updateMacro={this.onSubmitMacros} closeForm={() => {
+                        this.setState({ displayUpdateForm: false })
+                    }} />
+                </div>
             </div>
         );
     }
@@ -93,6 +79,7 @@ const getPieSlices = (target, current) => {
             }
         } else {
             item.amount = 0;
+            leftover = leftover + target[key];
         }
         pieData.push(item);
     }
@@ -106,7 +93,7 @@ const getPieSlices = (target, current) => {
     return pieData;
 }
 
-const UpdateMacroForm = ({ updateMacro }) => (
+const UpdateMacroForm = ({ updateMacro, closeForm }) => (
     <>
         <Formik
             initialValues={{
@@ -141,7 +128,8 @@ const UpdateMacroForm = ({ updateMacro }) => (
                     min="0"
                     helperText="Enter amount in grams"
                 />
-                <Button type="submit">submit</Button>
+                <Button variant="primary" type="submit">submit</Button>
+                <Button type="button" clickHandler={closeForm}>cancel</Button>
             </Form>
         </Formik>
     </>

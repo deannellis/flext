@@ -7,11 +7,11 @@ const macrosReducerDefaultState = {
         fat: null,
     },
     current: {
-        day: null,
         protein: null,
         carbs: null,
         fat: null,
-    }
+    },
+    dateObject: null,
 };
 
 const macrosReducer = (state = macrosReducerDefaultState, action) => {
@@ -20,7 +20,8 @@ const macrosReducer = (state = macrosReducerDefaultState, action) => {
             let setTargetUpdates = {};
             setTargetUpdates = {
                 target: { ...action.target },
-                current: { ...state.current }
+                current: { ...state.current },
+                dateObject: { ...state.dateObject },
             }
             return setTargetUpdates;
         case 'UPDATE_MACRO':
@@ -35,13 +36,13 @@ const macrosReducer = (state = macrosReducerDefaultState, action) => {
         case 'SET_CURRENT_DATE':
             const { currentDate } = action;
             let setCurrentDateUpdates = { ...state };
-            setCurrentDateUpdates.current.day = currentDate;
-            console.log('RRRRRR', setCurrentDateUpdates)
+            setCurrentDateUpdates.dateObject = currentDate;
             return setCurrentDateUpdates;
         case 'RESET_CURRENT':
             let resetCurrentUpdates = {
                 target: { ...state.target },
-                current: { ...macrosReducerDefaultState.current }
+                current: { ...macrosReducerDefaultState.current },
+                dateObject: null
             };
             return resetCurrentUpdates;
         default:

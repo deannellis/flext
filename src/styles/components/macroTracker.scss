@@ -1,6 +1,8 @@
-.macroTracker {
+.macro-tracker {
     transition: height 0.3s cubic-bezier(.25,.8,.25,1);
-
+    position: relative;
+    height: auto;
+    width: auto;
 }
 
 .macro-tracker__helper-text {
@@ -52,4 +54,35 @@
     background: #11998e;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.macro-tracker__update-form {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    background-color: $bg-tertiary-o72;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    width: calc(100% + 3.2rem);
+    height: calc(100% + 3.2rem);
+    top: -1.6rem;
+    left: -1.6rem;
+    z-index: $z-top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    opacity: 1;
+    form {
+        width: 100%;
+        margin-top: $l-size;
+    }
+    button {
+        width: 100%;
+        margin-bottom: $s-size;
+    }
+}
+
+.macro-tracker__update-form--hidden {
+    opacity: 0;
+    pointer-events: none;
 }
