@@ -5,7 +5,7 @@ import moment from 'moment';
 import { startWorkout } from '../actions/inProgressWorkout';
 import { getDisplayName } from '../utils/workout';
 import SideNav from '../components/SideNav';
-import Button from '../components/button';
+import Button from '../components/Button';
 
 const WorkoutsPage = ({ workouts, match, dispatch, history, liftVariant }) => {
 

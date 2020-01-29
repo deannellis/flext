@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
-import LineGraph from '../components/LineGraph';
+import LineGraph from '../components/LineGraphXX';
 import { getDisplayName } from '../utils/workout'
 
 const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat']

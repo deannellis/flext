@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import Button from './Button';
 import NumberInput from './NumberInput';
 import SelectInput from './SelectInput';
-import PieChart from './PieChartXX';
+import PieChart from './PieChart';
 
 class MacroTracker extends Component {
     constructor(props) {
@@ -22,21 +22,8 @@ class MacroTracker extends Component {
 
     render() { 
         const { target, current } = this.props.macros;
-        delete current.day;
         const targetKeys = Object.keys(target);
-        let pieData = []
-
-        for(let key in current) {
-            let item = {}
-            item.macro = key;
-            if(current[key] !== null) {
-                item.amount = current[key]
-            } else {
-                item.amount = 0;
-            }
-            pieData.push(item);
-        }
-        console.log('here!!!!', getPieSlices(target, current));
+        
         return (
             <div className="macro-tracker">
                 <h2>Macros</h2>
