@@ -36,7 +36,7 @@ class MacroTracker extends Component {
             }
             pieData.push(item);
         }
-        
+        console.log('here!!!!', getPieSlices(target, current));
         return (
             <div className="macro-tracker">
                 <h2>Macros</h2>
@@ -92,6 +92,7 @@ const getPieSlices = (target, current) => {
             }
         } else {
             item.amount = 0;
+            leftover = leftover + target[key];
         }
         pieData.push(item);
     }
