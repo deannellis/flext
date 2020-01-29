@@ -18,7 +18,7 @@ class PieChart extends Component {
         this.draw(this.props)
     }
 
-    render() { return (<div className="pieChart" ref="pieChart"></div>) }
+    render() { return (<div className="pie-chart" ref="pieChart"></div>) }
     
     draw(props) {
         // SETTINGS
@@ -141,12 +141,10 @@ class PieChart extends Component {
 
         // START DRAWING
         const { data } = props;
-        console.log(data)
         
         // join data to pie elements
         const paths = graph.selectAll('path')
             .data(pie(data));
-        console.log('halp', paths)
         // exit selection
         paths.exit()
             .transition().duration(750)
