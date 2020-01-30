@@ -14,13 +14,11 @@ const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macro
             <div className="card">
                 <Calendar workouts={workouts} />
             </div>
-            <div className="card">
-                <MacroTracker 
-                    macros={macros} 
-                    setMacros={onSetMacros}
-                    updateMacro={onUpdateMacro}
-                ></MacroTracker>
-            </div>
+            <MacroTracker 
+                macros={macros} 
+                setMacros={onSetMacros}
+                updateMacro={onUpdateMacro}
+            ></MacroTracker>
         </div>
     );
 }
