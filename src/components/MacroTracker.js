@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+
 import Button from './Button';
 import NumberInput from './NumberInput';
 import SelectInput from './SelectInput';
@@ -25,7 +26,7 @@ class MacroTracker extends Component {
         const targetKeys = Object.keys(target);
         
         return (
-            <div className="macro-tracker">
+            <div className="macro-tracker card">
                 <h2>Macros</h2>
                 {target.protein === null ? (
                     <>
@@ -52,7 +53,7 @@ class MacroTracker extends Component {
                         >Add macros</Button>
                     </>
                 )}
-                <div className={this.state.displayUpdateForm ? 'macro-tracker__update-form' : 'macro-tracker__update-form macro-tracker__update-form--hidden'}>
+                <div className={this.state.displayUpdateForm ? 'macro-tracker__overlay card__overlay' : 'macro-tracker__overlay card__overlay  card__overlay--hidden'}>
                     <UpdateMacroForm updateMacro={this.onSubmitMacros} closeForm={() => {
                         this.setState({ displayUpdateForm: false })
                     }} />

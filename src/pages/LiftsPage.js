@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
+
+import { setWeight } from '../actions/masterWeights';
+import { getDisplayName } from '../utils/workout';
 import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
-import LineGraph from '../components/LineGraphXX';
-import { getDisplayName } from '../utils/workout'
+import LineGraph from '../components/LineGraph';
+import LiftCard from '../components/LiftCard';
 
 const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat']
 
@@ -12,8 +15,14 @@ class LiftsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {  
-            activeTab: 0
+            activeTab: 0,
+            updateFormIsOpen: false,
         }
+    }
+
+    updateLiftWeight = update => {
+        this.props.dispatch(setWeight({ update }));
+        console.log('tit',update)
     }
 
     getData = () => {
@@ -31,7 +40,6 @@ class LiftsPage extends Component {
                 filteredWorkouts.push(workoutWithDate)
             }
         })
-        // console.log('fw', filteredWorkouts);
         return filteredWorkouts
     }
 
@@ -49,22 +57,13 @@ class LiftsPage extends Component {
                             <h2>Weight Over Time</h2>
                             <LineGraph data={this.getData()}/>
                         </div>
-
-                        {/* {this.state.activeTab === 0 && 
-                            <p>1</p>
-                        }
-                        {this.state.activeTab === 1 && 
-                            <p>2</p>
-                        }
-                        {this.state.activeTab === 2 && 
-                            <p>3</p>
-                        }
-                        {this.state.activeTab === 3 && 
-                            <p>4</p>
-                        }
-                        {this.state.activeTab === 4 && 
-                            <p>5</p>
-                        } */}
+                        <LiftCard 
+                            lift={lifts[this.state.activeTab]} 
+                            weights={this.props.masterWeights}
+                            formIsOpen={this.state.updateFormIsOpen}
+                            toggleForm={() => {this.setState({ updateFormIsOpen: !this.state.updateFormIsOpen })}}
+                            updateWeight={this.updateLiftWeight}
+                        />
                     </Tabs>
                 </div>
             </div>
@@ -75,6 +74,7 @@ class LiftsPage extends Component {
 const mapStateToProps = state => {
     return {
         workouts: state.workouts,
+        masterWeights: state.masterWeights,
     };
 }
  

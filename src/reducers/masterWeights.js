@@ -6,7 +6,6 @@ const masterWeightsReducer = (state = {}, action) => {
             let updatedMasterWeights = { ...state };
             const { updates } = action;
     
-            // console.log('1', updatedMasterWeights);
             for(let key in updates) {
                 if(updates[key] !== null) {
                     if(key !== 'chinup') {
@@ -40,6 +39,13 @@ const masterWeightsReducer = (state = {}, action) => {
                 }
             }
             return updatedMasterWeights;
+        case 'SET_WEIGHT':
+            let setWeightUpdates = { ...state };
+            const { update } = action;
+            const lift = Object.keys(update)[0];
+            const newWeight = update[lift];
+            setWeightUpdates[lift] = newWeight;
+            return setWeightUpdates;
         default:
             return state;
     }

@@ -39,3 +39,10 @@ export const updateMasterWeights = ({
         chinup
     }
 });
+
+export const setWeight = ({
+    update = {}
+}) => ({
+    type: 'SET_WEIGHT',
+    update
+})
