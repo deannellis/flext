@@ -11,14 +11,16 @@ import './styles/styles.scss';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      menuIsOpen: false
-    }
 
     this.toggleMenu = () => {
       this.setState(state => ({
         menuIsOpen: !state.menuIsOpen
-      }))
+      }));
+    };
+
+    this.state = {
+      menuIsOpen: false,
+      toggleMenu: this.toggleMenu,
     }
   }
   

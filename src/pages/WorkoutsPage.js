@@ -31,6 +31,7 @@ class WorkoutsPage extends Component {
     }
 
     render() { 
+        let { menuIsOpen } = this.context;
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
@@ -40,7 +41,7 @@ class WorkoutsPage extends Component {
                     <div className="workouts-page__list">
                         <div className="workouts-page__header">
                             <h1>{this.props.workouts.length} total workouts</h1>
-                            <Button variant="primary" clickHandler={onStartWorkout}>Start Next Workout</Button>
+                            <Button variant="primary" clickHandler={this.onStartWorkout}>Start Next Workout</Button>
                         </div>
                         {this.props.workouts.map((workout, i) => {
                             const workoutKeys = Object.keys(workout);

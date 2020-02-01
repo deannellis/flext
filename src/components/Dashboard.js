@@ -3,7 +3,7 @@ import Calendar from './Calendar';
 import NextWorkout from './NextWorkout';
 import MacroTracker from './MacroTracker';
 
-const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macros, onSetMacros, onUpdateMacro, menuIsOpen }) => {
+const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macros, onSetMacros, onUpdateMacro, onClickWorkoutDate, menuIsOpen }) => {
     return (
         <div className="side-nav__page-content">
             <div className={menuIsOpen ? 'side-nav__page-scrim' : 'side-nav__page-scrim side-nav__page-scrim--hidden'}></div>
@@ -14,7 +14,10 @@ const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macro
                     onStartWorkout={onStartWorkout}
                 />
                 <div className="card">
-                    <Calendar workouts={workouts} />
+                    <Calendar 
+                        workouts={workouts} 
+                        onClickWorkoutDate={onClickWorkoutDate}
+                    />
                 </div>
                 <MacroTracker 
                     macros={macros} 

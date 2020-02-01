@@ -8,6 +8,7 @@ import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
 import LineGraph from '../components/LineGraph';
 import LiftCard from '../components/LiftCard';
+import { MenuContext } from '../context/menu-context';
 
 const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat']
 
@@ -44,10 +45,15 @@ class LiftsPage extends Component {
     }
 
     render() { 
+        let { menuIsOpen } = this.context;
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
-                <div className="lifts-page">
+                <div className="lifts-page side-nav__page-content">
+                    <div 
+                        className={menuIsOpen ? 'side-nav__page-scrim' : 'side-nav__page-scrim side-nav__page-scrim--hidden'}
+                        onClick={this.context.toggleMenu}
+                    ></div>
                     <Tabs 
                         activeIndex={this.state.activeTab} 
                         handleSelect={i => this.setState({ activeTab: i })}
@@ -70,6 +76,7 @@ class LiftsPage extends Component {
         );
     }
 }
+LiftsPage.contextType = MenuContext;
  
 const mapStateToProps = state => {
     return {

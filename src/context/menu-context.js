@@ -1,3 +1,6 @@
 import React from 'react';
 
-export const MenuContext = React.createContext({ menuIsOpen: false });
+export const MenuContext = React.createContext({ 
+    menuIsOpen: false,
+    toggleMenu: () => {}
+});
