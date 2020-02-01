@@ -142,6 +142,7 @@ lineGraph.create = (element, data, config) => {
 };
 
 lineGraph.update = (element, data, config, graph) => {
+    data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     // update scale domains
     x.domain(d3.extent(data, d => new Date(d.date)));

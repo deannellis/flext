@@ -43,6 +43,10 @@
 
 .workouts-page__lift-name {
     font-weight: 700;
+    span {
+        opacity: .64;
+        font-weight: 300;
+    }
 }
 
 .workouts-page__result {
