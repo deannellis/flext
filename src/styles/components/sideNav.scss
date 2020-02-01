@@ -1,19 +1,50 @@
 .page--with-side-nav {
     display: grid;
-    grid-template-columns: 25rem auto;
-    // background: $gradient-fallback;
-    // background: $gradient-bg;
-    
+    grid-template-columns: auto 1fr;
+}
+
+.side-nav__page-content {
+    position: relative;
+}
+
+.side-nav__page-scrim {
+    background-color: #00000073;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: $z-1;
+    // pointer-events: none;
+    display: block;
+    @include for-tablet-landscape-up{
+        display: none;
+    };
+}
+
+.side-nav__page-scrim--hidden {
+    display: none;
+}
+
+.side-nav__container {
+    width: 0;
+    position: relative;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    @include for-tablet-landscape-up{
+        width: 25rem;
+    };
 }
 
 .side-nav {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    position: absolute;
+    width: 25rem;
     background-color: $bg-tertiary;
     height: 100%;
     min-height: calc(100vh - 7.2rem);
-    box-shadow: $depth-2;
+    box-shadow: $depth-3;
     display: flex;
     flex-direction: column;
-    z-index: 49;
+    z-index: $z-top;
+    left: -25rem;
     a {
         text-decoration: none;
         color: #fff;
@@ -21,6 +52,13 @@
             margin-right: $s-size;
         }
     }
+    @include for-tablet-landscape-up{
+        left: 0;
+    };
+}
+
+.side-nav--opened {
+    left: 0;
 }
 
 .side-nav__nav-item {

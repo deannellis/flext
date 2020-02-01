@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import moment from 'moment';
+
 import { startWorkout } from '../actions/inProgressWorkout';
 import { getDisplayName } from '../utils/workout';
 import SideNav from '../components/SideNav';
 import Button from '../components/Button';
+import { MenuContext } from '../context/menu-context';
 
 class WorkoutsPage extends Component {
     constructor(props) {
@@ -29,11 +31,13 @@ class WorkoutsPage extends Component {
     }
 
     render() { 
+        let { menuIsOpen } = this.context;
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
             
-                <div className="workouts-page">
+                <div className="workouts-page side-nav__page-content">
+                    <div className={menuIsOpen ? 'side-nav__page-scrim' : 'side-nav__page-scrim side-nav__page-scrim--hidden'}></div>
                     <div className="workouts-page__list">
                         <div className="workouts-page__header">
                             <h1>{this.props.workouts.length} total workouts</h1>
@@ -73,6 +77,7 @@ class WorkoutsPage extends Component {
         );
     }
 }
+WorkoutsPage.contextType = MenuContext;
  
 const mapStateToProps = state => {
     return {

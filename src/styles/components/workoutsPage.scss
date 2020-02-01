@@ -4,7 +4,10 @@
 }
 
 .workouts-page__list {
-    width: 70%;
+    width: 90%;
+    @include for-tablet-landscape-up{
+        width: 82%;
+    };
 }
 
 .workouts-page__workout {
