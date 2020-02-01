@@ -13,10 +13,10 @@ import OnboardingPage from '../pages/OnboardingPage';
 import AppHeader from '../components/AppHeader';
 import Button from '../components/Button';
 
-const AppRouter = () => (
+const AppRouter = ({ toggleMenu }) => (
     <Router>
         <div>
-            <AppHeader/>
+            <AppHeader toggleMenu={toggleMenu} />
             <Switch>
                 <Route path="/home">
                     <HomePage />

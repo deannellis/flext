@@ -1,18 +1,37 @@
-import React from "react";
+import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import { MenuContext } from './context/menu-context';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-const store = configureStore();
-console.log(store.getState());
 
-const jsx = (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuIsOpen: false
+    }
 
-ReactDOM.render(jsx, document.querySelector("#root"));
+    this.toggleMenu = () => {
+      this.setState(state => ({
+        menuIsOpen: !state.menuIsOpen
+      }))
+    }
+  }
+  
+  render() { 
+    const store = configureStore();
+    return (
+      <Provider store={store}>
+        <MenuContext.Provider value={this.state}>
+          <AppRouter toggleMenu={this.toggleMenu} />
+        </MenuContext.Provider>
+      </Provider>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector("#root"));
