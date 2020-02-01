@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { getMonthWorkouts, getWorkoutDays, getWorkoutIds } from '../utils/workout';
+import { LeftArrowIcon, RightArrowIcon } from '../utils/icons';
 
 class Calendar extends Component {
     constructor(props) {
@@ -38,7 +39,6 @@ class Calendar extends Component {
         });
     };
     handleDayClick = id => {
-        // console.log(id);
         this.props.onClickWorkoutDate(id);
     };
 
@@ -49,7 +49,6 @@ class Calendar extends Component {
         const daysWorkedOut = workouts[this.state.dateObject.format("MMMM")] ? workouts[this.state.dateObject.format("MMMM")] : [];
         const workoutDays = getWorkoutDays(parseInt(this.getFirstDayOfMonth()), this.getDaysInMonth());
         const workoutIds = getWorkoutIds(this.props.workouts, this.getMonth());
-        console.log('sohdalh', workoutIds)
         let emptyCells = [];
         let daysInMonth = [];
         for(let i = 0; i < this.getFirstDayOfMonth(); i++) {
@@ -82,9 +81,13 @@ class Calendar extends Component {
         }
         return (
             <div className="calendar">
-                <div className="calendar__prev-month" onClick={e => {this.onPrevMonth()}}> &lt; </div>
+                <div className="calendar__prev-month" onClick={e => {this.onPrevMonth()}}>
+                    <LeftArrowIcon size={24} />
+                </div>
                 <div className="calendar__month-year">{this.getMonth() + ' ' + this.getYear()}</div>
-                <div className="calendar__next-month" onClick={e => {this.onNextMonth()}}> &gt; </div>
+                <div className="calendar__next-month" onClick={e => {this.onNextMonth()}}>
+                    <RightArrowIcon size={24} />
+                </div>
                 {weekdaysAbbreviated.map((day, i) => (
                     <div className="calendar__weekday-short-name" key={i} >{day}</div>
                 ))}
