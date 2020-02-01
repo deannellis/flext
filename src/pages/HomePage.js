@@ -8,6 +8,7 @@ import { setTargetMacros, updateMacro, setCurrentDate, resetCurrent } from '../a
 import Dashboard from '../components/Dashboard';
 import Button from '../components/Button';
 import SideNav from '../components/SideNav';
+import { MenuContext } from '../context/menu-context';
 
 class HomePage extends Component {
     constructor(props) {
@@ -56,6 +57,8 @@ class HomePage extends Component {
                 </>
             );
         }
+        let { menuIsOpen } = this.context;
+
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
@@ -67,11 +70,13 @@ class HomePage extends Component {
                     macros={this.props.macros}
                     onSetMacros={this.onSetMacros}
                     onUpdateMacro={this.onUpdateMacro}
+                    menuIsOpen={menuIsOpen}
                 />
             </div>
         );
     }
 }
+HomePage.contextType = MenuContext;
 
 const mapStateToProps = state => {
     return {

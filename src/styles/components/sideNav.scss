@@ -15,6 +15,9 @@
     z-index: $z-1;
     // pointer-events: none;
     display: block;
+    @include for-tablet-landscape-up{
+        display: none;
+    };
 }
 
 .side-nav__page-scrim--hidden {
