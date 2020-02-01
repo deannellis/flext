@@ -10,10 +10,11 @@ import PieChart from './PieChart';
 class MacroTracker extends Component {
     constructor(props) {
         super(props);
+        const { target, current } = this.props.macros;
         this.state = {
             displayUpdateForm: false,
+            data: getPieSlices(target, current)
         }
-        // this.onSubmitMacros = this.onSubmitMacros.bind(this);
     }
 
     onSubmitMacros = macros => {
