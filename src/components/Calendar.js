@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { getMonthWorkouts, getWorkoutDays } from '../utils/workout';
+import { getMonthWorkouts, getWorkoutDays, getWorkoutIds } from '../utils/workout';
 
 class Calendar extends Component {
     constructor(props) {
@@ -37,6 +37,10 @@ class Calendar extends Component {
             dateObject: this.state.dateObject.add(1, 'month')
         });
     };
+    handleDayClick = id => {
+        // console.log(id);
+        this.props.onClickWorkoutDate(id);
+    };
 
 
     render() { 
@@ -44,6 +48,8 @@ class Calendar extends Component {
         const workouts = getMonthWorkouts(this.props.workouts);
         const daysWorkedOut = workouts[this.state.dateObject.format("MMMM")] ? workouts[this.state.dateObject.format("MMMM")] : [];
         const workoutDays = getWorkoutDays(parseInt(this.getFirstDayOfMonth()), this.getDaysInMonth());
+        const workoutIds = getWorkoutIds(this.props.workouts, this.getMonth());
+        console.log('sohdalh', workoutIds)
         let emptyCells = [];
         let daysInMonth = [];
         for(let i = 0; i < this.getFirstDayOfMonth(); i++) {
@@ -63,11 +69,15 @@ class Calendar extends Component {
             if(daysWorkedOut.includes(d)) workedOut = true;
             if(workoutDays.includes(d)) workOutDay = true;
             daysInMonth.push(
-                <div className={`calendar__day
-                    ${isToday ? 'calendar__day--today' : ''}
-                    ${workedOut ? 'calendar__day--worked-out' : ''}
-                    ${workOutDay ? 'calendar__day--work-out' : ''}
-                `} key={d}>{d}</div>
+                <div 
+                    className={`calendar__day
+                        ${isToday ? 'calendar__day--today' : ''}
+                        ${workedOut ? 'calendar__day--worked-out' : ''}
+                        ${workOutDay ? 'calendar__day--work-out' : ''}
+                    `} 
+                    key={d}
+                    onClick={workedOut ? () => {this.handleDayClick(workoutIds[d])} : () => {}}
+                >{d}</div>
             );
         }
         return (

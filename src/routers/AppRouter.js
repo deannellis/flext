@@ -27,6 +27,9 @@ const AppRouter = () => (
                 <Route path="/workout" >
                     <WorkoutRouter />
                 </Route>
+                <Route path="/workouts/:id" >
+                    <WorkoutsPage />
+                </Route>
                 <Route path="/workouts" >
                     <WorkoutsPage />
                 </Route>
