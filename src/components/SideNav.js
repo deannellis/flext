@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { MenuContext } from '../context/menu-context';
+import { DumbbellIcon, DashboardIcon, GraphIcon } from '../utils/icons';
 
 class SideNav extends Component {
     constructor(props) {
@@ -11,21 +12,33 @@ class SideNav extends Component {
         const navList = [
             {
                 label: 'Dashboard', 
-                icon: 'fa-tachometer-alt',
+                icon: 'dashboard',
                 path: '/home'
             },
             {
                 label: 'Lifts', 
-                icon: 'fa-dumbbell',
+                icon: 'graph',
                 path: '/lifts'
             },
             {
                 label: 'Workouts', 
-                icon: 'fa-calendar-alt',
+                icon: 'dumbbell',
                 path: '/workouts'
             },
         ];
         let { menuIsOpen } = this.context;
+        const getIcon = name => {
+            switch(name) {
+                case 'dumbbell':
+                    return <DumbbellIcon size={24} />
+                case 'dashboard':
+                    return <DashboardIcon size={24} />
+                case 'graph':
+                    return <GraphIcon size={24} />
+                default:
+                    return <></>
+            }
+        }
 
         return (
             <div className="side-nav__container">
@@ -33,8 +46,9 @@ class SideNav extends Component {
                     {navList.map(item => (
                         <Link to={item.path} key={item.path}>
                             <div className={`side-nav__nav-item ${this.props.path == item.path ? 'side-nav__nav-item--selected' : ''}`}>
-                                <i className={`fas ${item.icon}`}></i>
-                                {item.label}
+                                {/* <i className={`fas ${item.icon}`}></i> */}
+                                {getIcon(item.icon)}
+                                <span>{item.label}</span>
                             </div>
                         </Link>
                     ))}
