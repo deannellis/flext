@@ -32,6 +32,9 @@ class WorkoutsPage extends Component {
 
     render() { 
         let { menuIsOpen } = this.context;
+        let { workouts } = this.props;
+        console.log(workouts)
+        workouts.sort((a, b) => new Date(b.created) - new Date(a.created));
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
@@ -43,11 +46,11 @@ class WorkoutsPage extends Component {
                             <h1>{this.props.workouts.length} total workouts</h1>
                             <Button variant="primary" clickHandler={this.onStartWorkout}>Start Next Workout</Button>
                         </div>
-                        {this.props.workouts.map((workout, i) => {
+                        {workouts.map((workout, i) => {
                             const workoutKeys = Object.keys(workout);
                             return (
                                 <div className="workouts-page__workout card" key={i} id={workout.id}>
-                                    <p className="workouts-page__workout-number">Workout #{i+1}</p>
+                                    <p className="workouts-page__workout-number">Workout #{workouts.length - i}</p>
                                     <div className="empty-grid-cell"></div>
                                     <div className="workouts-page__date">
                                         <p>{moment(workout.created).format("MMMM, D")}</p>
@@ -56,7 +59,12 @@ class WorkoutsPage extends Component {
                                         if(key == 'id' || key == 'created') return
                                         return (
                                             <div className="workouts-page__lift" key={key}>
-                                                <p className="workouts-page__lift-name">{getDisplayName(key)}</p>
+                                                <p className="workouts-page__lift-name">
+                                                    {getDisplayName(key)}
+                                                    <span>
+                                                        {key !== 'chinup' ? ` @${workout[key].weight}lbs` : ''}
+                                                    </span>
+                                                </p>
                                                 <p className="workouts-page__result">
                                                     Result:  
                                                     {workout[key].result === 0 && key !== 'chinup' ? ' Last set less than 5 reps' : ''} 
