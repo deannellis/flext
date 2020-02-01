@@ -3,7 +3,7 @@ import Calendar from './Calendar';
 import NextWorkout from './NextWorkout';
 import MacroTracker from './MacroTracker';
 
-const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macros, onSetMacros, onUpdateMacro }) => {
+const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macros, onSetMacros, onUpdateMacro, onClickWorkoutDate }) => {
     return (
         <div className="dashboard__container">
             <NextWorkout 
@@ -12,7 +12,10 @@ const Dashboard = ({ liftVariant, masterWeights, onStartWorkout, workouts, macro
                 onStartWorkout={onStartWorkout}
             />
             <div className="card">
-                <Calendar workouts={workouts} />
+                <Calendar 
+                    workouts={workouts} 
+                    onClickWorkoutDate={onClickWorkoutDate}
+                />
             </div>
             <MacroTracker 
                 macros={macros} 

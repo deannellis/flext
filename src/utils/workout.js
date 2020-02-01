@@ -60,13 +60,27 @@ export const getMonthWorkouts = workouts => {
             dates[month] = [ day ];
         }
     });
-    // console.log(dates);
+    return dates;
+}
+
+export const getWorkoutIds = (workouts, curentMonth) => {
+    let dates = {};
+    workouts.forEach(workout => {
+        let month = moment(workout.created).format("MMMM");
+
+        if(month == curentMonth) {
+            let day = parseInt(moment(workout.created).format("D"));
+            if(!dates.hasOwnProperty(day)) {
+                dates[day] = workout.id;
+            }
+        }
+    });
     return dates;
 }
 
 export const getWorkoutDays = (start, daysInMonth) => {
     let workoutDays = [];
-    let checkEven = false;
+    let checkEven = start%2 == 0;
     let weekday = start + 1;
     for(let d = 1; d <= daysInMonth; d++) {
         if(checkEven) {

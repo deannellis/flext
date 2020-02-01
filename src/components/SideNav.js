@@ -24,7 +24,7 @@ const SideNav = (props) => {
         <div className="side-nav">
             {navList.map(item => (
                 <Link to={item.path} key={item.path}>
-                    <div className={`side-nav__nav-item ${props.path == item.path ? 'side-nav__nav-item--selected' : ''}`}>
+                    <div className={`side-nav__nav-item ${props.path.includes(item.path) ? 'side-nav__nav-item--selected' : ''}`}>
                         <i className={`fas ${item.icon}`}></i>
                         {item.label}
                     </div>
