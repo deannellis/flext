@@ -14,13 +14,23 @@ class WorkoutsPage extends Component {
         super(props);
         this.state = {  }
     }
-    render() { 
-        const onStartWorkout = () => {
-            this.props.dispatch(startWorkout(liftVariant));
-            this.props.history.push('/workout');
+
+    onStartWorkout = () => {
+        dispatch(startWorkout(this.props.liftVariant));
+        this.props.history.push('/workout');
+    }
+
+    componentDidMount() {
+        const { id } = this.props.match.params;
+        if(id !== undefined && document.getElementById(id) !== null) {
+            document.getElementById(id).scrollIntoView({
+                behavior: 'smooth'
+            });
         }
-        let { menuIsOpen } = this.context;
-    
+
+    }
+
+    render() { 
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
@@ -35,7 +45,7 @@ class WorkoutsPage extends Component {
                         {this.props.workouts.map((workout, i) => {
                             const workoutKeys = Object.keys(workout);
                             return (
-                                <div className="workouts-page__workout card" key={i}>
+                                <div className="workouts-page__workout card" key={i} id={workout.id}>
                                     <p className="workouts-page__workout-number">Workout #{i+1}</p>
                                     <div className="empty-grid-cell"></div>
                                     <div className="workouts-page__date">

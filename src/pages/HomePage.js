@@ -29,14 +29,18 @@ class HomePage extends Component {
         this.props.dispatch(updateMacro(update))
     }
 
+    onClickWorkoutDate = id => {
+        this.props.history.push(`/workouts/${id}`);
+    }
+
     componentDidMount() {
         const { dateObject } = this.props.macros;
-        const storedDate = dateObject._d
         const { today } = this.state;
+
         if(dateObject === null || dateObject === 0) {
             console.log('SETTING DATE DUE TO NULL OR 0 VALUE');
             this.props.dispatch(setCurrentDate({ currentDate: today }));
-        }else if(!(moment().isSame(storedDate, 'day'))) {
+        }else if(!(moment().isSame(dateObject, 'day'))) {
             console.log('RESETING CURRENT MACROS BASED ON OUTDATED DATE');
             this.props.dispatch(resetCurrent());
             this.props.dispatch(setCurrentDate({ currentDate: today }));
@@ -71,6 +75,7 @@ class HomePage extends Component {
                     onSetMacros={this.onSetMacros}
                     onUpdateMacro={this.onUpdateMacro}
                     menuIsOpen={menuIsOpen}
+                    onClickWorkoutDate={this.onClickWorkoutDate}
                 />
             </div>
         );

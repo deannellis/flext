@@ -30,14 +30,6 @@ const arcEnterTween = d => {
     }
 }
 
-const arcExitTween = d => {
-    let i = d3.interpolate(d.startAngle, d.endAngle);
-    return function(t) {
-        d.startAngle = i(t);
-        return arcPath(d);
-    }
-}
-
 // use function keyword for use of "this"
 function arcUpdateTween(d) {
     // console.log(this._current, d);
@@ -181,16 +173,6 @@ pieChart.update = (element, data, config, chart) => {
     paths.attr('d', arcPath)
         .transition().duration(750)
         .attrTween('d', arcUpdateTween);
-
-    paths.enter()
-        .append('path')
-        .attr('fill', function(d,i) {
-            if(d.data.macro === 'leftover') return '#0000003D'
-            return `url(#gradient${i})`
-        })
-        .each(function(d){ this._current = d })
-        .transition().duration(750)
-            .attrTween('d', arcEnterTween);
 };
 
 pieChart.destroy = (element) => { d3.select(element).remove() };

@@ -43,7 +43,7 @@ class MacroTracker extends Component {
                                     <div className="macro-tracker__macro-key" id={'macro-key-' + i}></div>
                                     <p> 
                                         <span>{macro}</span>
-                                        {` ${current[macro]} of ${target[macro]} grams`}
+                                        {` ${current[macro] !== null ? current[macro] : 0} of ${target[macro]} grams`}
                                     </p>
                                 </div>
                             ))}

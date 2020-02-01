@@ -142,34 +142,85 @@ lineGraph.create = (element, data, config) => {
 };
 
 lineGraph.update = (element, data, config, graph) => {
-    
-    const path = graph.select('.main-line');
 
-    // set scale domains
+    // update scale domains
     x.domain(d3.extent(data, d => new Date(d.date)));
     y.domain([0, d3.max(data, d => d.weight)])
 
+    const path = graph.select('.main-line');
+
     // update path data
     path.data([data])
+        .transition().duration(750)
         .attr('fill', 'none')
         .attr('stroke', lineColor)
         .attr('stroke-width', 2)
-        .attr('d', line);
+        .attr('d', line)
 
     const circles = graph.selectAll('circle')
         .data(data)
+    
+    // remove exited points
+    circles.exit().remove();
 
     // update current points
-    circles.attr('cx', d => x(new Date(d.date)))
+    circles.transition().duration(750)
+        .attr('cx', d => x(new Date(d.date)))
         .attr('cy', d => y(d.weight))
 
     // add new points
     circles.enter()
         .append('circle')
-            .attr('r', 4)
-            .attr('cx', d => x(new Date(d.date)))
-            .attr('cy', d => y(d.weight))
+        .attr('r', 4)
+        .attr('cx', d => x(new Date(d.date)))
+        .attr('cy', d => y(d.weight))
+        .transition().duration(750)
             .attr('fill', secondaryColor)
+
+    // show dotted reference lines on hover
+    graph.selectAll('circle')
+        .on('mouseover', (d,i,n) => {
+            console.log('hovered!!!')
+            d3.select(n[i])
+                .transition().duration(transitionDuration)
+                .attr('r', 8)
+                .attr('fill', hoverColor)
+
+            xDottedLine
+                .attr('x1', x(new Date(d.date)))
+                .attr('x2', x(new Date(d.date)))
+                .attr('y1', graphHeight)
+                .attr('y2', y(d.weight));
+            
+            yDottedLine
+                .attr('x1', 0)
+                .attr('x2', x(new Date(d.date)))
+                .attr('y1', y(d.weight))
+                .attr('y2', y(d.weight));
+
+            dottedLines
+                .transition().duration(transitionDuration)
+                    .style('opacity', 1);
+        })
+        .on('mouseleave', (d,i,n) => {
+            d3.select(n[i])
+                .transition().duration(transitionDuration)
+                    .attr('r', 4)
+                    .attr('fill', secondaryColor);
+            dottedLines
+                .transition().duration(transitionDuration)
+                    .style('opacity', 0);
+        })
+        // AXES GROUPS
+        const xAxisGroup = graph.select('.x-axis')
+        const yAxisGroup = graph.select('.y-axis');
+        // update axis
+        xAxisGroup.call(xAxis);
+        yAxisGroup.call(yAxis);
+        // rotate axis text
+        xAxisGroup.selectAll('text')
+            .attr('text-anchor', 'end')
+            .attr('transform', 'rotate(-40)');
 };
 
 lineGraph.destroy = (element) => { d3.select(element).remove() };
