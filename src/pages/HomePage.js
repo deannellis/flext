@@ -33,19 +33,22 @@ class HomePage extends Component {
         this.props.history.push(`/workouts/${id}`);
     }
 
-    componentDidMount() {
-        const { dateObject } = this.props.macros;
-        const { today } = this.state;
-
-        if(dateObject === null || dateObject === 0) {
-            console.log('SETTING DATE DUE TO NULL OR 0 VALUE');
-            this.props.dispatch(setCurrentDate({ currentDate: today }));
-        }else if(!(moment().isSame(dateObject, 'day'))) {
-            console.log('RESETING CURRENT MACROS BASED ON OUTDATED DATE');
-            this.props.dispatch(resetCurrent());
-            this.props.dispatch(setCurrentDate({ currentDate: today }));
-        }
-    }
+    // componentDidMount() {
+    //     const { dateObject } = this.props.macros;
+    //     const { today } = this.state;
+    //     console.log(moment.isMoment(dateObject))
+    //     const formattedDateObject = dateObject.format("YYYY");
+    //     // const result = today.isSame(dateObject, 'day');
+    //     if(dateObject === null || dateObject === 0) {
+    //         console.log('SETTING DATE DUE TO NULL OR 0 VALUE');
+    //         this.props.dispatch(setCurrentDate({ currentDate: today }));
+    //     }
+    //     // }else if(!(moment().isSame(dateObject, 'day'))) {
+    //     //     console.log('RESETING CURRENT MACROS BASED ON OUTDATED DATE');
+    //     //     this.props.dispatch(resetCurrent());
+    //     //     this.props.dispatch(setCurrentDate({ currentDate: today }));
+    //     // }
+    // }
 
     render() { 
         if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
