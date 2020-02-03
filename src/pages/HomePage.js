@@ -5,9 +5,11 @@ import moment from 'moment';
 
 import { startWorkout } from '../actions/inProgressWorkout';
 import { setTargetMacros, updateMacro, setCurrentDate, resetCurrent } from '../actions/macros';
-import Dashboard from '../components/Dashboard';
 import Button from '../components/Button';
 import SideNav from '../components/SideNav';
+import Calendar from '../components/Calendar';
+import NextWorkout from '../components/NextWorkout';
+import MacroTracker from '../components/MacroTracker';
 import { MenuContext } from '../context/menu-context';
 
 class HomePage extends Component {
@@ -64,22 +66,35 @@ class HomePage extends Component {
                 </>
             );
         }
-        let { menuIsOpen } = this.context;
+        let { menuIsOpen, toggleMenu } = this.context;
 
         return (
             <div className="page--with-side-nav">
                 <SideNav path={this.props.match.path} />
-                <Dashboard
-                    liftVariant={this.props.liftVariant}
-                    masterWeights={this.props.masterWeights} 
-                    workouts={this.props.workouts}
-                    onStartWorkout={this.onStartWorkout}
-                    macros={this.props.macros}
-                    onSetMacros={this.onSetMacros}
-                    onUpdateMacro={this.onUpdateMacro}
-                    menuIsOpen={menuIsOpen}
-                    onClickWorkoutDate={this.onClickWorkoutDate}
-                />
+                <div className="side-nav__page-content">
+                    <div 
+                        className={menuIsOpen ? 'side-nav__page-scrim' : 'side-nav__page-scrim side-nav__page-scrim--hidden'}
+                        onClick={toggleMenu}
+                    ></div>
+                    <div className="dashboard__container side-nav__page-content">
+                        <NextWorkout 
+                            liftVariant={this.props.liftVariant} 
+                            masterWeights={this.props.masterWeights} 
+                            onStartWorkout={this.onStartWorkout}
+                        />
+                        <div className="card">
+                            <Calendar 
+                                workouts={this.props.workouts} 
+                                onClickWorkoutDate={this.onClickWorkoutDate}
+                            />
+                        </div>
+                        <MacroTracker 
+                            macros={this.props.macros} 
+                            setMacros={this.onSetMacros}
+                            updateMacro={this.onUpdateMacro}
+                        ></MacroTracker>
+                    </div>
+                </div>
             </div>
         );
     }
