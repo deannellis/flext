@@ -46,7 +46,6 @@ class SideNav extends Component {
                     {navList.map(item => (
                         <Link to={item.path} key={item.path}>
                             <div className={`side-nav__nav-item ${this.props.path == item.path ? 'side-nav__nav-item--selected' : ''}`}>
-                                {/* <i className={`fas ${item.icon}`}></i> */}
                                 {getIcon(item.icon)}
                                 <span>{item.label}</span>
                             </div>
