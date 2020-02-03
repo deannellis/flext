@@ -42,7 +42,10 @@ export const updateMasterWeights = ({
 
 export const setWeight = ({
     update = {}
-}) => ({
-    type: 'SET_WEIGHT',
-    update
-})
+} = {}) => {
+    console.log('here', update)
+    return {
+        type: 'SET_WEIGHT',
+        update
+    }
+}
