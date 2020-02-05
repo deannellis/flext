@@ -1,5 +1,3 @@
-import { setCurrentDate } from "../actions/macros";
-
 const macrosReducerDefaultState = {
     target: {
         protein: null,
