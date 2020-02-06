@@ -27,11 +27,9 @@ const masterWeightsReducer = (state = {}, action) => {
                         if(updates[key] == 1) {
                             const { ups, negatives, weight } = state[key];
                             if(negatives > 0) {
-                                console.log('db1');
                                 updatedMasterWeights.chinup.negatives = state.chinup.negatives - 1;
                                 updatedMasterWeights.chinup.ups = state.chinup.ups + 1;
                             } else {
-                                console.log('db1');
                                 updatedMasterWeights.chinup.weight = state.chinup.weight + 2.5;
                             }
                         }

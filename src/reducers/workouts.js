@@ -17,7 +17,6 @@ const workoutsReducer = (state = [], action) => {
                 created,
                 id
             }
-            console.log('YOYOYOY', created)
             return [ ...state, newWorkout ];
         default:
             return state;

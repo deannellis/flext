@@ -4,10 +4,6 @@ import { MenuContext } from '../context/menu-context';
 import { DumbbellIcon, DashboardIcon, GraphIcon } from '../utils/icons';
 
 class SideNav extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
     render() { 
         const navList = [
             {

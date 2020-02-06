@@ -9,7 +9,7 @@ export const startWorkout = ({
 
 export const updateWorkout = ({
     updates = {}
-}) => ({
+} = {}) => ({
     type: 'UPDATE_WORKOUT',
     updates
 });

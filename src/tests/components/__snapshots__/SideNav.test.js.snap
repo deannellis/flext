@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SideNav 1`] = `
+<div
+  className="side-nav__container"
+>
+  <div
+    className="side-nav"
+  >
+    <Link
+      key="/home"
+      to="/home"
+    >
+      <div
+        className="side-nav__nav-item "
+      >
+        <DashboardIcon
+          size={24}
+        />
+        <span>
+          Dashboard
+        </span>
+      </div>
+    </Link>
+    <Link
+      key="/lifts"
+      to="/lifts"
+    >
+      <div
+        className="side-nav__nav-item "
+      >
+        <GraphIcon
+          size={24}
+        />
+        <span>
+          Lifts
+        </span>
+      </div>
+    </Link>
+    <Link
+      key="/workouts"
+      to="/workouts"
+    >
+      <div
+        className="side-nav__nav-item "
+      >
+        <DumbbellIcon
+          size={24}
+        />
+        <span>
+          Workouts
+        </span>
+      </div>
+    </Link>
+  </div>
+</div>
+`;
