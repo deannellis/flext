@@ -17,7 +17,7 @@ class WorkoutsPage extends Component {
     }
 
     onStartWorkout = () => {
-        dispatch(startWorkout(this.props.liftVariant));
+        this.props.dispatch(startWorkout(this.props.liftVariant));
         this.props.history.push('/workout');
     }
 
@@ -30,6 +30,7 @@ class WorkoutsPage extends Component {
         }
 
     }
+    componentWillUnmount() { this.context.toggleMenu() }
 
     render() { 
         let { menuIsOpen } = this.context;

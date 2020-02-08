@@ -18,9 +18,17 @@ class App extends Component {
       }));
     };
 
+    this.setPageMenu = hasMenu => {
+      this.setState({
+        pageHasMenu: hasMenu
+      });
+    };
+
     this.state = {
       menuIsOpen: false,
       toggleMenu: this.toggleMenu,
+      pageHasMenu: true,
+      setPageMenu: this.setPageMenu,
     }
   }
   
@@ -29,7 +37,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <MenuContext.Provider value={this.state}>
-          <AppRouter toggleMenu={this.toggleMenu} />
+          <AppRouter toggleMenu={this.toggleMenu} pageHasMenu={this.state.pageHasMenu} />
         </MenuContext.Provider>
       </Provider>
     );

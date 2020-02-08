@@ -1,33 +1,48 @@
+.lift-page__wrapper {
+    background: rgb(15,19,27);
+    background: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 24%, rgba(35,44,61,1) 52%, rgba(17,20,27,1) 100%);
+    height: calc(100vh - 7.2rem);
+    overflow: scroll;
+}
+
 .lift-page {
-    margin: $l-size $m-size;
+    padding: $m-size $m-size $xl-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .lift-page__card {
-    background: $bg-tertiary;
-    padding: $m-size 0;
-    border-radius: 4px;
-    box-shadow: $depth-2;
-    padding: $s-size $s-size $l-size;
-    width: auto;
-    h2 {
-        font-weight: 700;
-        margin: 0;
-        color: $secondary-accent;
-        font-family: 'Ubuntu', sans-serif;
-    }
+    margin: 0 $m-size;
+    padding-bottom: $l-size;
+    h2 { margin: 0; }
     h3 {
-        // margin: $s-size;
+        margin: $l-size 0 $s-size;
         font-weight: 300;
     }
 }
 
 .lift-page__tables {
     display: flex;
+    flex-wrap: wrap;
+    @include for-tablet-landscape-up{
+        #warm-up {
+            margin-right: $s-size;
+        }  
+    };
+}
+
+.lift-page__table {
+    @include for-phone-only {
+        width: 100%;
+    }
 }
 
 .lift-page__sets {
-    width: 34.4rem;
-    margin-right: $s-size;
+    width: 100%;
+    @include for-tablet-portrait-up {
+        width: 34.4rem;
+    }
 }
 
 .lift-page__set {
@@ -115,4 +130,10 @@
     padding: $s-size $xs-size 0;
     text-transform: uppercase;
     font-weight: 300;
+}
+
+.lift-page__action-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

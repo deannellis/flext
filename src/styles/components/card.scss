@@ -3,12 +3,17 @@
     padding: $m-size;
     border-radius: 4px;
     box-shadow: $depth-2;
-    margin: 0 $s-size $s-size 0;
     h2 {
         margin: 0 0 $m-size;
         font-weight: 400;
     }
     position: relative;
+    width: 100%;
+    margin: 0 0 $s-size 0;
+    @include for-tablet-landscape-up {
+        width: auto;
+        margin: 0 $s-size $s-size 0;
+    }
 }
 
 .card__overlay {

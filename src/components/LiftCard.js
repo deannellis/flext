@@ -2,16 +2,23 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { getDisplayName } from '../utils/workout';
+import { getDisplayName, roundWeight } from '../utils/workout';
 import Button from './Button';
 import NumberInput from './NumberInput';
 
 const LiftCard = ({ lift, weights, formIsOpen, toggleForm, updateWeight }) => {
     return (
-        <div className="card" style={{'minHeight': '30.8rem'}}>
-            <h2>{getDisplayName(lift)}</h2>
-            <p>Work Weight:</p>
-            <p>{`${weights[lift]} lbs`}</p>
+        <div className="card lift-card" style={{'minHeight': '30.8rem'}}>
+            <div>
+                <h2>{getDisplayName(lift)}</h2>
+                    <p>Work Weight:</p>
+                <div className="lift-card__weight">
+                    <p>
+                        {roundWeight(weights[lift])}
+                        <span>lbs</span>
+                    </p>
+                </div>
+            </div>
             <Button clickHandler={toggleForm}>Edit weight</Button>
             <div className={formIsOpen ? 'card__overlay' : 'card__overlay  card__overlay--hidden' }>
                 <UpdateWeightForm 

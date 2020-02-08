@@ -5,6 +5,7 @@ import pieChart from '../d3/pieChart';
 class PieChart extends Component {
 
     componentDidMount() {
+        console.log('Pie Graph Data: ', this.props.data);
         this._chart = pieChart.create(
             this._rootNode,
             this.props.data,

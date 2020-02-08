@@ -1,0 +1,37 @@
+.workout-page__wrapper {
+    background: rgb(15,19,27);
+    background: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 24%, rgba(35,44,61,1) 52%, rgba(17,20,27,1) 100%);
+    height: calc(100vh - 7.2rem);
+    overflow: scroll;
+}
+
+.workout-page {
+    padding: $m-size $m-size $xl-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        text-shadow: $depth-3;
+        font-family: 'Ubuntu', sans-serif;
+    }
+}
+
+.workout-page h2 {
+    margin: 0 0 $s-size;
+    font-weight: 400;
+}
+
+.workout-page p {
+    color: #FFFFFF99;
+    span {
+        opacity: 1;
+        color: #fff;
+        font-size: 2.8rem;
+    }
+}
+
+.workout-page__lift {
+    @include for-tablet-portrait-up {
+        width: 36.4rem;
+    }
+}
