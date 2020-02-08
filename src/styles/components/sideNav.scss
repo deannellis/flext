@@ -5,6 +5,9 @@
 
 .side-nav__page-content {
     position: relative;
+    @include for-phone-only {
+        max-width: 100vw;
+    }
 }
 
 .side-nav__page-scrim {

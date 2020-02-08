@@ -1,0 +1,20 @@
+.lift-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.lift-card__weight {
+    display: flex;
+    color: $main-accent;
+    p {
+        font-size: 6.4rem;
+        margin: 0;
+    }
+    span {
+        align-self: flex-end;
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+}

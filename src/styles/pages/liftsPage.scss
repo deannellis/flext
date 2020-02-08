@@ -1,0 +1,11 @@
+.lifts-page {
+    @include for-phone-only{
+        max-width: 100vw;
+    };
+}
+
+.lifts-page__line-graph {
+    @include for-phone-only{
+        display: none;
+    };
+}

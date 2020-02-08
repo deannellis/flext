@@ -52,6 +52,8 @@ class HomePage extends Component {
     //     // }
     // }
 
+    componentWillUnmount() { this.context.toggleMenu() }
+
     render() { 
         if(Object.entries(this.props.masterWeights).length === 0 && this.props.masterWeights.constructor === Object) {
             return (

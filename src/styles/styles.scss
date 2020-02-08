@@ -6,12 +6,14 @@
 @import './components/card';
 @import './components/dashboard';
 @import './components/form';
-@import './components/liftPage';
+@import './components/liftCard';
+@import './pages/liftPage';
+@import './pages/liftsPage';
 @import './components/macroTracker';
 @import './components/nextWorkout';
 @import './components/pieChart';
 @import './components/sideNav';
 @import './components/tabs';
 @import './components/textInput';
-@import './components/workoutPage';
-@import './components/workoutsPage';
+@import './pages/workoutPage';
+@import './pages/workoutsPage';

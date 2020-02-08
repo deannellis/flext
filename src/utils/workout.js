@@ -1,3 +1,4 @@
+import React from 'react';
 import moment from 'moment';
 
 export const getWorkouts = ({ a = 0, b = 0 }) => {
@@ -95,4 +96,15 @@ export const getWorkoutDays = (start, daysInMonth) => {
         weekday ++;
     }
     return workoutDays;
+};
+
+export const getEmoji = () => {
+    const emojis = [ '🏋️‍♂️', '🏋️‍♀️', '🔥', '💪', '🙌', '👍', ];
+    const random = Math.floor(Math.random() * (emojis.length - 1));
+    return emojis[random];
+};
+
+export const roundWeight = weight => {
+    const multiplier = Math.pow(10, 1);
+    return Math.round(weight * multiplier) / multiplier;
 };

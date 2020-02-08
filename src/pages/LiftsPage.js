@@ -44,6 +44,8 @@ class LiftsPage extends Component {
         return filteredWorkouts
     }
 
+    componentWillUnmount() { this.context.toggleMenu() }
+
     render() { 
         let { menuIsOpen } = this.context;
         return (
@@ -59,7 +61,7 @@ class LiftsPage extends Component {
                         handleSelect={i => this.setState({ activeTab: i })}
                         labels={lifts.map(lift => (getDisplayName(lift)))}
                     >   
-                        <div className="card">
+                        <div className="card lifts-page__line-graph">
                             <h2>Weight Over Time</h2>
                             <LineGraph data={this.getData()}/>
                         </div>

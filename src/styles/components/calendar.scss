@@ -13,6 +13,10 @@
     margin-bottom: 2.4rem;
 }
 
+.calendar__prev-month, .calendar__next-month {
+    cursor: pointer;
+}
+
 .calendar__weekday-short-name {
     opacity: .54;
 }
