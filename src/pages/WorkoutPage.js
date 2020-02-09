@@ -12,8 +12,9 @@ import { updateMasterWeights } from '../actions/masterWeights';
 import { updateLiftVariant } from '../actions/liftVariant';
 import { LeftArrowIcon } from '../utils/icons';
 import { MenuContext } from '../context/menu-context';
+import { WorkoutsPage } from './WorkoutsPage';
 
-class WorkoutPage extends Component {
+export class WorkoutPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -119,6 +120,27 @@ class WorkoutPage extends Component {
     }
 }
 WorkoutPage.contextType = MenuContext;
+WorkoutPage.defaultProps = {
+    masterWeights: {
+        bench: 0,
+        row: 0,
+        squat: 0,
+        deadlift: 0,
+        overhead: 0,
+        chinup: {
+            negatives: 0,
+            ups: 0,
+            weight: 0
+        }
+    },
+    liftVariant: { a:0, b:0 },
+    workouts: [],
+    inProgressWorkout: {
+        bench: null,
+        row: null,
+        squat: null
+    },
+};
  
 
 const mapStateToProps = state => {

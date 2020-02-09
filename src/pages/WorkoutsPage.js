@@ -94,10 +94,11 @@ export class WorkoutsPage extends Component {
     }
 }
 WorkoutsPage.contextType = MenuContext;
-// WorkoutsPage.defaultProps = {
-//     workouts: [],
-//     liftVariant: { a:0, b:0 }
-// };
+WorkoutsPage.defaultProps = {
+    workouts: [],
+    liftVariant: { a:0, b:0 },
+    match: { params: { id: '' } }
+};
  
 const mapStateToProps = state => {
     return {

@@ -29,7 +29,6 @@ export class LiftsPage extends Component {
     getData = () => {
         const { workouts } = this.props;
         let selectedLift = lifts[this.state.activeTab];
-        console.log(selectedLift);
         let filteredWorkouts = [];
         workouts.map(workout => {
             let workoutWithDate = {}

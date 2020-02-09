@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Workouts Page with props 1`] = `
+<div
+  className="page--with-side-nav"
+>
+  <SideNav />
+  <div
+    className="workouts-page side-nav__page-content"
+  >
+    <div
+      className="side-nav__page-scrim side-nav__page-scrim--hidden"
+    />
+    <div
+      className="workouts-page__list"
+    >
+      <div
+        className="workouts-page__header"
+      >
+        <h1>
+          3
+           total workouts
+        </h1>
+        <Button
+          clickHandler={[Function]}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="primary"
+        >
+          Start Next Workout
+        </Button>
+      </div>
+      <Component
+        from={
+          Object {
+            "opacity": 0,
+            "transform": "translate3d(0,-40px,0)",
+          }
+        }
+        items={
+          Array [
+            Object {
+              "chinup": Object {
+                "result": 1,
+                "weight": Object {
+                  "negatives": 1,
+                  "ups": 4,
+                  "weight": 0,
+                },
+              },
+              "created": "2020-02-08T18:28:12.461Z",
+              "id": "1d8ad17a-c62a-4182-8ddb-0df62af33c65",
+              "overhead": Object {
+                "result": 2,
+                "weight": 112,
+              },
+              "squat": Object {
+                "result": 2,
+                "weight": 156.6,
+              },
+            },
+            Object {
+              "bench": Object {
+                "result": 2,
+                "weight": 85,
+              },
+              "created": "2020-02-06T18:41:49.124Z",
+              "deadlift": Object {
+                "result": 1,
+                "weight": 106,
+              },
+              "id": "7a07e348-e0e8-48c8-a60a-3d9fb9929ab5",
+              "row": Object {
+                "result": 2,
+                "weight": 115.5,
+              },
+            },
+            Object {
+              "chinup": Object {
+                "result": 0,
+                "weight": Object {
+                  "negatives": 2,
+                  "ups": 3,
+                  "weight": 0,
+                },
+              },
+              "created": "2020-02-03T21:01:59.832Z",
+              "id": "de5f7586-8023-4b3a-bfcf-0ff72fe2c4d8",
+              "overhead": Object {
+                "result": 2,
+                "weight": 107,
+              },
+              "squat": Object {
+                "result": 0,
+                "weight": 174,
+              },
+            },
+          ]
+        }
+        keys={[Function]}
+        to={
+          Object {
+            "opacity": 1,
+            "transform": "translate3d(0,0px,0)",
+          }
+        }
+      >
+        <Component />
+      </Component>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render Workouts Page without props 1`] = `
+<div
+  className="page--with-side-nav"
+>
+  <SideNav />
+  <div
+    className="workouts-page side-nav__page-content"
+  >
+    <div
+      className="side-nav__page-scrim side-nav__page-scrim--hidden"
+    />
+    <div
+      className="workouts-page__list"
+    >
+      <div
+        className="workouts-page__header"
+      >
+        <h1>
+          0
+           total workouts
+        </h1>
+        <Button
+          clickHandler={[Function]}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="primary"
+        >
+          Start Next Workout
+        </Button>
+      </div>
+      <Component
+        from={
+          Object {
+            "opacity": 0,
+            "transform": "translate3d(0,-40px,0)",
+          }
+        }
+        items={Array []}
+        keys={[Function]}
+        to={
+          Object {
+            "opacity": 1,
+            "transform": "translate3d(0,0px,0)",
+          }
+        }
+      >
+        <Component />
+      </Component>
+    </div>
+  </div>
+</div>
+`;
