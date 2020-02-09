@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Button with props 1`] = `
+<button
+  className="button button--primary button--disabled"
+  type="submit"
+>
+  Button
+</button>
+`;
+
+exports[`should render Button without props 1`] = `
+<button
+  className="button  "
+  type="button"
+/>
+`;

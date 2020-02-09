@@ -1,0 +1,827 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Calendar with props 1`] = `
+<div
+  className="calendar"
+>
+  <div
+    className="calendar__prev-month"
+    onClick={[Function]}
+  >
+    <LeftArrowIcon
+      size={24}
+    />
+  </div>
+  <div
+    className="calendar__month-year"
+  >
+    February 2020
+  </div>
+  <div
+    className="calendar__next-month"
+    onClick={[Function]}
+  >
+    <RightArrowIcon
+      size={24}
+    />
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="0"
+  >
+    S
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="1"
+  >
+    M
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="2"
+  >
+    T
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="3"
+  >
+    W
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="4"
+  >
+    T
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="5"
+  >
+    F
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="6"
+  >
+    S
+  </div>
+  <div
+    className="calendar__day--empty"
+    key="0"
+  />
+  <div
+    className="calendar__day--empty"
+    key="1"
+  />
+  <div
+    className="calendar__day--empty"
+    key="2"
+  />
+  <div
+    className="calendar__day--empty"
+    key="3"
+  />
+  <div
+    className="calendar__day--empty"
+    key="4"
+  />
+  <div
+    className="calendar__day--empty"
+    key="5"
+  />
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="1"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="2"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="calendar__day
+                        
+                        calendar__day--worked-out
+                        calendar__day--work-out
+                    "
+    key="3"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="4"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="5"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="calendar__day
+                        
+                        calendar__day--worked-out
+                        
+                    "
+    key="6"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="7"
+    onClick={[Function]}
+  >
+    7
+  </div>
+  <div
+    className="calendar__day
+                        calendar__day--today
+                        calendar__day--worked-out
+                        
+                    "
+    key="8"
+    onClick={[Function]}
+  >
+    8
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="9"
+    onClick={[Function]}
+  >
+    9
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="10"
+    onClick={[Function]}
+  >
+    10
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="11"
+    onClick={[Function]}
+  >
+    11
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="12"
+    onClick={[Function]}
+  >
+    12
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="13"
+    onClick={[Function]}
+  >
+    13
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="14"
+    onClick={[Function]}
+  >
+    14
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="15"
+    onClick={[Function]}
+  >
+    15
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="16"
+    onClick={[Function]}
+  >
+    16
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="17"
+    onClick={[Function]}
+  >
+    17
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="18"
+    onClick={[Function]}
+  >
+    18
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="19"
+    onClick={[Function]}
+  >
+    19
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="20"
+    onClick={[Function]}
+  >
+    20
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="21"
+    onClick={[Function]}
+  >
+    21
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="22"
+    onClick={[Function]}
+  >
+    22
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="23"
+    onClick={[Function]}
+  >
+    23
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="24"
+    onClick={[Function]}
+  >
+    24
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="25"
+    onClick={[Function]}
+  >
+    25
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="26"
+    onClick={[Function]}
+  >
+    26
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="27"
+    onClick={[Function]}
+  >
+    27
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="28"
+    onClick={[Function]}
+  >
+    28
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="29"
+    onClick={[Function]}
+  >
+    29
+  </div>
+</div>
+`;
+
+exports[`should render Calendar without props 1`] = `
+<div
+  className="calendar"
+>
+  <div
+    className="calendar__prev-month"
+    onClick={[Function]}
+  >
+    <LeftArrowIcon
+      size={24}
+    />
+  </div>
+  <div
+    className="calendar__month-year"
+  >
+    February 2020
+  </div>
+  <div
+    className="calendar__next-month"
+    onClick={[Function]}
+  >
+    <RightArrowIcon
+      size={24}
+    />
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="0"
+  >
+    S
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="1"
+  >
+    M
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="2"
+  >
+    T
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="3"
+  >
+    W
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="4"
+  >
+    T
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="5"
+  >
+    F
+  </div>
+  <div
+    className="calendar__weekday-short-name"
+    key="6"
+  >
+    S
+  </div>
+  <div
+    className="calendar__day--empty"
+    key="0"
+  />
+  <div
+    className="calendar__day--empty"
+    key="1"
+  />
+  <div
+    className="calendar__day--empty"
+    key="2"
+  />
+  <div
+    className="calendar__day--empty"
+    key="3"
+  />
+  <div
+    className="calendar__day--empty"
+    key="4"
+  />
+  <div
+    className="calendar__day--empty"
+    key="5"
+  />
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="1"
+    onClick={[Function]}
+  >
+    1
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="2"
+    onClick={[Function]}
+  >
+    2
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="3"
+    onClick={[Function]}
+  >
+    3
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="4"
+    onClick={[Function]}
+  >
+    4
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="5"
+    onClick={[Function]}
+  >
+    5
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="6"
+    onClick={[Function]}
+  >
+    6
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="7"
+    onClick={[Function]}
+  >
+    7
+  </div>
+  <div
+    className="calendar__day
+                        calendar__day--today
+                        
+                        
+                    "
+    key="8"
+    onClick={[Function]}
+  >
+    8
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="9"
+    onClick={[Function]}
+  >
+    9
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="10"
+    onClick={[Function]}
+  >
+    10
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="11"
+    onClick={[Function]}
+  >
+    11
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="12"
+    onClick={[Function]}
+  >
+    12
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="13"
+    onClick={[Function]}
+  >
+    13
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="14"
+    onClick={[Function]}
+  >
+    14
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="15"
+    onClick={[Function]}
+  >
+    15
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="16"
+    onClick={[Function]}
+  >
+    16
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="17"
+    onClick={[Function]}
+  >
+    17
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="18"
+    onClick={[Function]}
+  >
+    18
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="19"
+    onClick={[Function]}
+  >
+    19
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="20"
+    onClick={[Function]}
+  >
+    20
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="21"
+    onClick={[Function]}
+  >
+    21
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="22"
+    onClick={[Function]}
+  >
+    22
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="23"
+    onClick={[Function]}
+  >
+    23
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="24"
+    onClick={[Function]}
+  >
+    24
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="25"
+    onClick={[Function]}
+  >
+    25
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="26"
+    onClick={[Function]}
+  >
+    26
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="27"
+    onClick={[Function]}
+  >
+    27
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        calendar__day--work-out
+                    "
+    key="28"
+    onClick={[Function]}
+  >
+    28
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="29"
+    onClick={[Function]}
+  >
+    29
+  </div>
+</div>
+`;

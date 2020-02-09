@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Macro Tracker with props 1`] = `
+<div
+  className="macro-tracker card"
+>
+  <h2>
+    Macros
+  </h2>
+  <PieChart
+    data={
+      Array [
+        Object {
+          "amount": 157,
+          "macro": "protein",
+        },
+        Object {
+          "amount": 130,
+          "macro": "carbs",
+        },
+        Object {
+          "amount": 80,
+          "macro": "fat",
+        },
+        Object {
+          "amount": 333,
+          "macro": "leftover",
+        },
+      ]
+    }
+  />
+  <div
+    className="macro-tracker__macros"
+  >
+    <div
+      className="macro-tracker__macro"
+      key="0"
+    >
+      <div
+        className="macro-tracker__macro-key"
+        id="macro-key-0"
+      />
+      <p>
+        <span>
+          protein
+        </span>
+         157 of 340 grams
+      </p>
+    </div>
+    <div
+      className="macro-tracker__macro"
+      key="1"
+    >
+      <div
+        className="macro-tracker__macro-key"
+        id="macro-key-1"
+      />
+      <p>
+        <span>
+          carbs
+        </span>
+         130 of 280 grams
+      </p>
+    </div>
+    <div
+      className="macro-tracker__macro"
+      key="2"
+    >
+      <div
+        className="macro-tracker__macro-key"
+        id="macro-key-2"
+      />
+      <p>
+        <span>
+          fat
+        </span>
+         80 of 80 grams
+      </p>
+    </div>
+  </div>
+  <Button
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Add macros
+  </Button>
+  <div
+    className="macro-tracker__overlay card__overlay  card__overlay--hidden"
+  >
+    <UpdateMacroForm
+      closeForm={[Function]}
+      updateMacro={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`should render Macro Tracker without props 1`] = `
+<div
+  className="macro-tracker card"
+>
+  <h2>
+    Macros
+  </h2>
+  <PieChart
+    data={
+      Array [
+        Object {
+          "amount": 0,
+          "macro": "protein",
+        },
+        Object {
+          "amount": 0,
+          "macro": "carbs",
+        },
+        Object {
+          "amount": 0,
+          "macro": "fat",
+        },
+      ]
+    }
+  />
+  <div
+    className="macro-tracker__macros"
+  >
+    <div
+      className="macro-tracker__macro"
+      key="0"
+    >
+      <div
+        className="macro-tracker__macro-key"
+        id="macro-key-0"
+      />
+      <p>
+        <span>
+          protein
+        </span>
+         0 of 0 grams
+      </p>
+    </div>
+    <div
+      className="macro-tracker__macro"
+      key="1"
+    >
+      <div
+        className="macro-tracker__macro-key"
+        id="macro-key-1"
+      />
+      <p>
+        <span>
+          carbs
+        </span>
+         0 of 0 grams
+      </p>
+    </div>
+    <div
+      className="macro-tracker__macro"
+      key="2"
+    >
+      <div
+        className="macro-tracker__macro-key"
+        id="macro-key-2"
+      />
+      <p>
+        <span>
+          fat
+        </span>
+         0 of 0 grams
+      </p>
+    </div>
+  </div>
+  <Button
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Add macros
+  </Button>
+  <div
+    className="macro-tracker__overlay card__overlay  card__overlay--hidden"
+  >
+    <UpdateMacroForm
+      closeForm={[Function]}
+      updateMacro={[Function]}
+    />
+  </div>
+</div>
+`;

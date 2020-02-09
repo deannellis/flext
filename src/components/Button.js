@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Button = (props) => {
+const Button = ({ variant, disabled, type, clickHandler, children }) => {
     return (
         <button 
-            className={`button ${props.variant ? 'button--' + props.variant : ''} ${props.disabled ? 'button--disabled' : ''}`}
-            type={props.type}
-            onClick={props.clickHandler}
+            className={`button ${variant ? 'button--' + variant : ''} ${disabled ? 'button--disabled' : ''}`}
+            type={type}
+            onClick={clickHandler}
         >
-            {props.children}
+            {children}
         </button>
     );
 }
@@ -15,7 +15,7 @@ const Button = (props) => {
 Button.defaultProps = {
     disabled: false,
     type: 'button',
-    onClick: () => {console.log(`${props.children} clicked`)}
+    onClick: () => {console.log('button clicked')}
 }
  
 export default Button;

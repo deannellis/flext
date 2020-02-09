@@ -34,5 +34,10 @@ class LineGraph extends Component {
         );
     }
 }
+
+LineGraph.defaultProps = {
+    data: [],
+    
+}
  
 export default LineGraph;

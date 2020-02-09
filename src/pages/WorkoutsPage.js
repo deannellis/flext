@@ -10,7 +10,7 @@ import SideNav from '../components/SideNav';
 import Button from '../components/Button';
 import { MenuContext } from '../context/menu-context';
 
-class WorkoutsPage extends Component {
+export class WorkoutsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
@@ -94,6 +94,10 @@ class WorkoutsPage extends Component {
     }
 }
 WorkoutsPage.contextType = MenuContext;
+// WorkoutsPage.defaultProps = {
+//     workouts: [],
+//     liftVariant: { a:0, b:0 }
+// };
  
 const mapStateToProps = state => {
     return {

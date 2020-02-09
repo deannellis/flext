@@ -22,5 +22,9 @@ const NumberInput = ({ label, ...props }) => {
         </div>
     );
 }
+NumberInput.defaultProps = {
+    label: '',
+    type: 'number'
+};
  
 export default NumberInput;

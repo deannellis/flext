@@ -63,6 +63,22 @@ class MacroTracker extends Component {
         );
     }
 }
+MacroTracker.defaultProps = {
+    macros: {
+        target: {
+            protein: 0,
+            carbs: 0,
+            fat: 0,
+        },
+        current: {
+            protein: 0,
+            carbs: 0,
+            fat: 0,
+        },
+    },
+    setMacros: () => {console.log('set macros (default prop)')},
+    updateMacro: () => {console.log('update macro (default prop)')},
+}
 
 const getPieSlices = (target, current) => {
     let leftover = 0;

@@ -12,7 +12,7 @@ import NextWorkout from '../components/NextWorkout';
 import MacroTracker from '../components/MacroTracker';
 import { MenuContext } from '../context/menu-context';
 
-class HomePage extends Component {
+export class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -102,6 +102,33 @@ class HomePage extends Component {
     }
 }
 HomePage.contextType = MenuContext;
+HomePage.defaultProps = {
+    masterWeights: {
+        bench: 0,
+        row: 0,
+        squat: 0,
+        deadlift: 0,
+        overhead: 0,
+        chinup: {}
+    },
+    liftVariant: { a:0, b:0 },
+    workouts: [],
+    macros: {
+        target: {
+            protein: 0,
+            carbs: 0,
+            fat: 0,
+        },
+        current: {
+            protein: 0,
+            carbs: 0,
+            fat: 0,
+        },
+    },
+    match: {
+        path: ''
+    }
+};
 
 const mapStateToProps = state => {
     return {
