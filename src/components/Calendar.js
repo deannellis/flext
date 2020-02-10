@@ -97,5 +97,10 @@ class Calendar extends Component {
         );
     }
 }
+
+Calendar.defaultProps = {
+    workouts: [],
+    onClickWorkoutDate: () => {console.log('workout date clicked')},
+}
  
 export default Calendar;

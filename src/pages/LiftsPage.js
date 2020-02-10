@@ -12,7 +12,7 @@ import { MenuContext } from '../context/menu-context';
 
 const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat']
 
-class LiftsPage extends Component {
+export class LiftsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {  
@@ -29,7 +29,6 @@ class LiftsPage extends Component {
     getData = () => {
         const { workouts } = this.props;
         let selectedLift = lifts[this.state.activeTab];
-        console.log(selectedLift);
         let filteredWorkouts = [];
         workouts.map(workout => {
             let workoutWithDate = {}
@@ -79,6 +78,18 @@ class LiftsPage extends Component {
     }
 }
 LiftsPage.contextType = MenuContext;
+LiftsPage.defaultProps = {
+    match: { path: '' },
+    workouts: [],
+    masterWeights: {
+        bench: 0,
+        row: 0,
+        squat: 0,
+        deadlift: 0,
+        overhead: 0,
+        chinup: {}
+    },
+};
  
 const mapStateToProps = state => {
     return {

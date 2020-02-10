@@ -31,6 +31,20 @@ const LiftCard = ({ lift, weights, formIsOpen, toggleForm, updateWeight }) => {
         </div>
     );
 }
+
+LiftCard.defaultProps = {
+    lift: 'bench',
+    weights: {
+        bench: 0,
+        row: 0,
+        squat: 0,
+        deadlift: 0,
+        overhead: 0,
+    },
+    formIsOpen: false,
+    toggleForm: () => {console.log('toggle form (default prop)')},
+    updateWeight: () => {console.log('update weight (default prop)')},
+};
  
 export default LiftCard;
 

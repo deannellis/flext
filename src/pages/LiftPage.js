@@ -8,7 +8,7 @@ import { LeftArrowIcon } from '../utils/icons';
 import Button from '../components/Button';
 import { MenuContext } from '../context/menu-context';
 
-class LiftPage extends Component {
+export class LiftPage extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
@@ -134,6 +134,20 @@ class LiftPage extends Component {
     }
 }
 LiftPage.contextType = MenuContext;
+LiftPage.defaultProps = {
+    workouts: [],
+    masterWeights: {
+        bench: 0,
+        row: 0,
+        squat: 0,
+        deadlift: 0,
+        overhead: 0,
+        chinup: {}
+    },
+    match: {
+        params: {}
+    }
+};
  
 const mapStateToProps = state => {
     return {

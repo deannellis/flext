@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NextWorkout with props 1`] = `
+<div
+  className="next-workout card"
+>
+  <h2>
+    Next Workout
+  </h2>
+  <div
+    className="next-workout__lifts"
+  >
+    <p
+      className="next-workout__lift"
+      key="bench"
+    >
+      Bench Press
+      <span
+        className="next-workout__weight"
+      >
+         @85lbs
+      </span>
+    </p>
+    <p
+      className="next-workout__lift"
+      key="row"
+    >
+      Row
+      <span
+        className="next-workout__weight"
+      >
+         @115lbs
+      </span>
+    </p>
+    <p
+      className="next-workout__lift"
+      key="deadlift"
+    >
+      Deadlift
+      <span
+        className="next-workout__weight"
+      >
+         @106lbs
+      </span>
+    </p>
+  </div>
+  <Button
+    className="next-workout__button"
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    Start workout
+  </Button>
+</div>
+`;
+
+exports[`should render NextWorkout without props 1`] = `
+<div
+  className="next-workout card"
+>
+  <h2>
+    Next Workout
+  </h2>
+  <div
+    className="next-workout__lifts"
+  >
+    <p
+      className="next-workout__lift"
+      key="overhead"
+    >
+      Overhead Press
+      <span
+        className="next-workout__weight"
+      >
+         @0lbs
+      </span>
+    </p>
+    <p
+      className="next-workout__lift"
+      key="chinup"
+    >
+      Chin-Ups
+      <span
+        className="next-workout__weight"
+      />
+    </p>
+    <p
+      className="next-workout__lift"
+      key="squat"
+    >
+      Squat
+      <span
+        className="next-workout__weight"
+      >
+         @0lbs
+      </span>
+    </p>
+  </div>
+  <Button
+    className="next-workout__button"
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    Start workout
+  </Button>
+</div>
+`;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render App Header with props 1`] = `
+<div
+  className="app-header"
+>
+  <button
+    className="app-header__hamburger-button"
+    onClick={[Function]}
+  >
+    <HamburgerIcon
+      size={24}
+    />
+  </button>
+  <h1>
+    flext
+  </h1>
+</div>
+`;
+
+exports[`should render App Header without props 1`] = `
+<div
+  className="app-header app-header--no-menu"
+>
+  <button
+    className="app-header__hamburger-button"
+    onClick={[Function]}
+  >
+    <HamburgerIcon
+      size={24}
+    />
+  </button>
+  <h1>
+    flext
+  </h1>
+</div>
+`;

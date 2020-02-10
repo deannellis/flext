@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Tabs with props 1`] = `
+<Fragment>
+  <div
+    className="tabs__tablist"
+  >
+    <a
+      className="tabs__tab"
+      key="tab-0"
+      onClick={[Function]}
+    >
+      bench
+    </a>
+    <a
+      className="tabs__tab--active tabs__tab"
+      key="tab-1"
+      onClick={[Function]}
+    >
+      row
+    </a>
+    <a
+      className="tabs__tab"
+      key="tab-2"
+      onClick={[Function]}
+    >
+      squat
+    </a>
+    <a
+      className="tabs__tab"
+      key="tab-3"
+      onClick={[Function]}
+    >
+      deadlift
+    </a>
+    <a
+      className="tabs__tab"
+      key="tab-4"
+      onClick={[Function]}
+    >
+      overhead
+    </a>
+    <a
+      className="tabs__tab"
+      key="tab-5"
+      onClick={[Function]}
+    >
+      chinup
+    </a>
+  </div>
+  <div
+    className="tabs__tab-content"
+  />
+</Fragment>
+`;
+
+exports[`should render Tabs without props 1`] = `
+<Fragment>
+  <div
+    className="tabs__tablist"
+  >
+    <a
+      className="tabs__tab--active tabs__tab"
+      key="tab-0"
+      onClick={[Function]}
+    >
+      default prop
+    </a>
+  </div>
+  <div
+    className="tabs__tab-content"
+  />
+</Fragment>
+`;

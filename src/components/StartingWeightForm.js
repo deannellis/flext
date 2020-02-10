@@ -26,11 +26,6 @@ class StartingWeightForm extends Component {
         this.setState({
             chinups
         });
-        // const masterWeights = {
-        //     ...this.state.weights,
-        //     chinups
-        // }
-        // this.props.onSubmit(masterWeights);
     }
 
     render() { 

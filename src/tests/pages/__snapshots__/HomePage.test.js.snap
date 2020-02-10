@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Home Page with props 1`] = `
+<div
+  className="page--with-side-nav"
+>
+  <SideNav
+    path=""
+  />
+  <div
+    className="side-nav__page-content"
+  >
+    <div
+      className="side-nav__page-scrim side-nav__page-scrim--hidden"
+    />
+    <div
+      className="dashboard__container side-nav__page-content"
+    >
+      <NextWorkout
+        liftVariant={
+          Object {
+            "a": 1,
+            "b": 1,
+          }
+        }
+        masterWeights={
+          Object {
+            "bench": 85,
+            "chinup": Object {
+              "negatives": 2,
+              "ups": 3,
+              "weight": 0,
+            },
+            "deadlift": 106,
+            "overhead": 112,
+            "row": 115,
+            "squat": 156,
+          }
+        }
+        onStartWorkout={[Function]}
+      />
+      <div
+        className="card"
+      >
+        <Calendar
+          onClickWorkoutDate={[Function]}
+          workouts={
+            Array [
+              Object {
+                "chinup": Object {
+                  "result": 1,
+                  "weight": Object {
+                    "negatives": 1,
+                    "ups": 4,
+                    "weight": 0,
+                  },
+                },
+                "created": "2020-02-08T18:28:12.461Z",
+                "id": "1d8ad17a-c62a-4182-8ddb-0df62af33c65",
+                "overhead": Object {
+                  "result": 2,
+                  "weight": 112,
+                },
+                "squat": Object {
+                  "result": 2,
+                  "weight": 156.6,
+                },
+              },
+              Object {
+                "bench": Object {
+                  "result": 2,
+                  "weight": 85,
+                },
+                "created": "2020-02-06T18:41:49.124Z",
+                "deadlift": Object {
+                  "result": 1,
+                  "weight": 106,
+                },
+                "id": "7a07e348-e0e8-48c8-a60a-3d9fb9929ab5",
+                "row": Object {
+                  "result": 2,
+                  "weight": 115.5,
+                },
+              },
+              Object {
+                "chinup": Object {
+                  "result": 0,
+                  "weight": Object {
+                    "negatives": 2,
+                    "ups": 3,
+                    "weight": 0,
+                  },
+                },
+                "created": "2020-02-03T21:01:59.832Z",
+                "id": "de5f7586-8023-4b3a-bfcf-0ff72fe2c4d8",
+                "overhead": Object {
+                  "result": 2,
+                  "weight": 107,
+                },
+                "squat": Object {
+                  "result": 0,
+                  "weight": 174,
+                },
+              },
+            ]
+          }
+        />
+      </div>
+      <MacroTracker
+        macros={
+          Object {
+            "current": Object {
+              "carbs": 130,
+              "fat": 80,
+              "protein": 157,
+            },
+            "target": Object {
+              "carbs": 280,
+              "fat": 80,
+              "protein": 340,
+            },
+          }
+        }
+        setMacros={[Function]}
+        updateMacro={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render Home Page with welcome message 1`] = `
+<Fragment>
+  <h2>
+    Welcome to flext!
+  </h2>
+  <p>
+    Let's begin by entering your starting weights
+  </p>
+  <Link
+    to="/onboarding"
+  >
+    <Button
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+      variant="primary"
+    >
+      Enter Weights
+    </Button>
+  </Link>
+</Fragment>
+`;
+
+exports[`should render Home Page without props 1`] = `
+<div
+  className="page--with-side-nav"
+>
+  <SideNav
+    path=""
+  />
+  <div
+    className="side-nav__page-content"
+  >
+    <div
+      className="side-nav__page-scrim side-nav__page-scrim--hidden"
+    />
+    <div
+      className="dashboard__container side-nav__page-content"
+    >
+      <NextWorkout
+        liftVariant={
+          Object {
+            "a": 0,
+            "b": 0,
+          }
+        }
+        masterWeights={
+          Object {
+            "bench": 0,
+            "chinup": Object {},
+            "deadlift": 0,
+            "overhead": 0,
+            "row": 0,
+            "squat": 0,
+          }
+        }
+        onStartWorkout={[Function]}
+      />
+      <div
+        className="card"
+      >
+        <Calendar
+          onClickWorkoutDate={[Function]}
+          workouts={Array []}
+        />
+      </div>
+      <MacroTracker
+        macros={
+          Object {
+            "current": Object {
+              "carbs": 0,
+              "fat": 0,
+              "protein": 0,
+            },
+            "target": Object {
+              "carbs": 0,
+              "fat": 0,
+              "protein": 0,
+            },
+          }
+        }
+        setMacros={[Function]}
+        updateMacro={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

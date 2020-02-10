@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --open --hot --mode development",
     "build": "webpack --mode production",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json",
+    "hist " : "git log --oneline --graph --decorate --all"
   },
   "author": "Dean Nellis",
   "license": "ISC",

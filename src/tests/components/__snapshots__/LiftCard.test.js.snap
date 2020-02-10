@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Lift Card with props 1`] = `
+<div
+  className="card lift-card"
+  style={
+    Object {
+      "minHeight": "30.8rem",
+    }
+  }
+>
+  <div>
+    <h2>
+      Row
+    </h2>
+    <p>
+      Work Weight:
+    </p>
+    <div
+      className="lift-card__weight"
+    >
+      <p>
+        115
+        <span>
+          lbs
+        </span>
+      </p>
+    </div>
+  </div>
+  <Button
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Edit weight
+  </Button>
+  <div
+    className="card__overlay"
+  >
+    <UpdateWeightForm
+      currentWeight={115}
+      lift="row"
+      toggleForm={[Function]}
+      updateWeight={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`should render Lift Card without props 1`] = `
+<div
+  className="card lift-card"
+  style={
+    Object {
+      "minHeight": "30.8rem",
+    }
+  }
+>
+  <div>
+    <h2>
+      Bench Press
+    </h2>
+    <p>
+      Work Weight:
+    </p>
+    <div
+      className="lift-card__weight"
+    >
+      <p>
+        0
+        <span>
+          lbs
+        </span>
+      </p>
+    </div>
+  </div>
+  <Button
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Edit weight
+  </Button>
+  <div
+    className="card__overlay  card__overlay--hidden"
+  >
+    <UpdateWeightForm
+      currentWeight={0}
+      lift="bench"
+      toggleForm={[Function]}
+      updateWeight={[Function]}
+    />
+  </div>
+</div>
+`;
