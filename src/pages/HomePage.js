@@ -18,18 +18,17 @@ export class HomePage extends Component {
         this.state = {
             today: moment()
         }
+        this.onSetMacros = this.onSetMacros.bind(this);
     }
 
     onStartWorkout = () => {
-        this.props.dispatch(startWorkout(this.props.liftVariant));
+        this.props.onStartWorkout(this.props.liftVariant);
         this.props.history.push('/workout');
     }
 
-    onSetMacros = macros => { this.props.dispatch(setTargetMacros(macros)) }
+    onSetMacros = macros => { this.props.onSetMacros(macros) }
 
-    onUpdateMacro = update => {
-        this.props.dispatch(updateMacro(update))
-    }
+    onUpdateMacro = update => { this.props.onUpdateMacro(update) }
 
     onClickWorkoutDate = id => {
         this.props.history.push(`/workouts/${id}`);
@@ -130,13 +129,22 @@ HomePage.defaultProps = {
     }
 };
 
-const mapStateToProps = state => {
-    return {
-        masterWeights: state.masterWeights,
-        liftVariant: state.liftVariant,
-        workouts: state.workouts,
-        macros: state.macros,
-    };
-}
+const mapStateToProps = state => ({
+    masterWeights: state.masterWeights,
+    liftVariant: state.liftVariant,
+    workouts: state.workouts,
+    macros: state.macros,
+});
+const mapDispatchToProps = dispatch => ({
+    onStartWorkout: liftVariant => {
+        dispatch(startWorkout(liftVariant));
+    },
+    onSetMacros: macros => {
+        dispatch(setTargetMacros(macros));
+    },
+    onUpdateMacro: update => {
+        dispatch(updateMacro(update));
+    },
+});
  
-export default withRouter(connect(mapStateToProps)(HomePage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage));
