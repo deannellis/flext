@@ -52,7 +52,62 @@ exports[`should render NextWorkout with props 1`] = `
     type="button"
     variant="primary"
   >
-    Start workout
+    start workout
+  </Button>
+</div>
+`;
+
+exports[`should render NextWorkout with props 2`] = `
+<div
+  className="next-workout card"
+>
+  <h2>
+    Next Workout
+  </h2>
+  <div
+    className="next-workout__lifts"
+  >
+    <p
+      className="next-workout__lift"
+      key="overhead"
+    >
+      Overhead Press
+      <span
+        className="next-workout__weight"
+      >
+         @112lbs
+      </span>
+    </p>
+    <p
+      className="next-workout__lift"
+      key="chinup"
+    >
+      Chin-Ups
+      <span
+        className="next-workout__weight"
+      />
+    </p>
+    <p
+      className="next-workout__lift"
+      key="squat"
+    >
+      Squat
+      <span
+        className="next-workout__weight"
+      >
+         @156lbs
+      </span>
+    </p>
+  </div>
+  <Button
+    className="next-workout__button"
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    start workout
   </Button>
 </div>
 `;
@@ -107,7 +162,7 @@ exports[`should render NextWorkout without props 1`] = `
     type="button"
     variant="primary"
   >
-    Start workout
+    start workout
   </Button>
 </div>
 `;

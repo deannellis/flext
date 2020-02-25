@@ -15,7 +15,7 @@ exports[`should render Calendar with props 1`] = `
   <div
     className="calendar__month-year"
   >
-    February 2020
+    December 1969
   </div>
   <div
     className="calendar__next-month"
@@ -72,30 +72,10 @@ exports[`should render Calendar with props 1`] = `
     key="0"
   />
   <div
-    className="calendar__day--empty"
-    key="1"
-  />
-  <div
-    className="calendar__day--empty"
-    key="2"
-  />
-  <div
-    className="calendar__day--empty"
-    key="3"
-  />
-  <div
-    className="calendar__day--empty"
-    key="4"
-  />
-  <div
-    className="calendar__day--empty"
-    key="5"
-  />
-  <div
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="1"
     onClick={[Function]}
@@ -116,7 +96,7 @@ exports[`should render Calendar with props 1`] = `
   <div
     className="calendar__day
                         
-                        calendar__day--worked-out
+                        
                         calendar__day--work-out
                     "
     key="3"
@@ -149,7 +129,7 @@ exports[`should render Calendar with props 1`] = `
   <div
     className="calendar__day
                         
-                        calendar__day--worked-out
+                        
                         
                     "
     key="6"
@@ -161,7 +141,7 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="7"
     onClick={[Function]}
@@ -170,9 +150,9 @@ exports[`should render Calendar with props 1`] = `
   </div>
   <div
     className="calendar__day
-                        calendar__day--today
-                        calendar__day--worked-out
                         
+                        calendar__day--worked-out
+                        calendar__day--work-out
                     "
     key="8"
     onClick={[Function]}
@@ -238,7 +218,7 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="14"
     onClick={[Function]}
@@ -249,7 +229,7 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="15"
     onClick={[Function]}
@@ -315,7 +295,7 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="21"
     onClick={[Function]}
@@ -326,7 +306,7 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="22"
     onClick={[Function]}
@@ -392,7 +372,7 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="28"
     onClick={[Function]}
@@ -403,12 +383,34 @@ exports[`should render Calendar with props 1`] = `
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="29"
     onClick={[Function]}
   >
     29
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="30"
+    onClick={[Function]}
+  >
+    30
+  </div>
+  <div
+    className="calendar__day
+                        calendar__day--today
+                        
+                        calendar__day--work-out
+                    "
+    key="31"
+    onClick={[Function]}
+  >
+    31
   </div>
 </div>
 `;
@@ -428,7 +430,7 @@ exports[`should render Calendar without props 1`] = `
   <div
     className="calendar__month-year"
   >
-    February 2020
+    December 1969
   </div>
   <div
     className="calendar__next-month"
@@ -485,30 +487,10 @@ exports[`should render Calendar without props 1`] = `
     key="0"
   />
   <div
-    className="calendar__day--empty"
-    key="1"
-  />
-  <div
-    className="calendar__day--empty"
-    key="2"
-  />
-  <div
-    className="calendar__day--empty"
-    key="3"
-  />
-  <div
-    className="calendar__day--empty"
-    key="4"
-  />
-  <div
-    className="calendar__day--empty"
-    key="5"
-  />
-  <div
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="1"
     onClick={[Function]}
@@ -574,7 +556,7 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="7"
     onClick={[Function]}
@@ -583,9 +565,9 @@ exports[`should render Calendar without props 1`] = `
   </div>
   <div
     className="calendar__day
-                        calendar__day--today
                         
                         
+                        calendar__day--work-out
                     "
     key="8"
     onClick={[Function]}
@@ -651,7 +633,7 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="14"
     onClick={[Function]}
@@ -662,7 +644,7 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="15"
     onClick={[Function]}
@@ -728,7 +710,7 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="21"
     onClick={[Function]}
@@ -739,7 +721,7 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="22"
     onClick={[Function]}
@@ -805,7 +787,7 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        calendar__day--work-out
+                        
                     "
     key="28"
     onClick={[Function]}
@@ -816,12 +798,34 @@ exports[`should render Calendar without props 1`] = `
     className="calendar__day
                         
                         
-                        
+                        calendar__day--work-out
                     "
     key="29"
     onClick={[Function]}
   >
     29
+  </div>
+  <div
+    className="calendar__day
+                        
+                        
+                        
+                    "
+    key="30"
+    onClick={[Function]}
+  >
+    30
+  </div>
+  <div
+    className="calendar__day
+                        calendar__day--today
+                        
+                        calendar__day--work-out
+                    "
+    key="31"
+    onClick={[Function]}
+  >
+    31
   </div>
 </div>
 `;

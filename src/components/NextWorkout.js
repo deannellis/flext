@@ -18,7 +18,7 @@ const NextWorkout = ({ liftVariant, masterWeights, onStartWorkout }) => {
                     );
                 })}
             </div>
-            <Button variant="primary" className="next-workout__button" clickHandler={() => {onStartWorkout()}}>Start workout</Button>
+            <Button variant="primary" className="next-workout__button" clickHandler={() => {onStartWorkout()}}>start workout</Button>
         </div>
     );
 }

@@ -17,3 +17,11 @@ test('should render LiftsPage with props', () => {
     />);
     expect(wrapper).toMatchSnapshot();
 });
+
+test('should handle updateLiftWeight', () => {
+    const updateLiftWeight = jest.fn();
+    const update = { bench: 83 };
+    const wrapper = shallow(<LiftsPage updateLiftWeight={updateLiftWeight} />);
+    wrapper.find('LiftCard').prop('updateWeight')(update);
+    expect(updateLiftWeight).toHaveBeenLastCalledWith(update);
+});

@@ -127,7 +127,7 @@ class ChinupForm extends Component {
     }
 }
 
-const WeightsForm = (props) => {
+export const WeightsForm = (props) => {
     return (
         <>
             <h1>Enter your starting weights</h1>
@@ -160,6 +160,7 @@ const WeightsForm = (props) => {
                     <NumberInput 
                         label="Bench Press"
                         name="bench"
+                        id="bench"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
@@ -167,6 +168,7 @@ const WeightsForm = (props) => {
                     <NumberInput 
                         label="Deadlift"
                         name="deadlift"
+                        id="deadlift"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
@@ -174,6 +176,7 @@ const WeightsForm = (props) => {
                     <NumberInput 
                         label="Overhead Press"
                         name="overhead"
+                        id="overhead"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
@@ -181,6 +184,7 @@ const WeightsForm = (props) => {
                     <NumberInput 
                         label="Row"
                         name="row"
+                        id="row"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
@@ -188,6 +192,7 @@ const WeightsForm = (props) => {
                     <NumberInput 
                         label="Squat"
                         name="squat"
+                        id="squat"
                         type="number"
                         min="44"
                         helperText="Enter weight in pounds"
