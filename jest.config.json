@@ -9,5 +9,8 @@
     "moduleNameMapper": {
         "react-spring": "<rootDir>/node_modules/react-spring/web.cjs",
         "react-spring/renderprops": "<rootDir>/node_modules/react-spring/renderprops.cjs"
-    }
+    },
+    "setupFilesAfterEnv": [
+        "<rootDir>/rtl.setup.js"
+    ]
 }

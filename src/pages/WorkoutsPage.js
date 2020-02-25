@@ -17,7 +17,7 @@ export class WorkoutsPage extends Component {
     }
 
     onStartWorkout = () => {
-        this.props.dispatch(startWorkout(this.props.liftVariant));
+        this.props.onStartWorkout(this.props.liftVariant);
         this.props.history.push('/workout');
     }
 
@@ -28,7 +28,6 @@ export class WorkoutsPage extends Component {
                 behavior: 'smooth'
             });
         }
-
     }
     componentWillUnmount() { this.context.toggleMenu() }
 
@@ -100,11 +99,13 @@ WorkoutsPage.defaultProps = {
     match: { params: { id: '' } }
 };
  
-const mapStateToProps = state => {
-    return {
-        workouts: state.workouts,
-        liftVariant: state.liftVariant,
-    };
-}
+const mapStateToProps = state => ({
+    workouts: state.workouts,
+    liftVariant: state.liftVariant,
+});
+
+const mapDispatchToProps = dispatch => ({
+    onStartWorkout: liftVariant => {dispatch(startWorkout(liftVariant))},
+});
  
-export default withRouter(connect(mapStateToProps)(WorkoutsPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WorkoutsPage));

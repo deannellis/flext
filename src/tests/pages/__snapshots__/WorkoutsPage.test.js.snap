@@ -41,26 +41,6 @@ exports[`should render Workouts Page with props 1`] = `
         items={
           Array [
             Object {
-              "chinup": Object {
-                "result": 1,
-                "weight": Object {
-                  "negatives": 1,
-                  "ups": 4,
-                  "weight": 0,
-                },
-              },
-              "created": "2020-02-08T18:28:12.461Z",
-              "id": "1d8ad17a-c62a-4182-8ddb-0df62af33c65",
-              "overhead": Object {
-                "result": 2,
-                "weight": 112,
-              },
-              "squat": Object {
-                "result": 2,
-                "weight": 156.6,
-              },
-            },
-            Object {
               "bench": Object {
                 "result": 2,
                 "weight": 85,
@@ -94,6 +74,26 @@ exports[`should render Workouts Page with props 1`] = `
               "squat": Object {
                 "result": 0,
                 "weight": 174,
+              },
+            },
+            Object {
+              "chinup": Object {
+                "result": 1,
+                "weight": Object {
+                  "negatives": 1,
+                  "ups": 4,
+                  "weight": 0,
+                },
+              },
+              "created": "1969-12-08T18:28:12.461Z",
+              "id": "1d8ad17a-c62a-4182-8ddb-0df62af33c65",
+              "overhead": Object {
+                "result": 2,
+                "weight": 112,
+              },
+              "squat": Object {
+                "result": 2,
+                "weight": 156.6,
               },
             },
           ]

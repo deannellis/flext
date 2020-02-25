@@ -8,7 +8,7 @@ const NumberInput = ({ label, ...props }) => {
     return (
         <div className="input-group">
             {meta.touched && meta.error ? (
-                <div className="input__error">{meta.error}</div>
+                <div className="input__error" data-testid={`errors-${props.name}`}>{meta.error}</div>
             ) : (
                 <div className="input__helper-text">{props.helperText}</div>
             )}

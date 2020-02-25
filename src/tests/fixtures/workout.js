@@ -45,7 +45,7 @@ export const workouts = [
           weight: 156.6,
           result: 2
         },
-        created: '2020-02-08T18:28:12.461Z',
+        created: '1969-12-08T18:28:12.461Z',
         id: '1d8ad17a-c62a-4182-8ddb-0df62af33c65'
       },
       {

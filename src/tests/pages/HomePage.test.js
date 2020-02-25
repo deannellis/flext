@@ -51,3 +51,18 @@ test('should handle onUpdateMacro', () => {
     wrapper.find('MacroTracker').prop('updateMacro')(update);
     expect(onUpdateMacro).toHaveBeenLastCalledWith(update);
 });
+
+test('should handle onSetMacros', () => {
+    const onSetMacros = jest.fn();
+    const wrapper = shallow(<HomePage onSetMacros={onSetMacros} />);
+    wrapper.find('MacroTracker').prop('setMacros')(macros);
+    expect(onSetMacros).toHaveBeenLastCalledWith(macros);
+});
+
+test('should handle onClickWorkoutDate', () => {
+    const history = { push: jest.fn() };
+    const id = 'abc123';
+    const wrapper = shallow(<HomePage history={history} />);
+    wrapper.find('Calendar').prop('onClickWorkoutDate')(id);
+    expect(history.push).toHaveBeenLastCalledWith(`/workouts/${id}`);
+});

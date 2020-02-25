@@ -21,10 +21,7 @@ export class LiftsPage extends Component {
         }
     }
 
-    updateLiftWeight = update => {
-        this.props.dispatch(setWeight({ update }));
-        console.log('tit',update)
-    }
+    updateLiftWeight = update => { this.props.updateLiftWeight(update) }
 
     getData = () => {
         const { workouts } = this.props;
@@ -91,11 +88,13 @@ LiftsPage.defaultProps = {
     },
 };
  
-const mapStateToProps = state => {
-    return {
-        workouts: state.workouts,
-        masterWeights: state.masterWeights,
-    };
-}
+const mapStateToProps = state => ({
+    workouts: state.workouts,
+    masterWeights: state.masterWeights,
+});
+
+const mapDispatchToProps = dispatch => ({
+    updateLiftWeight: update => {dispatch(setWeight({ update }))},
+});
  
-export default withRouter(connect(mapStateToProps)(LiftsPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LiftsPage));

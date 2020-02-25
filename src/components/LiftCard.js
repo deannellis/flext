@@ -48,7 +48,7 @@ LiftCard.defaultProps = {
  
 export default LiftCard;
 
-const UpdateWeightForm = ({ currentWeight, lift, toggleForm, updateWeight }) => (
+export const UpdateWeightForm = ({ currentWeight, lift, toggleForm, updateWeight }) => (
     <>
         <Formik
             initialValues={{
