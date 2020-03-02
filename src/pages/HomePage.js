@@ -70,13 +70,15 @@ export class HomePage extends Component {
 			this.props.masterWeights.constructor === Object
 		) {
 			return (
-				<>
-					<h2>Welcome to flext!</h2>
-					<p>Let's begin by entering your starting weights</p>
-					<Link to="/onboarding">
-						<Button variant="primary">Enter Weights</Button>
-					</Link>
-				</>
+				<div className="homepage__welcome">
+					<div className="card">
+						<h2>Welcome to flext!</h2>
+						<p>Let's begin by entering your starting weights</p>
+						<Link to="/onboarding">
+							<Button variant="primary">Enter Weights</Button>
+						</Link>
+					</div>
+				</div>
 			);
 		}
 		let { menuIsOpen, toggleMenu } = this.context;
@@ -166,4 +168,3 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(
 	connect(mapStateToProps, mapDispatchToProps)(HomePage)
 );
-

@@ -1,0 +1,15 @@
+.onboarding-page__wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: calc(100vh - 7.2rem);
+	background: rgb(15,19,27);
+	background: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 24%, rgba(35,44,61,1) 52%, rgba(17,20,27,1) 100%);
+	.card {
+		margin-bottom: $xl-size;
+		padding: $l-size $l-size $m-size;
+		button {
+			margin-top: $m-size;
+		}
+	}
+}
