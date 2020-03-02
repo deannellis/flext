@@ -51,7 +51,9 @@ class MacroTracker extends Component {
 					<>
 						<p>Enter Your Macros</p>
 						<p className="macro-tracker__helper-text">
-							Not sure what your macros are? There are{" "}
+							Not sure what your macros are?
+							<br></br>
+							There are{" "}
 							<a
 								href="https://www.google.com/search?q=calculating+macros+for+muscle+gain"
 								target="blank"
