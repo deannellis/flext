@@ -35,7 +35,13 @@ class App extends Component {
 			closeMenu: this.closeMenu
 		};
 	}
-
+	componentDidUpdate(prevProps) {
+		if (this.state.menuIsOpen) {
+			document.body.style.position = "fixed";
+		} else {
+			document.body.style.position = "relative";
+		}
+	}
 	render() {
 		const store = configureStore();
 		return (
@@ -52,4 +58,3 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.querySelector("#root"));
-
