@@ -2,6 +2,7 @@
     @include for-phone-only{
         max-width: 100vw;
     };
+    min-height: 100vh;
 }
 
 .lifts-page__line-graph {
