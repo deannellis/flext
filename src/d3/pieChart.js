@@ -5,9 +5,9 @@ const pieChart = {};
 
 // SETTINGS
 const dimensions = {
-	height: 300,
-	width: 300,
-	radius: 150
+	height: 288,
+	width: 288,
+	radius: 144
 };
 const center = {
 	x: dimensions.width / 2 + 5,
