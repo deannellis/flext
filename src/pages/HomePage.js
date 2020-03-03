@@ -21,7 +21,8 @@ export class HomePage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			today: moment()
+			today: moment(),
+			hasMasterWeights: true
 		};
 		this.onSetMacros = this.onSetMacros.bind(this);
 	}
@@ -60,8 +61,21 @@ export class HomePage extends Component {
 	//     // }
 	// }
 
+	componentDidMount() {
+		if (
+			Object.entries(this.props.masterWeights).length === 0 &&
+			this.props.masterWeights.constructor === Object
+		) {
+			this.setState({ hasMasterWeights: false });
+			this.context.setPageMenu(false);
+		}
+	}
+
 	componentWillUnmount() {
-		this.context.toggleMenu();
+		this.context.closeMenu();
+		if (!this.state.hasMasterWeights) {
+			this.context.setPageMenu(true);
+		}
 	}
 
 	render() {
