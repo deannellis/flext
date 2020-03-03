@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { setMasterWeights } from "../actions/masterWeights";
 import StartingWeightForm from "../components/StartingWeightForm";
+import { MenuContext } from "../context/menu-context";
 
 class OnboardingPage extends Component {
 	constructor(props) {
@@ -16,12 +17,17 @@ class OnboardingPage extends Component {
 	};
 
 	componentDidMount() {
+		this.context.setPageMenu(false);
 		if (
 			Object.entries(this.props.masterWeights).length !== 0 &&
 			this.props.masterWeights.constructor === Object
 		) {
 			this.props.history.push("/home");
 		}
+	}
+
+	componentWillUnmount() {
+		this.context.setPageMenu(true);
 	}
 
 	render() {
@@ -34,6 +40,7 @@ class OnboardingPage extends Component {
 		);
 	}
 }
+OnboardingPage.contextType = MenuContext;
 
 const mapStateToProps = state => {
 	return {
@@ -42,4 +49,3 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(connect(mapStateToProps)(OnboardingPage));
-
