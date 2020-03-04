@@ -5,7 +5,9 @@ import moment from "moment";
 import { Trail } from "react-spring/renderprops";
 
 import { startWorkout } from "../actions/inProgressWorkout";
+import { setWorkoutsFilter } from "../actions/filters";
 import { getDisplayName } from "../utils/workout";
+import { getVisibleWorkouts } from "../utils/selectors";
 import SideNav from "../components/SideNav";
 import Button from "../components/Button";
 import { MenuContext } from "../context/menu-context";
@@ -19,6 +21,11 @@ export class WorkoutsPage extends Component {
 	onStartWorkout = () => {
 		this.props.onStartWorkout(this.props.liftVariant);
 		this.props.history.push("/workout");
+	};
+
+	onFilterChange = e => {
+		console.log("boob", e.target.value);
+		this.props.onFilterChange(e.target.value);
 	};
 
 	componentDidMount() {
@@ -55,6 +62,23 @@ export class WorkoutsPage extends Component {
 							<Button variant="primary" clickHandler={this.onStartWorkout}>
 								Start Next Workout
 							</Button>
+						</div>
+						<div className="input-group workouts-page__filter">
+							<select
+								className="select-input"
+								id="filter-select"
+								value={this.props.filters.lift}
+								onChange={this.onFilterChange}
+							>
+								<option value="">All Lifts</option>
+								<option value="bench">{getDisplayName("bench")}</option>
+								<option value="row">{getDisplayName("row")}</option>
+								<option value="squat">{getDisplayName("squat")}</option>
+								<option value="deadlift">{getDisplayName("deadlift")}</option>
+								<option value="overhead">{getDisplayName("overhead")}</option>
+								<option value="chinup">{getDisplayName("chinup")}</option>
+							</select>
+							<label htmlFor="filter-select">Filter Workouts by Lift</label>
 						</div>
 						<Trail
 							items={workouts}
@@ -128,17 +152,20 @@ WorkoutsPage.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-	workouts: state.workouts,
-	liftVariant: state.liftVariant
+	workouts: getVisibleWorkouts(state.workouts, state.filters),
+	liftVariant: state.liftVariant,
+	filters: state.filters
 });
 
 const mapDispatchToProps = dispatch => ({
 	onStartWorkout: liftVariant => {
 		dispatch(startWorkout(liftVariant));
+	},
+	onFilterChange: lift => {
+		dispatch(setWorkoutsFilter(lift));
 	}
 });
 
 export default withRouter(
 	connect(mapStateToProps, mapDispatchToProps)(WorkoutsPage)
 );
-
