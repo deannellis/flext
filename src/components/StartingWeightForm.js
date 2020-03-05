@@ -54,19 +54,29 @@ class ChinupForm extends Component {
 	onNegativesChange = e => {
 		const negatives = parseInt(e.target.value);
 		const ups = 5 - negatives;
-		this.setState({
-			negatives,
-			ups
-		});
+		if (negatives < 6) {
+			this.setState({
+				negatives,
+				ups
+			});
+		}
+		if (negatives > 0) {
+			this.setState({ weight: 0 });
+		}
 	};
 
 	onUpsChange = e => {
 		const ups = parseInt(e.target.value);
 		const negatives = 5 - ups;
-		this.setState({
-			negatives,
-			ups
-		});
+		if (ups < 6) {
+			this.setState({
+				negatives,
+				ups
+			});
+		}
+		if (ups < 5) {
+			this.setState({ weight: 0 });
+		}
 	};
 
 	onWeightChange = e => {
@@ -162,6 +172,7 @@ export const WeightsForm = props => {
 						id="bench"
 						type="number"
 						min="44"
+						max="600"
 						helperText="Enter weight in pounds"
 					/>
 					<NumberInput
@@ -170,6 +181,7 @@ export const WeightsForm = props => {
 						id="deadlift"
 						type="number"
 						min="44"
+						max="600"
 						helperText="Enter weight in pounds"
 					/>
 					<NumberInput
@@ -178,6 +190,7 @@ export const WeightsForm = props => {
 						id="overhead"
 						type="number"
 						min="44"
+						max="600"
 						helperText="Enter weight in pounds"
 					/>
 					<NumberInput
@@ -186,6 +199,7 @@ export const WeightsForm = props => {
 						id="row"
 						type="number"
 						min="44"
+						max="600"
 						helperText="Enter weight in pounds"
 					/>
 					<NumberInput
@@ -194,6 +208,7 @@ export const WeightsForm = props => {
 						id="squat"
 						type="number"
 						min="44"
+						max="600"
 						helperText="Enter weight in pounds"
 					/>
 					<Button type="submit">next</Button>
@@ -204,4 +219,3 @@ export const WeightsForm = props => {
 };
 
 export default StartingWeightForm;
-
