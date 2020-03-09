@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { setMasterWeights } from "../actions/masterWeights";
-import StartingWeightForm from "../components/StartingWeightForm";
+import OnboardingCard from "../components/OnboardingCard";
 import { MenuContext } from "../context/menu-context";
 
 class OnboardingPage extends Component {
@@ -34,7 +34,7 @@ class OnboardingPage extends Component {
 		return (
 			<div className="onboarding-page__wrapper">
 				<div className="card">
-					<StartingWeightForm onSubmit={this.onMasterWeightsSubmit} />
+					<OnboardingCard onSubmit={this.onMasterWeightsSubmit} />
 				</div>
 			</div>
 		);

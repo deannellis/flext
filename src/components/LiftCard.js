@@ -1,10 +1,8 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 
 import { getDisplayName, roundWeight } from '../utils/workout';
 import Button from './Button';
-import NumberInput from './NumberInput';
+import UpdateWeightForm from '../forms/UpdateWeightForm';
 
 const LiftCard = ({ lift, weights, formIsOpen, toggleForm, updateWeight }) => {
     return (
@@ -47,35 +45,3 @@ LiftCard.defaultProps = {
 };
  
 export default LiftCard;
-
-export const UpdateWeightForm = ({ currentWeight, lift, toggleForm, updateWeight }) => (
-    <>
-        <Formik
-            initialValues={{
-                [lift]: currentWeight
-            }}
-            validationSchema={Yup.object({
-                [lift]: Yup.string()
-                    .required('Required'),
-            })}
-            onSubmit={(values, { setSubmitting }) => {
-                updateWeight(values);
-                toggleForm();
-                setSubmitting(false);
-            }}
-        >
-            <Form className="form">
-                <p>{`Update ${getDisplayName(lift)} Weight`}</p>
-                <NumberInput 
-                    label="New Weight"
-                    name={lift}
-                    type="number"
-                    min="0"
-                    helperText="Enter amount in pounds"
-                />
-                <Button variant="primary" type="submit">submit</Button>
-                <Button type="button" clickHandler={toggleForm}>cancel</Button>
-            </Form>
-        </Formik>
-    </>
-)

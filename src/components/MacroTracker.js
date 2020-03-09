@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
 
 import Button from "./Button";
-import NumberInput from "./NumberInput";
-import SelectInput from "./SelectInput";
 import PieChart from "./PieChart";
 import { DotsIcon } from "../utils/icons";
+import UpdateMacroForm from '../forms/UpdateMacroForm';
+import SetMacrosForm from '../forms/SetMacrosForm';
 
 class MacroTracker extends Component {
 	constructor(props) {
@@ -62,7 +60,7 @@ class MacroTracker extends Component {
 							</a>{" "}
 							online.
 						</p>
-						<SetMacroForm
+						<SetMacrosForm
 							submitMacros={macros => {
 								this.props.setMacros(macros);
 							}}
@@ -126,7 +124,7 @@ class MacroTracker extends Component {
 					}
 				>
 					<p>Update Target Macros</p>
-					<SetMacroForm
+					<SetMacrosForm
 						submitMacros={this.onSetMacros}
 						current={this.props.macros.target}
 					/>
@@ -195,93 +193,5 @@ const getPieSlices = (target, current) => {
 	}
 	return pieData;
 };
-
-const UpdateMacroForm = ({ updateMacro, closeForm }) => (
-	<>
-		<Formik
-			initialValues={{
-				macro: "",
-				amount: 0
-			}}
-			validationSchema={Yup.object({
-				macro: Yup.string().required("Required"),
-				amount: Yup.string().required("Required")
-			})}
-			onSubmit={(values, { setSubmitting }) => {
-				updateMacro(values);
-				setSubmitting(false);
-			}}
-		>
-			<Form className="form">
-				<SelectInput label="Macro" name="macro">
-					<option value="">Select a macro</option>
-					<option value="protein">protein</option>
-					<option value="fat">fat</option>
-					<option value="carbs">carbs</option>
-				</SelectInput>
-				<NumberInput
-					label="Amount"
-					name="amount"
-					type="number"
-					min="0"
-					helperText="Enter amount in grams"
-				/>
-				<Button variant={"primary "} type="submit">
-					submit
-				</Button>
-				<Button type="button" clickHandler={closeForm}>
-					cancel
-				</Button>
-			</Form>
-		</Formik>
-	</>
-);
-
-const SetMacroForm = ({ submitMacros, current }) => (
-	<>
-		<Formik
-			initialValues={{
-				protein: current ? current.protein : 0,
-				carbs: current ? current.carbs : 0,
-				fat: current ? current.fat : 0
-			}}
-			validationSchema={Yup.object({
-				protein: Yup.string().required("Required"),
-				carbs: Yup.string().required("Required"),
-				fat: Yup.string().required("Required")
-			})}
-			onSubmit={(values, { setSubmitting }) => {
-				const closeMenu = current ? true : false;
-				submitMacros(values, closeMenu);
-				setSubmitting(false);
-			}}
-		>
-			<Form className="form">
-				<NumberInput
-					label="Protein"
-					name="protein"
-					type="number"
-					min="0"
-					helperText="Enter protein in grams"
-				/>
-				<NumberInput
-					label="Carbs"
-					name="carbs"
-					type="number"
-					min="0"
-					helperText="Enter carbs in grams"
-				/>
-				<NumberInput
-					label="Fat"
-					name="fat"
-					type="number"
-					min="0"
-					helperText="Enter fat in grams"
-				/>
-				<Button type="submit">submit</Button>
-			</Form>
-		</Formik>
-	</>
-);
 
 export default MacroTracker;
