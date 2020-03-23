@@ -31,6 +31,57 @@ exports[`should render Workouts Page with props 1`] = `
           Start Next Workout
         </Button>
       </div>
+      <div
+        className="input-group workouts-page__filter"
+      >
+        <select
+          className="select-input"
+          id="filter-select"
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            value=""
+          >
+            All Lifts
+          </option>
+          <option
+            value="bench"
+          >
+            Bench Press
+          </option>
+          <option
+            value="row"
+          >
+            Row
+          </option>
+          <option
+            value="squat"
+          >
+            Squat
+          </option>
+          <option
+            value="deadlift"
+          >
+            Deadlift
+          </option>
+          <option
+            value="overhead"
+          >
+            Overhead Press
+          </option>
+          <option
+            value="chinup"
+          >
+            Chin-Ups
+          </option>
+        </select>
+        <label
+          htmlFor="filter-select"
+        >
+          Filter Workouts by Lift
+        </label>
+      </div>
       <Component
         from={
           Object {
@@ -143,6 +194,57 @@ exports[`should render Workouts Page without props 1`] = `
         >
           Start Next Workout
         </Button>
+      </div>
+      <div
+        className="input-group workouts-page__filter"
+      >
+        <select
+          className="select-input"
+          id="filter-select"
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            value=""
+          >
+            All Lifts
+          </option>
+          <option
+            value="bench"
+          >
+            Bench Press
+          </option>
+          <option
+            value="row"
+          >
+            Row
+          </option>
+          <option
+            value="squat"
+          >
+            Squat
+          </option>
+          <option
+            value="deadlift"
+          >
+            Deadlift
+          </option>
+          <option
+            value="overhead"
+          >
+            Overhead Press
+          </option>
+          <option
+            value="chinup"
+          >
+            Chin-Ups
+          </option>
+        </select>
+        <label
+          htmlFor="filter-select"
+        >
+          Filter Workouts by Lift
+        </label>
       </div>
       <Component
         from={

@@ -130,26 +130,32 @@ exports[`should render Home Page with props 1`] = `
 `;
 
 exports[`should render Home Page with welcome message 1`] = `
-<Fragment>
-  <h2>
-    Welcome to flext!
-  </h2>
-  <p>
-    Let's begin by entering your starting weights
-  </p>
-  <Link
-    to="/onboarding"
+<div
+  className="homepage__welcome"
+>
+  <div
+    className="card"
   >
-    <Button
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-      variant="primary"
+    <h2>
+      Welcome to flext!
+    </h2>
+    <p>
+      Let's begin by entering your starting weights
+    </p>
+    <Link
+      to="/onboarding"
     >
-      Enter Weights
-    </Button>
-  </Link>
-</Fragment>
+      <Button
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Enter Weights
+      </Button>
+    </Link>
+  </div>
+</div>
 `;
 
 exports[`should render Home Page without props 1`] = `

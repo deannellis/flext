@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import Button from '../components/Button';
-import NumberInput from '../components/NumberInput';
+import Button from "../components/Button";
+import NumberInput from "../components/NumberInput";
 
 export default ({ submitMacros, current }) => (
 	<>
@@ -14,9 +14,15 @@ export default ({ submitMacros, current }) => (
 				fat: current ? current.fat : 0
 			}}
 			validationSchema={Yup.object({
-				protein: Yup.string().required("Required"),
-				carbs: Yup.string().required("Required"),
-				fat: Yup.string().required("Required")
+				protein: Yup.number()
+					.required("Required")
+					.min(0),
+				carbs: Yup.number()
+					.required("Required")
+					.min(0),
+				fat: Yup.number()
+					.required("Required")
+					.min(0)
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				const closeMenu = current ? true : false;
@@ -51,3 +57,4 @@ export default ({ submitMacros, current }) => (
 		</Formik>
 	</>
 );
+

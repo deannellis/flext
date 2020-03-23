@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render WorkoutPage with props 1`] = `
+<div
+  className="workout-page__wrapper"
+>
+  <div
+    className="workout-page"
+  >
+    <h1>
+      Workout #4
+    </h1>
+    <div
+      className="workout-page__lift card"
+    >
+      <h2>
+        Hell Yeah!
+      </h2>
+      <Button
+        clickHandler={[Function]}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Finish Workout
+      </Button>
+    </div>
+    <Component
+      from={
+        Object {
+          "opacity": 0,
+          "transform": "translate3d(0,-40px,0)",
+        }
+      }
+      items={
+        Array [
+          "bench",
+          "row",
+          "deadlift",
+        ]
+      }
+      keys={[Function]}
+      to={
+        Object {
+          "opacity": 1,
+          "transform": "translate3d(0,0px,0)",
+        }
+      }
+    >
+      <Component />
+    </Component>
+    <button
+      className="lift-page__action-button action-button"
+      onClick={[Function]}
+    >
+      <LeftArrowIcon
+        fill="rgba(26, 33, 46, .84)"
+        size={24}
+      />
+      <span>
+        Back
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render WorkoutPage without props 1`] = `
+<div
+  className="workout-page__wrapper"
+>
+  <div
+    className="workout-page"
+  >
+    <h1>
+      Workout #1
+    </h1>
+    <Component
+      from={
+        Object {
+          "opacity": 0,
+          "transform": "translate3d(0,-40px,0)",
+        }
+      }
+      items={
+        Array [
+          "overhead",
+          "chinup",
+          "squat",
+        ]
+      }
+      keys={[Function]}
+      to={
+        Object {
+          "opacity": 1,
+          "transform": "translate3d(0,0px,0)",
+        }
+      }
+    >
+      <Component />
+    </Component>
+    <button
+      className="lift-page__action-button action-button"
+      onClick={[Function]}
+    >
+      <LeftArrowIcon
+        fill="rgba(26, 33, 46, .84)"
+        size={24}
+      />
+      <span>
+        Back
+      </span>
+    </button>
+  </div>
+</div>
+`;

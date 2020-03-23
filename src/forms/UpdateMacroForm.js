@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import Button from '../components/Button';
-import SelectInput from '../components/SelectInput';
-import NumberInput from '../components/NumberInput';
+import Button from "../components/Button";
+import SelectInput from "../components/SelectInput";
+import NumberInput from "../components/NumberInput";
 
 export default ({ updateMacro, closeForm }) => (
 	<>
@@ -15,7 +15,9 @@ export default ({ updateMacro, closeForm }) => (
 			}}
 			validationSchema={Yup.object({
 				macro: Yup.string().required("Required"),
-				amount: Yup.string().required("Required")
+				amount: Yup.number()
+					.required("Required")
+					.min(0)
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				updateMacro(values);
@@ -23,7 +25,7 @@ export default ({ updateMacro, closeForm }) => (
 			}}
 		>
 			<Form className="form">
-				<SelectInput label="Macro" name="macro">
+				<SelectInput label="Macro" name="macro" id="macro">
 					<option value="">Select a macro</option>
 					<option value="protein">protein</option>
 					<option value="fat">fat</option>
@@ -46,3 +48,4 @@ export default ({ updateMacro, closeForm }) => (
 		</Formik>
 	</>
 );
+

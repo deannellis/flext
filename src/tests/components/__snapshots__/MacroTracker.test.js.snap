@@ -4,9 +4,21 @@ exports[`should render Macro Tracker with props 1`] = `
 <div
   className="macro-tracker card"
 >
-  <h2>
-    Macros
-  </h2>
+  <div
+    className="macro-tracker__header"
+  >
+    <h2>
+      Macros
+    </h2>
+    <div
+      className="macro-tracker__menu-button"
+      onClick={[Function]}
+    >
+      <DotsIcon
+        size={24}
+      />
+    </div>
+  </div>
   <PieChart
     data={
       Array [
@@ -83,16 +95,54 @@ exports[`should render Macro Tracker with props 1`] = `
     disabled={false}
     onClick={[Function]}
     type="button"
+    variant="primary"
   >
     Add macros
+  </Button>
+  <Button
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    reset macros
   </Button>
   <div
     className="macro-tracker__overlay card__overlay  card__overlay--hidden"
   >
-    <UpdateMacroForm
+    <_default
       closeForm={[Function]}
       updateMacro={[Function]}
     />
+  </div>
+  <div
+    className="macro-tracker__overlay card__overlay  card__overlay--hidden macro-tracker__menu"
+  >
+    <p>
+      Update Target Macros
+    </p>
+    <_default
+      current={
+        Object {
+          "carbs": 280,
+          "fat": 80,
+          "protein": 340,
+        }
+      }
+      submitMacros={[Function]}
+    />
+    <div
+      className="macro-tracker__menu-bottom"
+    >
+      <Button
+        clickHandler={[Function]}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Close Menu
+      </Button>
+    </div>
   </div>
 </div>
 `;
@@ -101,9 +151,21 @@ exports[`should render Macro Tracker without props 1`] = `
 <div
   className="macro-tracker card"
 >
-  <h2>
-    Macros
-  </h2>
+  <div
+    className="macro-tracker__header"
+  >
+    <h2>
+      Macros
+    </h2>
+    <div
+      className="macro-tracker__menu-button"
+      onClick={[Function]}
+    >
+      <DotsIcon
+        size={24}
+      />
+    </div>
+  </div>
   <PieChart
     data={
       Array [
@@ -176,16 +238,54 @@ exports[`should render Macro Tracker without props 1`] = `
     disabled={false}
     onClick={[Function]}
     type="button"
+    variant="primary"
   >
     Add macros
+  </Button>
+  <Button
+    clickHandler={[Function]}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    reset macros
   </Button>
   <div
     className="macro-tracker__overlay card__overlay  card__overlay--hidden"
   >
-    <UpdateMacroForm
+    <_default
       closeForm={[Function]}
       updateMacro={[Function]}
     />
+  </div>
+  <div
+    className="macro-tracker__overlay card__overlay  card__overlay--hidden macro-tracker__menu"
+  >
+    <p>
+      Update Target Macros
+    </p>
+    <_default
+      current={
+        Object {
+          "carbs": 0,
+          "fat": 0,
+          "protein": 0,
+        }
+      }
+      submitMacros={[Function]}
+    />
+    <div
+      className="macro-tracker__menu-bottom"
+    >
+      <Button
+        clickHandler={[Function]}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Close Menu
+      </Button>
+    </div>
   </div>
 </div>
 `;
