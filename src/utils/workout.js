@@ -50,9 +50,10 @@ export const getWeightDistribution = weight => {
 	return [oneSide, 44, oneSide];
 };
 
-export const getMonthWorkouts = workouts => {
+export const getMonthWorkouts = (workouts, year) => {
+	const filteredWorkouts = workouts.filter(workout => moment(workout.created).format("YYYY") == year)
 	let dates = {};
-	workouts.forEach(workout => {
+	filteredWorkouts.forEach(workout => {
 		let month = moment(workout.created).format("MMMM");
 		let day = parseInt(moment(workout.created).format("D"));
 		if (dates.hasOwnProperty(month)) {
@@ -102,9 +103,4 @@ export const getEmoji = () => {
 	const emojis = ["🏋️‍♂️", "🏋️‍♀️", "🔥", "💪", "🙌", "👍"];
 	const random = Math.floor(Math.random() * (emojis.length - 1));
 	return emojis[random];
-};
-
-export const roundWeight = weight => {
-	const multiplier = Math.pow(10, 1);
-	return Math.round(weight * multiplier) / multiplier;
 };

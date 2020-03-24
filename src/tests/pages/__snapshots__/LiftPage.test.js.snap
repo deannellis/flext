@@ -178,7 +178,7 @@ exports[`should render Lift Page with props 1`] = `
               </span>
               <p>
                 5 reps @
-                57.5
+                58
                 lbs
               </p>
             </div>
@@ -193,7 +193,7 @@ exports[`should render Lift Page with props 1`] = `
                   LEFT
                 </span>
                 <p>
-                  6.8
+                  7
                 </p>
               </div>
               <div
@@ -215,7 +215,7 @@ exports[`should render Lift Page with props 1`] = `
                   RIGHT
                 </span>
                 <p>
-                  6.8
+                  7
                 </p>
               </div>
             </div>
@@ -233,7 +233,7 @@ exports[`should render Lift Page with props 1`] = `
               </span>
               <p>
                 5 reps @
-                86.3
+                86
                 lbs
               </p>
             </div>
@@ -248,7 +248,7 @@ exports[`should render Lift Page with props 1`] = `
                   LEFT
                 </span>
                 <p>
-                  21.1
+                  21
                 </p>
               </div>
               <div
@@ -270,7 +270,7 @@ exports[`should render Lift Page with props 1`] = `
                   RIGHT
                 </span>
                 <p>
-                  21.1
+                  21
                 </p>
               </div>
             </div>
