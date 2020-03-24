@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getDisplayName, roundWeight } from '../utils/workout';
+import { getDisplayName } from '../utils/workout';
 import Button from './Button';
 import UpdateWeightForm from '../forms/UpdateWeightForm';
 
@@ -12,7 +12,7 @@ const LiftCard = ({ lift, weights, formIsOpen, toggleForm, updateWeight }) => {
                     <p>Work Weight:</p>
                 <div className="lift-card__weight">
                     <p>
-                        {roundWeight(weights[lift])}
+                        {Math.round(weights[lift])}
                         <span>lbs</span>
                     </p>
                 </div>

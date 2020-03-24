@@ -45,7 +45,7 @@ class Calendar extends Component {
 
     render() { 
         const weekdaysAbbreviated = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-        const workouts = getMonthWorkouts(this.props.workouts);
+        const workouts = getMonthWorkouts(this.props.workouts, this.getYear());
         const daysWorkedOut = workouts[this.state.dateObject.format("MMMM")] ? workouts[this.state.dateObject.format("MMMM")] : [];
         const workoutDays = getWorkoutDays(parseInt(this.getFirstDayOfMonth()), this.getDaysInMonth());
         const workoutIds = getWorkoutIds(this.props.workouts, this.getMonth());

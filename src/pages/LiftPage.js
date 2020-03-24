@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 
 import { updateWorkout } from '../actions/inProgressWorkout';
-import { getDisplayName, getWarmupWeights, getWeightDistribution, roundWeight } from '../utils/workout';
+import { getDisplayName, getWarmupWeights, getWeightDistribution } from '../utils/workout';
 import { LeftArrowIcon } from '../utils/icons';
 import Button from '../components/Button';
 import { MenuContext } from '../context/menu-context';
@@ -74,7 +74,7 @@ export class LiftPage extends Component {
                                             <div key={i} className="lift-page__sets">
                                                 <div className="lift-page__set">
                                                     <span>Set {i + 1}</span>
-                                                    <p>5 reps @{roundWeight(weight)}lbs</p>
+                                                    <p>5 reps @{Math.round(weight)}lbs</p>
                                                 </div>
                                                 <div className="lift-page__distributed">
                                                     {getWeightDistribution(weight).map((distWeight, i) => (
@@ -84,7 +84,7 @@ export class LiftPage extends Component {
                                                                 {i === 1 && 'BAR'}
                                                                 {i === 2 && 'RIGHT'}
                                                             </span>
-                                                            <p>{roundWeight(distWeight)}</p>
+                                                            <p>{Math.round(distWeight)}</p>
                                                         </div>
                                                     ))}
                                                 </div>
