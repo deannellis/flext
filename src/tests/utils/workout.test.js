@@ -6,8 +6,7 @@ import {
 	getMonthWorkouts,
 	getWorkoutIds,
 	getWorkoutDays,
-	getEmoji,
-	roundWeight
+	getEmoji
 } from "../../utils/workout";
 
 import { workouts } from "../fixtures/workout";
@@ -73,12 +72,11 @@ test("should return weight distribution", () => {
 	const workWeight = 100;
 	const result = getWeightDistribution(workWeight);
 	expect(result).toEqual([28, 44, 28]);
-});
+});``
 
 test("should return an object with an array of dates for each month, given an array of workout data", () => {
-	const result = getMonthWorkouts(workouts);
+	const result = getMonthWorkouts(workouts, 2020);
 	expect(result).toEqual({
-		December: [8],
 		February: [6, 3]
 	});
 });
