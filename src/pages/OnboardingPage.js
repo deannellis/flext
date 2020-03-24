@@ -5,14 +5,15 @@ import { setMasterWeights } from "../actions/masterWeights";
 import OnboardingCard from "../components/OnboardingCard";
 import { MenuContext } from "../context/menu-context";
 
-class OnboardingPage extends Component {
+export class OnboardingPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
 	}
 
 	onMasterWeightsSubmit = masterWeights => {
-		this.props.dispatch(setMasterWeights(masterWeights));
+		// this.props.dispatch(setMasterWeights(masterWeights));
+		this.props.onMasterWeightsSubmit(masterWeights);
 		this.props.history.push("/home");
 	};
 
@@ -41,11 +42,20 @@ class OnboardingPage extends Component {
 	}
 }
 OnboardingPage.contextType = MenuContext;
+OnboardingPage.defaultProps = {
+	masterWeights: {}
+};
 
 const mapStateToProps = state => {
 	return {
 		masterWeights: state.masterWeights
 	};
 };
+const mapDispatchToProps = dispatch => ({
+	onMasterWeightsSubmit: masterWeights =>
+		dispatch(setMasterWeights(masterWeights))
+});
 
-export default withRouter(connect(mapStateToProps)(OnboardingPage));
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(OnboardingPage)
+);

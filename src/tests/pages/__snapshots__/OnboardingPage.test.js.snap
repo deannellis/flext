@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the Onboarding Page without props 1`] = `
+<div
+  className="onboarding-page__wrapper"
+>
+  <div
+    className="card"
+  >
+    <OnboardingCard
+      onSubmit={[Function]}
+    />
+  </div>
+</div>
+`;

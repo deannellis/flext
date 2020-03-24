@@ -1,7 +1,12 @@
 import React from "react";
-import { render, fireEvent, wait } from "@testing-library/react";
+import {
+	render,
+	fireEvent,
+	wait,
+	waitForElement
+} from "@testing-library/react";
 
-import { UpdateWeightForm } from "../../components/LiftCard";
+import UpdateWeightForm from "../../forms/UpdateWeightForm";
 
 test("should have validation error given input field is touched and error exists on form", async () => {
 	const lift = "row";
@@ -70,4 +75,64 @@ test("should toggle form on clicking cancel button", () => {
 	const cancelButton = getByText("cancel");
 	fireEvent.click(cancelButton);
 	expect(toggleForm).toHaveBeenCalled();
+});
+
+test("should not submit form if weight is greater than 1000lbs", async () => {
+	const lift = "row";
+	const updateWeight = jest.fn();
+	const { container, getByText, findByTestId } = render(
+		<UpdateWeightForm updateWeight={updateWeight} lift={lift} />
+	);
+	const input = await waitForElement(() =>
+		container.querySelector(`input[name="${lift}"]`)
+	);
+	const submitButton = await waitForElement(() => getByText("submit"));
+
+	await wait(() => {
+		fireEvent.change(input, {
+			target: { value: "1001" }
+		});
+	});
+	await wait(() => {
+		fireEvent.blur(input);
+	});
+	await wait(() => {
+		fireEvent.click(submitButton);
+	});
+
+	const validationErrors = await findByTestId(`errors-${lift}`);
+	expect(validationErrors.innerHTML).toBe(
+		"Weight can not exceed 1000lbs tough guy"
+	);
+	expect(updateWeight).not.toHaveBeenCalled();
+});
+
+test("should not submit form if weight is less than 44lbs", async () => {
+	const lift = "row";
+	const updateWeight = jest.fn();
+	const { container, getByText, findByTestId } = render(
+		<UpdateWeightForm updateWeight={updateWeight} lift={lift} />
+	);
+	const input = await waitForElement(() =>
+		container.querySelector(`input[name="${lift}"]`)
+	);
+	const submitButton = await waitForElement(() => getByText("submit"));
+
+	await wait(() => {
+		fireEvent.change(input, {
+			target: { value: "43" }
+		});
+	});
+	await wait(() => {
+		fireEvent.blur(input);
+	});
+	await wait(() => {
+		fireEvent.click(submitButton);
+	});
+
+	const validationErrors = await findByTestId(`errors-${lift}`);
+	expect(validationErrors.innerHTML).toBe(
+		"Weight must be greater than bar weight"
+	);
+	expect(updateWeight).not.toHaveBeenCalled();
 });

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import ChinupForm from '../forms/OnboardingChinupForm';
-import WeightsForm from '../forms/OnboardingWeightsForm';
+import ChinupForm from "../forms/OnboardingChinupForm";
+import WeightsForm from "../forms/OnboardingWeightsForm";
 
-class StartingWeightForm extends Component {
+class OnboardingCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,6 +13,7 @@ class StartingWeightForm extends Component {
 	}
 
 	submitWeights = weights => {
+		console.log("fug");
 		const masterWeights = {
 			...weights,
 			chinups: this.state.chinups
@@ -39,5 +40,4 @@ class StartingWeightForm extends Component {
 	}
 }
 
-export default StartingWeightForm;
-
+export default OnboardingCard;

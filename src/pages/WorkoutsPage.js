@@ -24,7 +24,6 @@ export class WorkoutsPage extends Component {
 	};
 
 	onFilterChange = e => {
-		console.log("boob", e.target.value);
 		this.props.onFilterChange(e.target.value);
 	};
 
@@ -148,7 +147,8 @@ WorkoutsPage.contextType = MenuContext;
 WorkoutsPage.defaultProps = {
 	workouts: [],
 	liftVariant: { a: 0, b: 0 },
-	match: { params: { id: "" } }
+	match: { params: { id: "" } },
+	filters: { lift: "" }
 };
 
 const mapStateToProps = state => ({

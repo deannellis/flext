@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Button from "../components/Button";
 
 class ChinupForm extends Component {
@@ -18,6 +18,12 @@ class ChinupForm extends Component {
 			negatives,
 			ups
 		});
+		if (negatives > 5) {
+			this.setState({
+				negatives: 5,
+				ups: 0
+			});
+		}
 	};
 
 	onUpsChange = e => {
@@ -27,6 +33,12 @@ class ChinupForm extends Component {
 			negatives,
 			ups
 		});
+		if (ups > 5) {
+			this.setState({
+				negatives: 0,
+				ups
+			});
+		}
 	};
 
 	onWeightChange = e => {
@@ -53,6 +65,7 @@ class ChinupForm extends Component {
 							value={this.state.negatives}
 							onChange={this.onNegativesChange}
 							className="number-input"
+							required
 						/>
 						<label className="label">Negatives</label>
 					</div>
@@ -65,12 +78,13 @@ class ChinupForm extends Component {
 							value={this.state.ups}
 							onChange={this.onUpsChange}
 							className="number-input"
+							required
 						/>
 						<label className="label">Chin-ups</label>
 					</div>
 					<div className="input-group">
 						<div className="input__helper-text">
-							{this.state.ups == 5
+							{this.state.ups < 5
 								? ""
 								: "5 Chin-ups required before adding weight"}
 						</div>
@@ -79,12 +93,13 @@ class ChinupForm extends Component {
 							min="0"
 							value={this.state.weight}
 							onChange={this.onWeightChange}
-							disabled={this.state.ups !== 5}
+							disabled={this.state.ups < 5}
 							className="number-input"
+							required
 						/>
 						<label className="label">Weight</label>
 					</div>
-					<Button type="submit">Submit</Button>
+					<Button type="submit">submit</Button>
 				</form>
 			</>
 		);
@@ -92,3 +107,4 @@ class ChinupForm extends Component {
 }
 
 export default ChinupForm;
+

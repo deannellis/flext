@@ -38,7 +38,7 @@ exports[`should render Lift Card with props 1`] = `
   <div
     className="card__overlay"
   >
-    <UpdateWeightForm
+    <_default
       currentWeight={115}
       lift="row"
       toggleForm={[Function]}
@@ -86,7 +86,7 @@ exports[`should render Lift Card without props 1`] = `
   <div
     className="card__overlay  card__overlay--hidden"
   >
-    <UpdateWeightForm
+    <_default
       currentWeight={0}
       lift="bench"
       toggleForm={[Function]}
