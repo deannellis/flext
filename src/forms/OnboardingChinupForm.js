@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import Button from "../components/Button";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Button from '../components/Button';
 
 class ChinupForm extends Component {
 	constructor(props) {
@@ -52,52 +53,60 @@ class ChinupForm extends Component {
 	};
 
 	render() {
+		const { ups, negatives, weight } = this.state;
 		return (
 			<>
 				<h2>Configure your starting Chinup reps</h2>
 				<form className="form" onSubmit={this.onSubmit}>
 					<div className="input-group">
-						<div className="input__error"></div>
+						<div className="input__error" />
 						<input
 							type="number"
 							max="5"
 							min="0"
-							value={this.state.negatives}
+							value={negatives}
 							onChange={this.onNegativesChange}
 							className="number-input"
 							required
+							id="negatives"
 						/>
-						<label className="label">Negatives</label>
+						<label className="label" htmlFor="negatives">
+							Negatives
+						</label>
 					</div>
 					<div className="input-group">
-						<div className="input__error"></div>
+						<div className="input__error" />
 						<input
 							type="number"
 							max="5"
 							min="0"
-							value={this.state.ups}
+							value={ups}
 							onChange={this.onUpsChange}
 							className="number-input"
 							required
+							id="chin-ups"
 						/>
-						<label className="label">Chin-ups</label>
+						<label className="label" htmlFor="chin-ups">
+							Chin-ups
+						</label>
 					</div>
 					<div className="input-group">
 						<div className="input__helper-text">
-							{this.state.ups < 5
-								? ""
-								: "5 Chin-ups required before adding weight"}
+							{ups < 5 ? '' : '5 Chin-ups required before adding weight'}
 						</div>
 						<input
 							type="number"
 							min="0"
-							value={this.state.weight}
+							value={weight}
 							onChange={this.onWeightChange}
-							disabled={this.state.ups < 5}
+							disabled={ups < 5}
 							className="number-input"
 							required
+							id="weight"
 						/>
-						<label className="label">Weight</label>
+						<label className="label" htmlFor="weight">
+							Weight
+						</label>
 					</div>
 					<Button type="submit">submit</Button>
 				</form>
@@ -105,6 +114,8 @@ class ChinupForm extends Component {
 		);
 	}
 }
+ChinupForm.propTypes = {
+	submitChinups: PropTypes.func.isRequired
+};
 
 export default ChinupForm;
-

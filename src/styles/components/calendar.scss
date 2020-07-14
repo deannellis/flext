@@ -1,63 +1,69 @@
 .calendar {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-    width: 100%;
-    @include for-tablet-landscape-up {
-    width: 32.8rem;
-    }
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	width: 100%;
+	@include for-tablet-landscape-up {
+		width: 32.8rem;
+	}
 }
 
 .calendar__month-year {
-    grid-column: 2 / span 5;
-    font-weight: 700;
+	grid-column: 2 / span 5;
+	font-weight: 700;
 }
 
-.calendar__month-year, .calendar__prev-month, .calendar__next-month, .calendar__weekday-short-name {
-    margin-bottom: 2.4rem;
+.calendar__month-year,
+.calendar__prev-month,
+.calendar__next-month,
+.calendar__weekday-short-name {
+	margin-bottom: 2.4rem;
 }
 
-.calendar__prev-month, .calendar__next-month {
-    cursor: pointer;
+.calendar__prev-month,
+.calendar__next-month {
+	cursor: pointer;
+	background: none;
+	border: none;
 }
 
 .calendar__weekday-short-name {
-    opacity: .54;
+	opacity: 0.54;
 }
 
 .calendar div {
-    justify-self: center;
-    align-self: center;
+	justify-self: center;
+	align-self: center;
 }
 
 .calendar__day {
-    height: 3.2rem;
-    width: 92%;
-    text-align: center;
-    line-height: 3.2rem;
-    border-radius: 4.8rem;
-    margin: 0 0 .6rem 0;
+	height: 3.2rem;
+	width: 92%;
+	text-align: center;
+	line-height: 3.2rem;
+	border-radius: 4.8rem;
+	margin: 0 0 0.6rem 0;
 }
 
 .calendar__day--today {
-    @extend .calendar__day;
-    background: $bg-secondary;
+	@extend .calendar__day;
+	background: $bg-secondary;
 }
 
 .calendar__day--worked-out {
-    background: $main-accent-o82;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    &:hover {
-        border: 1px solid $main-accent;
-        padding-bottom: 2px;
-        box-shadow: $depth-3;
-    }
+	background: $main-accent-o82;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	&:hover {
+		border: 1px solid $main-accent;
+		padding-bottom: 2px;
+		box-shadow: $depth-3;
+	}
 }
 
 .calendar__day--work-out {
-    border: .5px solid #ffffff7A;
+	border: 0.5px solid #ffffff7a;
 }
 
 .calendar__day--work-out .calendar__day--today {
-    border: .5px solid $main-accent-o82;
+	border: 0.5px solid $main-accent-o82;
 }

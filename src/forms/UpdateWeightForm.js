@@ -1,12 +1,18 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
-import Button from "../components/Button";
-import NumberInput from "../components/NumberInput";
-import { getDisplayName } from "../utils/workout";
+import Button from '../components/Button';
+import NumberInput from '../components/NumberInput';
+import { getDisplayName } from '../utils/workout';
 
-export default ({ currentWeight, lift, toggleForm, updateWeight }) => (
+const UpdateWeightForm = ({
+	currentWeight,
+	lift,
+	toggleForm,
+	updateWeight
+}) => (
 	<>
 		<Formik
 			initialValues={{
@@ -14,9 +20,9 @@ export default ({ currentWeight, lift, toggleForm, updateWeight }) => (
 			}}
 			validationSchema={Yup.object({
 				[lift]: Yup.number()
-					.max(1000, "Weight can not exceed 1000lbs tough guy")
-					.min(44, "Weight must be greater than bar weight")
-					.required("Required")
+					.max(1000, 'Weight can not exceed 1000lbs tough guy')
+					.min(44, 'Weight must be greater than bar weight')
+					.required('Required')
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				updateWeight(values);
@@ -44,4 +50,11 @@ export default ({ currentWeight, lift, toggleForm, updateWeight }) => (
 		</Formik>
 	</>
 );
+UpdateWeightForm.propTypes = {
+	currentWeight: PropTypes.number.isRequired,
+	lift: PropTypes.string.isRequired,
+	toggleForm: PropTypes.func.isRequired,
+	updateWeight: PropTypes.func.isRequired
+};
 
+export default UpdateWeightForm;

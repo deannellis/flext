@@ -1,0 +1,47 @@
+{
+	"extends": ["airbnb", "prettier"],
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"env": {
+		"node": true,
+		"browser": true,
+		"es6": true,
+		"jest": true
+	},
+	"rules": {
+		"react/jsx-filename-extension": 0,
+		"no-tabs": 0,
+		"indent": ["off", "tab"],
+		"arrow-parens": ["error", "as-needed"],
+		"radix": ["error", "as-needed"],
+		"comma-dangle": ["error", "only-multiline"],
+		"react/jsx-indent": ["off", "tab"],
+		"react/jsx-indent-props": "off",
+		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+		"no-underscore-dangle": [
+			"error",
+			{ "allow": ["__REDUX_DEVTOOLS_EXTENSION__", "_current"] }
+		],
+		"import/no-named-as-default": 0,
+		"import/no-named-as-default-member": 0,
+		"react/destructuring-assignment": 1,
+		"react/jsx-one-expression-per-line": 1,
+		"react/no-array-index-key": 1,
+		"prefer-template": 1,
+		"jsx-a11y/label-has-associated-control": [
+			2,
+			{
+				"assert": "either"
+			}
+		],
+		"no-param-reassign": ["error", { "props": false }],
+		"import/prefer-default-export": 1,
+		"react/button-has-type": 1
+	}
+}

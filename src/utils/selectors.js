@@ -1,7 +1,7 @@
-export const getVisibleWorkouts = (workouts, { lift }) => {
-	if (lift === "") return workouts;
-	const visibleWorkouts = workouts.filter(workout => {
-		return Object.keys(workout).includes(lift);
-	});
+export default (workouts, {
+	lift
+}) => {
+	if (lift === '') return workouts;
+	const visibleWorkouts = workouts.filter(workout => Object.keys(workout).includes(lift));
 	return visibleWorkouts;
 };

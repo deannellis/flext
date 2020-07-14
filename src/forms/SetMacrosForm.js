@@ -1,32 +1,32 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
-import Button from "../components/Button";
-import NumberInput from "../components/NumberInput";
+import Button from '../components/Button';
+import NumberInput from '../components/NumberInput';
 
-export default ({ submitMacros, current }) => (
+const SetMacrosForm = ({ submitMacros, current }) => (
 	<>
 		<Formik
 			initialValues={{
-				protein: current ? current.protein : 0,
-				carbs: current ? current.carbs : 0,
-				fat: current ? current.fat : 0
+				protein: current.protein,
+				carbs: current.carbs,
+				fat: current.fat
 			}}
 			validationSchema={Yup.object({
 				protein: Yup.number()
-					.required("Required")
+					.required('Required')
 					.min(0),
 				carbs: Yup.number()
-					.required("Required")
+					.required('Required')
 					.min(0),
 				fat: Yup.number()
-					.required("Required")
+					.required('Required')
 					.min(0)
 			})}
 			onSubmit={(values, { setSubmitting }) => {
-				const closeMenu = current ? true : false;
-				submitMacros(values, closeMenu);
+				submitMacros(values, !!current);
 				setSubmitting(false);
 			}}
 		>
@@ -57,4 +57,20 @@ export default ({ submitMacros, current }) => (
 		</Formik>
 	</>
 );
+SetMacrosForm.propTypes = {
+	submitMacros: PropTypes.func.isRequired,
+	current: PropTypes.shape({
+		protein: PropTypes.number,
+		carbs: PropTypes.number,
+		fat: PropTypes.number
+	})
+};
+SetMacrosForm.defaultProps = {
+	current: {
+		protein: 0,
+		carbs: 0,
+		fat: 0
+	}
+};
 
+export default SetMacrosForm;

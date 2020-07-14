@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { setMasterWeights } from "../actions/masterWeights";
-import OnboardingCard from "../components/OnboardingCard";
-import { MenuContext } from "../context/menu-context";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { setMasterWeights } from '../actions/masterWeights';
+import OnboardingCard from '../components/OnboardingCard';
+import { MenuContext } from '../context/menu-context';
 
 export class OnboardingPage extends Component {
 	constructor(props) {
@@ -11,25 +12,26 @@ export class OnboardingPage extends Component {
 		this.state = {};
 	}
 
-	onMasterWeightsSubmit = masterWeights => {
-		// this.props.dispatch(setMasterWeights(masterWeights));
-		this.props.onMasterWeightsSubmit(masterWeights);
-		this.props.history.push("/home");
-	};
-
 	componentDidMount() {
 		this.context.setPageMenu(false);
+		const { masterWeights, history } = this.props;
 		if (
-			Object.entries(this.props.masterWeights).length !== 0 &&
-			this.props.masterWeights.constructor === Object
+			Object.entries(masterWeights).length !== 0 &&
+			masterWeights.constructor === Object
 		) {
-			this.props.history.push("/home");
+			history.push('/home');
 		}
 	}
 
 	componentWillUnmount() {
 		this.context.setPageMenu(true);
 	}
+
+	onMasterWeightsSubmit = masterWeights => {
+		const { history, onMasterWeightsSubmit } = this.props;
+		onMasterWeightsSubmit(masterWeights);
+		history.push('/home');
+	};
 
 	render() {
 		return (
@@ -42,6 +44,13 @@ export class OnboardingPage extends Component {
 	}
 }
 OnboardingPage.contextType = MenuContext;
+OnboardingPage.propTypes = {
+	masterWeights: PropTypes.objectOf(PropTypes.any),
+	history: PropTypes.shape({
+		push: PropTypes.func
+	}).isRequired,
+	onMasterWeightsSubmit: PropTypes.func.isRequired
+};
 OnboardingPage.defaultProps = {
 	masterWeights: {}
 };

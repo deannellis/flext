@@ -1,11 +1,11 @@
-import { createStore, combineReducers } from "redux";
-import filtersReducer from "../reducers/filters";
-import macrosReducer from "../reducers/macros";
-import masterWeightsReducer from "../reducers/masterWeights";
-import liftVariantReducer from "../reducers/liftVariant";
-import inProgressWorkoutReducer from "../reducers/inProgressWorkout";
-import workoutsReducer from "../reducers/workouts";
-import { saveState, loadState } from "./localStorage";
+import { createStore, combineReducers } from 'redux';
+import filtersReducer from '../reducers/filters';
+import macrosReducer from '../reducers/macros';
+import masterWeightsReducer from '../reducers/masterWeights';
+import liftVariantReducer from '../reducers/liftVariant';
+import inProgressWorkoutReducer from '../reducers/inProgressWorkout';
+import workoutsReducer from '../reducers/workouts';
+import { saveState, loadState } from './localStorage';
 
 export default () => {
 	const persistedState = loadState();

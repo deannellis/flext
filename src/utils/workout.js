@@ -1,35 +1,34 @@
-import React from "react";
-import moment from "moment";
+import moment from 'moment';
 
 export const getWorkouts = ({ a = 0, b = 0 }) => {
-	let workouts = [];
-	if (a == 0) {
-		workouts.push("overhead", "chinup");
+	const workouts = [];
+	if (a === 0) {
+		workouts.push('overhead', 'chinup');
 	} else {
-		workouts.push("bench", "row");
+		workouts.push('bench', 'row');
 	}
-	if (b == 0 || b == 2) {
-		workouts.push("squat");
+	if (b === 0 || b === 2) {
+		workouts.push('squat');
 	} else {
-		workouts.push("deadlift");
+		workouts.push('deadlift');
 	}
 	return workouts;
 };
 
 export const getDisplayName = name => {
 	switch (name) {
-		case "bench":
-			return "Bench Press";
-		case "row":
-			return "Row";
-		case "squat":
-			return "Squat";
-		case "deadlift":
-			return "Deadlift";
-		case "overhead":
-			return "Overhead Press";
-		case "chinup":
-			return "Chin-Ups";
+		case 'bench':
+			return 'Bench Press';
+		case 'row':
+			return 'Row';
+		case 'squat':
+			return 'Squat';
+		case 'deadlift':
+			return 'Deadlift';
+		case 'overhead':
+			return 'Overhead Press';
+		case 'chinup':
+			return 'Chin-Ups';
 		default:
 			return name;
 	}
@@ -51,12 +50,14 @@ export const getWeightDistribution = weight => {
 };
 
 export const getMonthWorkouts = (workouts, year) => {
-	const filteredWorkouts = workouts.filter(workout => moment(workout.created).format("YYYY") == year)
-	let dates = {};
+	const filteredWorkouts = workouts.filter(
+		workout => moment(workout.created).format('YYYY') === year
+	);
+	const dates = {};
 	filteredWorkouts.forEach(workout => {
-		let month = moment(workout.created).format("MMMM");
-		let day = parseInt(moment(workout.created).format("D"));
-		if (dates.hasOwnProperty(month)) {
+		const month = moment(workout.created).format('MMMM');
+		const day = parseInt(moment(workout.created).format('D'));
+		if (Object.prototype.hasOwnProperty.call(dates, 'month')) {
 			dates[month].push(day);
 		} else {
 			dates[month] = [day];
@@ -66,13 +67,13 @@ export const getMonthWorkouts = (workouts, year) => {
 };
 
 export const getWorkoutIds = (workouts, currentMonth) => {
-	let dates = {};
+	const dates = {};
 	workouts.forEach(workout => {
-		let month = moment(workout.created).format("MMMM");
+		const month = moment(workout.created).format('MMMM');
 
-		if (month == currentMonth) {
-			let day = parseInt(moment(workout.created).format("D"));
-			if (!dates.hasOwnProperty(day)) {
+		if (month === currentMonth) {
+			const day = parseInt(moment(workout.created).format('D'));
+			if (!Object.prototype.hasOwnProperty.call(dates, 'day')) {
 				dates[day] = workout.id;
 			}
 		}
@@ -81,26 +82,26 @@ export const getWorkoutIds = (workouts, currentMonth) => {
 };
 
 export const getWorkoutDays = (start, daysInMonth) => {
-	let workoutDays = [];
-	let checkEven = start % 2 == 0;
+	const workoutDays = [];
+	let checkEven = start % 2 === 0;
 	let weekday = start + 1;
-	for (let d = 1; d <= daysInMonth; d++) {
+	for (let d = 1; d <= daysInMonth; d += 1) {
 		if (checkEven) {
-			if (d % 2 == 0) workoutDays.push(d);
-		} else {
-			if (d % 2 !== 0) workoutDays.push(d);
+			if (d % 2 === 0) workoutDays.push(d);
+		} else if (d % 2 !== 0) {
+			workoutDays.push(d);
 		}
-		if (weekday == 7) {
+		if (weekday === 7) {
 			weekday = 0;
 			checkEven = !checkEven;
 		}
-		weekday++;
+		weekday += 1;
 	}
 	return workoutDays;
 };
 
 export const getEmoji = () => {
-	const emojis = ["🏋️‍♂️", "🏋️‍♀️", "🔥", "💪", "🙌", "👍"];
+	const emojis = ['🏋️‍♂️', '🏋️‍♀️', '🔥', '💪', '🙌', '👍'];
 	const random = Math.floor(Math.random() * (emojis.length - 1));
 	return emojis[random];
 };

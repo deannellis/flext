@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    HashRouter as Router,
-    Switch,
-    Route, 
-    Link
-} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import WorkoutRouter from './WorkoutRouter';
 import HomePage from '../pages/HomePage';
 import WorkoutsPage from '../pages/WorkoutsPage';
@@ -14,37 +10,45 @@ import AppHeader from '../components/AppHeader';
 import Button from '../components/Button';
 
 const AppRouter = ({ toggleMenu, pageHasMenu }) => (
-    <Router>
-        <div>
-            <AppHeader toggleMenu={toggleMenu} pageHasMenu={pageHasMenu} />
-            <Switch>
-                <Route path="/home">
-                    <HomePage />
-                </Route>
-                <Route path="/onboarding" >
-                    <OnboardingPage />
-                </Route>
-                <Route path="/workout" >
-                    <WorkoutRouter />
-                </Route>
-                <Route path="/workouts/:id" >
-                    <WorkoutsPage />
-                </Route>
-                <Route path="/workouts" >
-                    <WorkoutsPage />
-                </Route>
-                <Route path="/lifts" >
-                    <LiftsPage />
-                </Route>
-                <Route path="/">
-                    <h1>Root Route Here!</h1>
-                    <Link to="/home">
-                        <Button>Go Home</Button>
-                    </Link>
-                </Route>
-            </Switch>
-        </div>
-    </Router>
+	<Router>
+		<div>
+			<AppHeader toggleMenu={toggleMenu} pageHasMenu={pageHasMenu} />
+			<Switch>
+				<Route path="/home">
+					<HomePage />
+				</Route>
+				<Route path="/onboarding">
+					<OnboardingPage />
+				</Route>
+				<Route path="/workout">
+					<WorkoutRouter />
+				</Route>
+				<Route path="/workouts/:id">
+					<WorkoutsPage />
+				</Route>
+				<Route path="/workouts">
+					<WorkoutsPage />
+				</Route>
+				<Route path="/lifts">
+					<LiftsPage />
+				</Route>
+				<Route path="/">
+					<h1>Root Route Here!</h1>
+					<Link to="/home">
+						<Button>Go Home</Button>
+					</Link>
+				</Route>
+			</Switch>
+		</div>
+	</Router>
 );
+AppRouter.propTypes = {
+	toggleMenu: PropTypes.func,
+	pageHasMenu: PropTypes.bool
+};
+AppRouter.defaultProps = {
+	toggleMenu: () => {},
+	pageHasMenu: true
+};
 
 export default AppRouter;

@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { setWeight } from "../actions/masterWeights";
-import { getDisplayName } from "../utils/workout";
-import SideNav from "../components/SideNav";
-import Tabs from "../components/Tabs";
-import LineGraph from "../components/LineGraph";
-import LiftCard from "../components/LiftCard";
-import { MenuContext } from "../context/menu-context";
+import { setWeight } from '../actions/masterWeights';
+import { getDisplayName } from '../utils/workout';
+import SideNav from '../components/SideNav';
+import Tabs from '../components/Tabs';
+import LineGraph from '../components/LineGraph';
+import LiftCard from '../components/LiftCard';
+import { MenuContext } from '../context/menu-context';
 
-const lifts = ["bench", "deadlift", "overhead", "row", "squat"];
+const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat'];
 
 export class LiftsPage extends Component {
 	constructor(props) {
@@ -21,15 +22,15 @@ export class LiftsPage extends Component {
 		};
 	}
 
-	updateLiftWeight = update => {
-		this.props.updateLiftWeight(update);
-	};
+	componentWillUnmount() {
+		this.context.closeMenu();
+	}
 
 	getData = () => {
 		const { workouts } = this.props;
-		let selectedLift = lifts[this.state.activeTab];
-		let filteredWorkouts = [];
-		workouts.map(workout => {
+		const selectedLift = lifts[this.state.activeTab];
+		const filteredWorkouts = [];
+		workouts.forEach(workout => {
 			let workoutWithDate = {};
 			if (workout.hasOwnProperty(selectedLift)) {
 				workoutWithDate = {
@@ -42,12 +43,18 @@ export class LiftsPage extends Component {
 		return filteredWorkouts;
 	};
 
-	componentWillUnmount() {
-		this.context.closeMenu();
-	}
+	updateLiftWeight = update => {
+		this.props.updateLiftWeight(update);
+	};
+
+	handleKeyPress = e => {
+		if (e.key === 'Escape') {
+			this.context.toggleMenu();
+		}
+	};
 
 	render() {
-		let { menuIsOpen } = this.context;
+		const { menuIsOpen } = this.context;
 		return (
 			<div className="page--with-side-nav">
 				<SideNav path={this.props.match.path} />
@@ -55,11 +62,13 @@ export class LiftsPage extends Component {
 					<div
 						className={
 							menuIsOpen
-								? "side-nav__page-scrim"
-								: "side-nav__page-scrim side-nav__page-scrim--hidden"
+								? 'side-nav__page-scrim'
+								: 'side-nav__page-scrim side-nav__page-scrim--hidden'
 						}
 						onClick={this.context.toggleMenu}
-					></div>
+						onKeyPress={this.handleKeyPress}
+						role="presentation"
+					/>
 					<Tabs
 						activeIndex={this.state.activeTab}
 						handleSelect={i => this.setState({ activeTab: i })}
@@ -74,9 +83,9 @@ export class LiftsPage extends Component {
 							weights={this.props.masterWeights}
 							formIsOpen={this.state.updateFormIsOpen}
 							toggleForm={() => {
-								this.setState({
-									updateFormIsOpen: !this.state.updateFormIsOpen
-								});
+								this.setState(prevState => ({
+									updateFormIsOpen: !prevState.updateFormIsOpen
+								}));
 							}}
 							updateWeight={this.updateLiftWeight}
 						/>
@@ -87,8 +96,23 @@ export class LiftsPage extends Component {
 	}
 }
 LiftsPage.contextType = MenuContext;
+LiftsPage.propTypes = {
+	match: PropTypes.shape({
+		path: PropTypes.string
+	}),
+	workouts: PropTypes.arrayOf(PropTypes.object),
+	masterWeights: PropTypes.shape({
+		bench: 0,
+		row: 0,
+		squat: 0,
+		deadlift: 0,
+		overhead: 0,
+		chinup: {}
+	}),
+	updateLiftWeight: PropTypes.func.isRequired
+};
 LiftsPage.defaultProps = {
-	match: { path: "" },
+	match: { path: '' },
 	workouts: [],
 	masterWeights: {
 		bench: 0,
@@ -114,4 +138,3 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(
 	connect(mapStateToProps, mapDispatchToProps)(LiftsPage)
 );
-

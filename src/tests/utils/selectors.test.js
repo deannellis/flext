@@ -1,5 +1,7 @@
-import { getVisibleWorkouts } from "../../utils/selectors";
-import { workouts } from "../fixtures/workout";
+import getVisibleWorkouts from "../../utils/selectors";
+import {
+	workouts
+} from "../fixtures/workout";
 
 test("should filter by lift value", () => {
 	const filters = {

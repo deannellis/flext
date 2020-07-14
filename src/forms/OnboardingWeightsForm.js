@@ -1,11 +1,12 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
-import Button from "../components/Button";
-import NumberInput from "../components/NumberInput";
+import Button from '../components/Button';
+import NumberInput from '../components/NumberInput';
 
-export default props => {
+const OnboardingWeightsForm = ({ submitWeights }) => {
 	return (
 		<>
 			<h2>Enter your starting weights</h2>
@@ -19,28 +20,28 @@ export default props => {
 				}}
 				validationSchema={Yup.object({
 					bench: Yup.number()
-						.required("Required")
-						.max(1000, "Weight can not exceed 1000lbs tough guy")
-						.min(44, "Weight must be greater than bar weight"),
+						.required('Required')
+						.max(1000, 'Weight can not exceed 1000lbs tough guy')
+						.min(44, 'Weight must be greater than bar weight'),
 					deadlift: Yup.number()
-						.required("Required")
-						.max(1000, "Weight can not exceed 1000lbs tough guy")
-						.min(44, "Weight must be greater than bar weight"),
+						.required('Required')
+						.max(1000, 'Weight can not exceed 1000lbs tough guy')
+						.min(44, 'Weight must be greater than bar weight'),
 					overhead: Yup.number()
-						.required("Required")
-						.max(1000, "Weight can not exceed 1000lbs tough guy")
-						.min(44, "Weight must be greater than bar weight"),
+						.required('Required')
+						.max(1000, 'Weight can not exceed 1000lbs tough guy')
+						.min(44, 'Weight must be greater than bar weight'),
 					row: Yup.number()
-						.required("Required")
-						.max(1000, "Weight can not exceed 1000lbs tough guy")
-						.min(44, "Weight must be greater than bar weight"),
+						.required('Required')
+						.max(1000, 'Weight can not exceed 1000lbs tough guy')
+						.min(44, 'Weight must be greater than bar weight'),
 					squat: Yup.number()
-						.required("Required")
-						.max(1000, "Weight can not exceed 1000lbs tough guy")
-						.min(44, "Weight must be greater than bar weight")
+						.required('Required')
+						.max(1000, 'Weight can not exceed 1000lbs tough guy')
+						.min(44, 'Weight must be greater than bar weight')
 				})}
 				onSubmit={(values, { setSubmitting }) => {
-					props.submitWeights(values);
+					submitWeights(values);
 					setSubmitting(false);
 				}}
 			>
@@ -96,3 +97,8 @@ export default props => {
 		</>
 	);
 };
+OnboardingWeightsForm.propTypes = {
+	submitWeights: PropTypes.func.isRequired
+};
+
+export default OnboardingWeightsForm;
