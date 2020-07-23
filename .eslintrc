@@ -17,21 +17,31 @@
 	"rules": {
 		"react/jsx-filename-extension": 0,
 		"no-tabs": 0,
+		"no-console": ["error", { "allow": ["warn"] }],
 		"indent": ["off", "tab"],
-		"arrow-parens": ["error", "as-needed"],
+		"arrow-parens": 0,
 		"radix": ["error", "as-needed"],
 		"comma-dangle": ["error", "only-multiline"],
 		"react/jsx-indent": ["off", "tab"],
 		"react/jsx-indent-props": "off",
 		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+		"react/forbid-prop-types": 1,
 		"no-underscore-dangle": [
 			"error",
-			{ "allow": ["__REDUX_DEVTOOLS_EXTENSION__", "_current"] }
+			{
+				"allow": [
+					"__REDUX_DEVTOOLS_EXTENSION__",
+					"_current",
+					"_chart",
+					"_rootNode",
+					"_setRef"
+				]
+			}
 		],
 		"import/no-named-as-default": 0,
 		"import/no-named-as-default-member": 0,
 		"react/destructuring-assignment": 1,
-		"react/jsx-one-expression-per-line": 1,
+		"react/jsx-one-expression-per-line": 0,
 		"react/no-array-index-key": 1,
 		"prefer-template": 1,
 		"jsx-a11y/label-has-associated-control": [
@@ -42,6 +52,12 @@
 		],
 		"no-param-reassign": ["error", { "props": false }],
 		"import/prefer-default-export": 1,
-		"react/button-has-type": 1
+		"react/button-has-type": 1,
+		"react/jsx-props-no-spreading": [
+			"error",
+			{
+				"exceptions": ["input", "select"]
+			}
+		]
 	}
 }

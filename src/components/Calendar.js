@@ -4,7 +4,7 @@ import moment from 'moment';
 import {
 	getMonthWorkouts,
 	getWorkoutDays,
-	getWorkoutIds
+	getWorkoutIds,
 } from '../utils/workout';
 import { LeftArrowIcon, RightArrowIcon } from '../utils/icons';
 
@@ -12,67 +12,71 @@ class Calendar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			dateObject: moment()
+			dateObject: moment(),
 		};
 		this.getFirstDayOfMonth = this.getFirstDayOfMonth.bind(this);
 	}
 
 	getFirstDayOfMonth = () => {
 		const { dateObject } = this.state;
-		return moment(dateObject)
-			.startOf('month')
-			.format('d');
+		return moment(dateObject).startOf('month').format('d');
 	};
 
 	getDaysInMonth = () => {
-		return this.state.dateObject.daysInMonth();
+		const { dateObject } = this.state;
+		return dateObject.daysInMonth();
 	};
 
 	getCurrentDay = () => {
-		return this.state.dateObject.format('D');
+		const { dateObject } = this.state;
+		return dateObject.format('D');
 	};
 
 	getMonth = () => {
-		return this.state.dateObject.format('MMMM');
+		const { dateObject } = this.state;
+		return dateObject.format('MMMM');
 	};
 
 	getYear = () => {
-		return this.state.dateObject.format('YYYY');
+		const { dateObject } = this.state;
+		return dateObject.format('YYYY');
 	};
 
 	onPrevMonth = () => {
-		this.setState(prevState => ({
-			dateObject: prevState.dateObject.subtract(1, 'month')
+		this.setState((prevState) => ({
+			dateObject: prevState.dateObject.subtract(1, 'month'),
 		}));
 	};
 
 	onNextMonth = () => {
-		this.setState(prevState => ({
-			dateObject: prevState.dateObject.add(1, 'month')
+		this.setState((prevState) => ({
+			dateObject: prevState.dateObject.add(1, 'month'),
 		}));
 	};
 
-	handleDayClick = id => {
-		this.props.onClickWorkoutDate(id);
+	handleDayClick = (id) => {
+		const { onClickWorkoutDate } = this.props;
+		onClickWorkoutDate(id);
 	};
 
-	handleKeyPress = e => {
-		if (e.key === 'Escape') {
-			this.context.toggleMenu();
-		}
+	handleKeyPress = (e) => {
+		const { toggleMenu } = this.context;
+		if (e.key === 'Escape') toggleMenu();
 	};
 
 	render() {
+		const { workouts } = this.props;
+		const { dateObject } = this.state;
 		const weekdaysAbbreviated = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-		const workouts = getMonthWorkouts(this.props.workouts, this.getYear());
-		const daysWorkedOut = workouts[this.state.dateObject.format('MMMM')]
-			? workouts[this.state.dateObject.format('MMMM')]
+		const monthWorkouts = getMonthWorkouts(workouts, this.getYear());
+		const daysWorkedOut = monthWorkouts[dateObject.format('MMMM')]
+			? monthWorkouts[dateObject.format('MMMM')]
 			: [];
 		const workoutDays = getWorkoutDays(
 			parseInt(this.getFirstDayOfMonth()),
 			this.getDaysInMonth()
 		);
-		const workoutIds = getWorkoutIds(this.props.workouts, this.getMonth());
+		const workoutIds = getWorkoutIds(workouts, this.getMonth());
 		const emptyCells = [];
 		const daysInMonth = [];
 		for (let i = 0; i < this.getFirstDayOfMonth(); i += 1) {
@@ -129,7 +133,7 @@ class Calendar extends Component {
 					<LeftArrowIcon size={24} />
 				</button>
 				<div className="calendar__month-year">
-					{this.getMonth() + ' ' + this.getYear()}
+					{`${this.getMonth()} ${this.getYear()}`}
 				</div>
 				<button
 					className="calendar__next-month"
@@ -140,8 +144,8 @@ class Calendar extends Component {
 				>
 					<RightArrowIcon size={24} />
 				</button>
-				{weekdaysAbbreviated.map((day, i) => (
-					<div className="calendar__weekday-short-name" key={i}>
+				{weekdaysAbbreviated.map((day) => (
+					<div className="calendar__weekday-short-name" key={day}>
 						{day}
 					</div>
 				))}
@@ -152,14 +156,11 @@ class Calendar extends Component {
 	}
 }
 Calendar.propTypes = {
-	onClickWorkoutDate: PropTypes.func,
-	workouts: PropTypes.arrayOf(PropTypes.obj)
+	onClickWorkoutDate: PropTypes.func.isRequired,
+	workouts: PropTypes.arrayOf(PropTypes.obj),
 };
 Calendar.defaultProps = {
 	workouts: [],
-	onClickWorkoutDate: () => {
-		console.log('workout date clicked');
-	}
 };
 
 export default Calendar;

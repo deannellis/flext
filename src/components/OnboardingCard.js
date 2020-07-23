@@ -1,36 +1,38 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import ChinupForm from "../forms/OnboardingChinupForm";
-import WeightsForm from "../forms/OnboardingWeightsForm";
+import ChinupForm from '../forms/OnboardingChinupForm';
+import WeightsForm from '../forms/OnboardingWeightsForm';
 
 class OnboardingCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			weights: null,
-			chinups: null
+			chinups: null,
 		};
 	}
 
-	submitWeights = weights => {
-		console.log("fug");
+	submitWeights = (weights) => {
+		const { chinups } = this.state;
+		const { onSubmit } = this.props;
 		const masterWeights = {
 			...weights,
-			chinups: this.state.chinups
+			chinups,
 		};
-		this.props.onSubmit(masterWeights);
+		onSubmit(masterWeights);
 	};
 
-	submitChinups = chinups => {
+	submitChinups = (chinups) => {
 		this.setState({
-			chinups
+			chinups,
 		});
 	};
 
 	render() {
+		const { chinups } = this.state;
 		return (
 			<>
-				{this.state.chinups === null ? (
+				{chinups === null ? (
 					<ChinupForm submitChinups={this.submitChinups} />
 				) : (
 					<WeightsForm submitWeights={this.submitWeights} />
@@ -39,5 +41,8 @@ class OnboardingCard extends Component {
 		);
 	}
 }
+OnboardingCard.propTypes = {
+	onSubmit: PropTypes.func.isRequired,
+};
 
 export default OnboardingCard;

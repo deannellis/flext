@@ -1,22 +1,16 @@
-import React, { Component } from "react";
-import lineGraph from "../d3/lineGraph";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import lineGraph from '../d3/lineGraph';
 
 class LineGraph extends Component {
 	componentDidMount() {
-		this._chart = lineGraph.create(
-			this._rootNode,
-			this.props.data,
-			this.props.config
-		);
+		const { data } = this.props;
+		this._chart = lineGraph.create(this._rootNode, data);
 	}
 
 	componentDidUpdate() {
-		lineGraph.update(
-			this._rootNode,
-			this.props.data,
-			this.props.config,
-			this._chart
-		);
+		const { data } = this.props;
+		lineGraph.update(this._rootNode, data, this._chart);
 	}
 
 	componentWillUnmount() {
@@ -28,13 +22,14 @@ class LineGraph extends Component {
 	}
 
 	render() {
-		return <div className="line-graph" ref={this._setRef.bind(this)}></div>;
+		return <div className="line-graph" ref={this._setRef.bind(this)} />;
 	}
 }
-
+LineGraph.propTypes = {
+	data: PropTypes.arrayOf(PropTypes.object),
+};
 LineGraph.defaultProps = {
-	data: []
+	data: [],
 };
 
 export default LineGraph;
-

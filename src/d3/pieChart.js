@@ -7,26 +7,26 @@ const pieChart = {};
 const dimensions = {
 	height: 288,
 	width: 288,
-	radius: 144
+	radius: 144,
 };
 const center = {
 	x: dimensions.width / 2 + 5,
-	y: dimensions.height / 2 + 5
+	y: dimensions.height / 2 + 5,
 };
 
 const pie = d3
 	.pie()
 	.sort(null)
-	.value(d => d.amount);
+	.value((d) => d.amount);
 const arcPath = d3
 	.arc()
 	.outerRadius(dimensions.radius)
 	.innerRadius(dimensions.radius / 2);
 
 // Tweens
-const arcEnterTween = d => {
+const arcEnterTween = (d) => {
 	const i = d3.interpolate(d.endAngle, d.startAngle);
-	return function(t) {
+	return function (t) {
 		d.startAngle = i(t);
 		return arcPath(d);
 	};
@@ -37,7 +37,7 @@ function arcUpdateTween(d) {
 	const i = d3.interpolate(this._current, d);
 	// update the current prop with new updated data
 	this._current = i(1);
-	return function(t) {
+	return function (t) {
 		return arcPath(i(t));
 	};
 }
@@ -45,7 +45,7 @@ function arcUpdateTween(d) {
 // tooltip
 const tooltip = d3Tip()
 	.attr('class', 'card pie-chart__tooltip')
-	.html(d => {
+	.html((d) => {
 		return `
             <p>${d.data.macro}</p>
             <div>${d.data.amount} grams</div>
@@ -155,11 +155,11 @@ pieChart.create = (element, data) => {
 	paths
 		.enter()
 		.append('path')
-		.attr('fill', function(d, i) {
+		.attr('fill', function (d, i) {
 			if (d.data.macro === 'leftover') return '#0000003D';
 			return `url(#gradient${i})`;
 		})
-		.each(function(d) {
+		.each(function (d) {
 			this._current = d;
 		})
 		.transition()
@@ -185,7 +185,7 @@ pieChart.create = (element, data) => {
 	return chart;
 };
 
-pieChart.update = (element, data, config, chart) => {
+pieChart.update = (element, data, chart) => {
 	// join data to pie elements
 	const paths = chart.selectAll('path').data(pie(data));
 
@@ -196,7 +196,7 @@ pieChart.update = (element, data, config, chart) => {
 		.attrTween('d', arcUpdateTween);
 };
 
-pieChart.destroy = element => {
+pieChart.destroy = (element) => {
 	d3.select(element).remove();
 };
 

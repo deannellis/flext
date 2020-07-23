@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { getDisplayName } from '../utils/workout';
-import PropTypes from 'prop-types';
 import Button from './Button';
 import UpdateWeightForm from '../forms/UpdateWeightForm';
 
@@ -35,7 +35,17 @@ const LiftCard = ({ lift, weights, formIsOpen, toggleForm, updateWeight }) => {
 	);
 };
 LiftCard.propTypes = {
-	lift: 'string',
+	lift: PropTypes.string,
+	weights: {
+		bench: PropTypes.number,
+		row: PropTypes.number,
+		squat: PropTypes.number,
+		deadlift: PropTypes.number,
+		overhead: PropTypes.number,
+	},
+	formIsOpen: PropTypes.bool,
+	toggleForm: PropTypes.func.isRequired,
+	updateWeight: PropTypes.func.isRequired,
 };
 LiftCard.defaultProps = {
 	lift: 'bench',
@@ -47,12 +57,6 @@ LiftCard.defaultProps = {
 		overhead: 0,
 	},
 	formIsOpen: false,
-	toggleForm: () => {
-		console.log('toggle form (default prop)');
-	},
-	updateWeight: () => {
-		console.log('update weight (default prop)');
-	},
 };
 
 export default LiftCard;

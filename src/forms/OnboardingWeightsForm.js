@@ -7,6 +7,8 @@ import Button from '../components/Button';
 import NumberInput from '../components/NumberInput';
 
 const OnboardingWeightsForm = ({ submitWeights }) => {
+	const maxMessage = 'Weight can not exceed 1000lbs tough guy';
+	const minMessage = 'Weight must be greater than bar weight (44 lbs)';
 	return (
 		<>
 			<h2>Enter your starting weights</h2>
@@ -16,29 +18,29 @@ const OnboardingWeightsForm = ({ submitWeights }) => {
 					deadlift: 44,
 					overhead: 44,
 					row: 44,
-					squat: 44
+					squat: 44,
 				}}
 				validationSchema={Yup.object({
 					bench: Yup.number()
 						.required('Required')
-						.max(1000, 'Weight can not exceed 1000lbs tough guy')
-						.min(44, 'Weight must be greater than bar weight'),
+						.max(1000, maxMessage)
+						.min(44, minMessage),
 					deadlift: Yup.number()
 						.required('Required')
-						.max(1000, 'Weight can not exceed 1000lbs tough guy')
-						.min(44, 'Weight must be greater than bar weight'),
+						.max(1000, maxMessage)
+						.min(44, minMessage),
 					overhead: Yup.number()
 						.required('Required')
-						.max(1000, 'Weight can not exceed 1000lbs tough guy')
-						.min(44, 'Weight must be greater than bar weight'),
+						.max(1000, maxMessage)
+						.min(44, minMessage),
 					row: Yup.number()
 						.required('Required')
-						.max(1000, 'Weight can not exceed 1000lbs tough guy')
-						.min(44, 'Weight must be greater than bar weight'),
+						.max(1000, maxMessage)
+						.min(44, minMessage),
 					squat: Yup.number()
 						.required('Required')
-						.max(1000, 'Weight can not exceed 1000lbs tough guy')
-						.min(44, 'Weight must be greater than bar weight')
+						.max(1000, maxMessage)
+						.min(44, minMessage),
 				})}
 				onSubmit={(values, { setSubmitting }) => {
 					submitWeights(values);
@@ -98,7 +100,7 @@ const OnboardingWeightsForm = ({ submitWeights }) => {
 	);
 };
 OnboardingWeightsForm.propTypes = {
-	submitWeights: PropTypes.func.isRequired
+	submitWeights: PropTypes.func.isRequired,
 };
 
 export default OnboardingWeightsForm;

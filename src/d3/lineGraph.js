@@ -18,23 +18,20 @@ const y = d3.scaleLinear().range([graphHeight, 0]);
 // D3 LINE PATH GENERATOR
 const line = d3
 	.line()
-	.x(function(d) {
+	.x(function (d) {
 		return x(new Date(d.date));
 	})
-	.y(function(d) {
+	.y(function (d) {
 		return y(d.weight);
 	});
 
 // AXES
-const xAxis = d3
-	.axisBottom(x)
-	.ticks(4)
-	.tickFormat(d3.timeFormat('%b %d'));
+const xAxis = d3.axisBottom(x).ticks(4).tickFormat(d3.timeFormat('%b %d'));
 
 const yAxis = d3
 	.axisLeft(y)
 	.ticks(4)
-	.tickFormat(d => d + 'lbs');
+	.tickFormat((d) => d + 'lbs');
 
 lineGraph.create = (element, data) => {
 	// GRAPH
@@ -83,8 +80,8 @@ lineGraph.create = (element, data) => {
 	data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
 	// set scale domains
-	x.domain(d3.extent(data, d => new Date(d.date)));
-	y.domain([0, d3.max(data, d => d.weight)]);
+	x.domain(d3.extent(data, (d) => new Date(d.date)));
+	y.domain([0, d3.max(data, (d) => d.weight)]);
 
 	// update path data
 	path
@@ -97,15 +94,15 @@ lineGraph.create = (element, data) => {
 	const circles = graph.selectAll('circle').data(data);
 
 	// update current points
-	circles.attr('cx', d => x(new Date(d.date))).attr('cy', d => y(d.weight));
+	circles.attr('cx', (d) => x(new Date(d.date))).attr('cy', (d) => y(d.weight));
 
 	// add new points
 	circles
 		.enter()
 		.append('circle')
 		.attr('r', 4)
-		.attr('cx', d => x(new Date(d.date)))
-		.attr('cy', d => y(d.weight))
+		.attr('cx', (d) => x(new Date(d.date)))
+		.attr('cy', (d) => y(d.weight))
 		.attr('fill', secondaryColor);
 
 	// show dotted reference lines on hover
@@ -131,10 +128,7 @@ lineGraph.create = (element, data) => {
 				.attr('y1', y(d.weight))
 				.attr('y2', y(d.weight));
 
-			dottedLines
-				.transition()
-				.duration(transitionDuration)
-				.style('opacity', 1);
+			dottedLines.transition().duration(transitionDuration).style('opacity', 1);
 		})
 		.on('mouseleave', (d, i, n) => {
 			d3.select(n[i])
@@ -142,10 +136,7 @@ lineGraph.create = (element, data) => {
 				.duration(transitionDuration)
 				.attr('r', 4)
 				.attr('fill', secondaryColor);
-			dottedLines
-				.transition()
-				.duration(transitionDuration)
-				.style('opacity', 0);
+			dottedLines.transition().duration(transitionDuration).style('opacity', 0);
 		});
 
 	// create axis
@@ -161,7 +152,7 @@ lineGraph.create = (element, data) => {
 	return graph;
 };
 
-lineGraph.update = (element, data, config, graph) => {
+lineGraph.update = (element, data, graph) => {
 	data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
 	// dotted reference line
@@ -170,8 +161,8 @@ lineGraph.update = (element, data, config, graph) => {
 	const yDottedLine = graph.select('.y-dotted');
 
 	// update scale domains
-	x.domain(d3.extent(data, d => new Date(d.date)));
-	y.domain([0, d3.max(data, d => d.weight)]);
+	x.domain(d3.extent(data, (d) => new Date(d.date)));
+	y.domain([0, d3.max(data, (d) => d.weight)]);
 
 	const path = graph.select('.main-line');
 
@@ -194,16 +185,16 @@ lineGraph.update = (element, data, config, graph) => {
 	circles
 		.transition()
 		.duration(750)
-		.attr('cx', d => x(new Date(d.date)))
-		.attr('cy', d => y(d.weight));
+		.attr('cx', (d) => x(new Date(d.date)))
+		.attr('cy', (d) => y(d.weight));
 
 	// add new points
 	circles
 		.enter()
 		.append('circle')
 		.attr('r', 4)
-		.attr('cx', d => x(new Date(d.date)))
-		.attr('cy', d => y(d.weight))
+		.attr('cx', (d) => x(new Date(d.date)))
+		.attr('cy', (d) => y(d.weight))
 		.transition()
 		.duration(750)
 		.attr('fill', secondaryColor);
@@ -231,10 +222,7 @@ lineGraph.update = (element, data, config, graph) => {
 				.attr('y1', y(d.weight))
 				.attr('y2', y(d.weight));
 
-			dottedLines
-				.transition()
-				.duration(transitionDuration)
-				.style('opacity', 1);
+			dottedLines.transition().duration(transitionDuration).style('opacity', 1);
 		})
 		.on('mouseleave', (d, i, n) => {
 			d3.select(n[i])
@@ -242,10 +230,7 @@ lineGraph.update = (element, data, config, graph) => {
 				.duration(transitionDuration)
 				.attr('r', 4)
 				.attr('fill', secondaryColor);
-			dottedLines
-				.transition()
-				.duration(transitionDuration)
-				.style('opacity', 0);
+			dottedLines.transition().duration(transitionDuration).style('opacity', 0);
 		});
 	// AXES GROUPS
 	const xAxisGroup = graph.select('.x-axis');
@@ -260,7 +245,7 @@ lineGraph.update = (element, data, config, graph) => {
 		.attr('transform', 'rotate(-40)');
 };
 
-lineGraph.destroy = element => {
+lineGraph.destroy = (element) => {
 	d3.select(element).remove();
 };
 
