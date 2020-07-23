@@ -7,41 +7,44 @@ import { Trail } from 'react-spring/renderprops';
 
 import { getWorkouts, getDisplayName, getEmoji } from '../utils/workout';
 import Button from '../components/Button';
-import { addWorkout } from '../actions/workouts';
+import addWorkout from '../actions/workouts';
 import { resetWorkout } from '../actions/inProgressWorkout';
 import { updateMasterWeights } from '../actions/masterWeights';
-import { updateLiftVariant } from '../actions/liftVariant';
+import updateLiftVariant from '../actions/liftVariant';
 import { LeftArrowIcon } from '../utils/icons';
-import { MenuContext } from '../context/menu-context';
+import MenuContext from '../context/menu-context';
 
 export class WorkoutPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			complete: false,
-			created: moment()
+			created: moment(),
 		};
 	}
 
 	componentDidMount() {
 		let complete = true;
 		const { inProgressWorkout } = this.props;
+		const { setPageMenu } = this.context;
 		const workoutKeys = Object.keys(inProgressWorkout);
-		workoutKeys.forEach(lift => {
+		workoutKeys.forEach((lift) => {
 			if (inProgressWorkout[lift] === null) complete = false;
 		});
 		if (complete) {
 			this.setState({ complete });
 		}
-		this.context.setPageMenu(false);
+		setPageMenu(false);
 	}
 
 	componentWillUnmount() {
-		this.context.setPageMenu(true);
+		const { setPageMenu } = this.context;
+		setPageMenu(true);
 	}
 
-	onStartLift = lift => {
-		this.props.history.push(`/workout/${lift}`);
+	onStartLift = (lift) => {
+		const { history } = this.props;
+		history.push(`/workout/${lift}`);
 	};
 
 	completeWorkout = () => {
@@ -50,7 +53,7 @@ export class WorkoutPage extends Component {
 		const workoutPayload = {
 			workout: inProgressWorkout,
 			currentWeight: masterWeights,
-			created
+			created,
 		};
 		dispatch(addWorkout(workoutPayload));
 		dispatch(updateMasterWeights(inProgressWorkout));
@@ -64,15 +67,17 @@ export class WorkoutPage extends Component {
 			masterWeights,
 			workouts,
 			liftVariant,
-			inProgressWorkout
+			inProgressWorkout,
+			history,
 		} = this.props;
+		const { complete } = this.state;
 		const { negatives, ups, weight } = masterWeights.chinup;
 		const emojis = [getEmoji(), getEmoji(), getEmoji()];
 		return (
 			<div className="workout-page__wrapper">
 				<div className="workout-page">
 					<h1>{`Workout #${workouts.length + 1}`}</h1>
-					{this.state.complete && (
+					{complete && (
 						<div className="workout-page__lift card">
 							<h2>Hell Yeah!</h2>
 							<Button variant="primary" clickHandler={this.completeWorkout}>
@@ -82,11 +87,11 @@ export class WorkoutPage extends Component {
 					)}
 					<Trail
 						items={getWorkouts(liftVariant)}
-						keys={lift => lift}
+						keys={(lift) => lift}
 						from={{ opacity: 0, transform: 'translate3d(0,-40px,0)' }}
 						to={{ opacity: 1, transform: 'translate3d(0,0px,0)' }}
 					>
-						{lift => props => (
+						{(lift) => (props) => (
 							<div className="workout-page__lift card" style={props}>
 								<h2>{getDisplayName(lift)}</h2>
 								<p>
@@ -96,15 +101,15 @@ export class WorkoutPage extends Component {
                                         ${
 																					negatives === 0
 																						? ''
-																						: negatives + ' negatives'
+																						: `${negatives} negatives`
 																				}
                                         ${
 																					negatives !== 0 && ups !== 0
 																						? ', '
 																						: ''
 																				}
-                                        ${ups === 0 ? '' : ups + ' chin-ups '}
-                                        ${weight === 0 ? '' : weight + 'lbs'}
+                                        ${ups === 0 ? '' : `${ups} chin-ups`}
+                                        ${weight === 0 ? '' : `${weight} lbs`}
 
                                     `}
 								</p>
@@ -153,7 +158,7 @@ export class WorkoutPage extends Component {
 						className="lift-page__action-button action-button"
 						type="button"
 						onClick={() => {
-							this.props.history.goBack();
+							history.goBack();
 						}}
 					>
 						<LeftArrowIcon fill="rgba(26, 33, 46, .84)" size={24} />
@@ -172,19 +177,19 @@ WorkoutPage.propTypes = {
 		squat: PropTypes.number,
 		deadlift: PropTypes.number,
 		overhead: PropTypes.number,
-		chinup: PropTypes.object
+		chinup: PropTypes.object,
 	}),
 	liftVariant: PropTypes.shape({
 		a: PropTypes.number,
-		b: PropTypes.number
+		b: PropTypes.number,
 	}),
 	workouts: PropTypes.arrayOf(PropTypes.object),
 	inProgressWorkout: PropTypes.objectOf(PropTypes.number),
 	history: PropTypes.shape({
 		push: PropTypes.func,
-		goBack: PropTypes.func
+		goBack: PropTypes.func,
 	}).isRequired,
-	dispatch: PropTypes.func.isRequired
+	dispatch: PropTypes.func.isRequired,
 };
 WorkoutPage.defaultProps = {
 	masterWeights: {
@@ -196,24 +201,24 @@ WorkoutPage.defaultProps = {
 		chinup: {
 			negatives: 0,
 			ups: 0,
-			weight: 0
-		}
+			weight: 0,
+		},
 	},
 	liftVariant: { a: 0, b: 0 },
 	workouts: [],
 	inProgressWorkout: {
 		bench: null,
 		row: null,
-		squat: null
-	}
+		squat: null,
+	},
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		masterWeights: state.masterWeights,
 		liftVariant: state.liftVariant,
 		workouts: state.workouts,
-		inProgressWorkout: state.inProgressWorkout
+		inProgressWorkout: state.inProgressWorkout,
 	};
 };
 

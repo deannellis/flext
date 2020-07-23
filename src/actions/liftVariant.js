@@ -1,1 +1,1 @@
-export const updateLiftVariant = () => ({ type: 'UPDATE_LIFT_VARIANT' });
+export default () => ({ type: 'UPDATE_LIFT_VARIANT' });

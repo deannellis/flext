@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-// import moment from 'moment';
 
 import { startWorkout } from '../actions/inProgressWorkout';
 import { setTargetMacros, updateMacro } from '../actions/macros';
@@ -11,13 +10,13 @@ import SideNav from '../components/SideNav';
 import Calendar from '../components/Calendar';
 import NextWorkout from '../components/NextWorkout';
 import MacroTracker from '../components/MacroTracker';
-import { MenuContext } from '../context/menu-context';
+import MenuContext from '../context/menu-context';
 
 export class HomePage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			hasMasterWeights: true
+			hasMasterWeights: true,
 		};
 		this.onSetMacros = this.onSetMacros.bind(this);
 	}
@@ -67,24 +66,25 @@ export class HomePage extends Component {
 		history.push('/workout');
 	};
 
-	onSetMacros = macros => {
+	onSetMacros = (macros) => {
 		const { onSetMacros } = this.props;
 		onSetMacros(macros);
 	};
 
-	onUpdateMacro = update => {
+	onUpdateMacro = (update) => {
 		const { onUpdateMacro } = this.props;
 		onUpdateMacro(update);
 	};
 
-	onClickWorkoutDate = id => {
+	onClickWorkoutDate = (id) => {
 		const { history } = this.props;
 		history.push(`/workouts/${id}`);
 	};
 
-	handleKeyPress = e => {
+	handleKeyPress = (e) => {
+		const { toggleMenu } = this.context;
 		if (e.key === 'Escape') {
-			this.context.toggleMenu();
+			toggleMenu();
 		}
 	};
 
@@ -153,34 +153,34 @@ HomePage.propTypes = {
 		squat: PropTypes.number,
 		deadlift: PropTypes.number,
 		overhead: PropTypes.number,
-		chinup: PropTypes.object
+		chinup: PropTypes.object,
 	}),
 	liftVariant: PropTypes.shape({
 		a: PropTypes.number,
-		b: PropTypes.number
+		b: PropTypes.number,
 	}),
 	workouts: PropTypes.arrayOf(PropTypes.object),
 	macros: PropTypes.shape({
 		target: PropTypes.shape({
 			protein: PropTypes.number,
 			carbs: PropTypes.number,
-			fat: PropTypes.number
+			fat: PropTypes.number,
 		}),
 		current: PropTypes.shape({
 			protein: PropTypes.number,
 			carbs: PropTypes.number,
-			fat: PropTypes.number
-		})
+			fat: PropTypes.number,
+		}),
 	}),
 	match: PropTypes.shape({
-		path: PropTypes.string
+		path: PropTypes.string,
 	}),
 	history: PropTypes.shape({
-		push: PropTypes.func
+		push: PropTypes.func,
 	}).isRequired,
 	onStartWorkout: PropTypes.func.isRequired,
 	onSetMacros: PropTypes.func.isRequired,
-	onUpdateMacro: PropTypes.func.isRequired
+	onUpdateMacro: PropTypes.func.isRequired,
 };
 HomePage.defaultProps = {
 	masterWeights: {
@@ -189,7 +189,7 @@ HomePage.defaultProps = {
 		squat: 0,
 		deadlift: 0,
 		overhead: 0,
-		chinup: {}
+		chinup: {},
 	},
 	liftVariant: { a: 0, b: 0 },
 	workouts: [],
@@ -197,35 +197,35 @@ HomePage.defaultProps = {
 		target: {
 			protein: 0,
 			carbs: 0,
-			fat: 0
+			fat: 0,
 		},
 		current: {
 			protein: 0,
 			carbs: 0,
-			fat: 0
-		}
+			fat: 0,
+		},
 	},
 	match: {
-		path: ''
-	}
+		path: '',
+	},
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	masterWeights: state.masterWeights,
 	liftVariant: state.liftVariant,
 	workouts: state.workouts,
-	macros: state.macros
+	macros: state.macros,
 });
-const mapDispatchToProps = dispatch => ({
-	onStartWorkout: liftVariant => {
+const mapDispatchToProps = (dispatch) => ({
+	onStartWorkout: (liftVariant) => {
 		dispatch(startWorkout(liftVariant));
 	},
-	onSetMacros: macros => {
+	onSetMacros: (macros) => {
 		dispatch(setTargetMacros(macros));
 	},
-	onUpdateMacro: update => {
+	onUpdateMacro: (update) => {
 		dispatch(updateMacro(update));
-	}
+	},
 });
 
 export default withRouter(

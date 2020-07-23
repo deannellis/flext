@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react';
 
-export const MenuContext = React.createContext({
+export default React.createContext({
 	menuIsOpen: false,
 	toggleMenu: () => {},
 	pageHasMenu: true,
 	setPageMenu: () => {},
-	closeMenu: () => {}
+	closeMenu: () => {},
 });
-

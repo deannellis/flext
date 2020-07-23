@@ -10,11 +10,11 @@ export const loadState = () => {
 	}
 };
 
-export const saveState = state => {
+export const saveState = (state) => {
 	try {
 		const serializedState = JSON.stringify(state);
 		localStorage.setItem('state', serializedState);
 	} catch (err) {
-		console.log('Error saving redux store: ', err);
+		console.warn('Error saving redux store: ', err);
 	}
 };

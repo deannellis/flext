@@ -8,48 +8,49 @@ class ChinupForm extends Component {
 		this.state = {
 			ups: 0,
 			negatives: 5,
-			weight: 0
+			weight: 0,
 		};
 	}
 
-	onNegativesChange = e => {
+	onNegativesChange = (e) => {
 		const negatives = parseInt(e.target.value);
 		const ups = 5 - negatives;
 		this.setState({
 			negatives,
-			ups
+			ups,
 		});
 		if (negatives > 5) {
 			this.setState({
 				negatives: 5,
-				ups: 0
+				ups: 0,
 			});
 		}
 	};
 
-	onUpsChange = e => {
+	onUpsChange = (e) => {
 		const ups = parseInt(e.target.value);
 		const negatives = 5 - ups;
 		this.setState({
 			negatives,
-			ups
+			ups,
 		});
 		if (ups > 5) {
 			this.setState({
 				negatives: 0,
-				ups
+				ups,
 			});
 		}
 	};
 
-	onWeightChange = e => {
+	onWeightChange = (e) => {
 		this.setState({ weight: parseInt(e.target.value) });
 	};
 
-	onSubmit = e => {
+	onSubmit = (e) => {
 		e.preventDefault();
 		const { negatives, ups, weight } = this.state;
-		this.props.submitChinups({ negatives, ups, weight });
+		const { submitChinups } = this.props;
+		submitChinups({ negatives, ups, weight });
 	};
 
 	render() {
@@ -115,7 +116,7 @@ class ChinupForm extends Component {
 	}
 }
 ChinupForm.propTypes = {
-	submitChinups: PropTypes.func.isRequired
+	submitChinups: PropTypes.func.isRequired,
 };
 
 export default ChinupForm;

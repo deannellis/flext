@@ -43,12 +43,11 @@ const AppRouter = ({ toggleMenu, pageHasMenu }) => (
 	</Router>
 );
 AppRouter.propTypes = {
-	toggleMenu: PropTypes.func,
-	pageHasMenu: PropTypes.bool
+	toggleMenu: PropTypes.func.isRequired,
+	pageHasMenu: PropTypes.bool,
 };
 AppRouter.defaultProps = {
-	toggleMenu: () => {},
-	pageHasMenu: true
+	pageHasMenu: true,
 };
 
 export default AppRouter;

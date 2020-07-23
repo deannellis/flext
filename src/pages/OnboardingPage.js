@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setMasterWeights } from '../actions/masterWeights';
 import OnboardingCard from '../components/OnboardingCard';
-import { MenuContext } from '../context/menu-context';
+import MenuContext from '../context/menu-context';
 
 export class OnboardingPage extends Component {
 	constructor(props) {
@@ -13,7 +13,8 @@ export class OnboardingPage extends Component {
 	}
 
 	componentDidMount() {
-		this.context.setPageMenu(false);
+		const { setPageMenu } = this.context;
+		setPageMenu(false);
 		const { masterWeights, history } = this.props;
 		if (
 			Object.entries(masterWeights).length !== 0 &&
@@ -24,10 +25,11 @@ export class OnboardingPage extends Component {
 	}
 
 	componentWillUnmount() {
-		this.context.setPageMenu(true);
+		const { setPageMenu } = this.context;
+		setPageMenu(true);
 	}
 
-	onMasterWeightsSubmit = masterWeights => {
+	onMasterWeightsSubmit = (masterWeights) => {
 		const { history, onMasterWeightsSubmit } = this.props;
 		onMasterWeightsSubmit(masterWeights);
 		history.push('/home');
@@ -47,22 +49,22 @@ OnboardingPage.contextType = MenuContext;
 OnboardingPage.propTypes = {
 	masterWeights: PropTypes.objectOf(PropTypes.any),
 	history: PropTypes.shape({
-		push: PropTypes.func
+		push: PropTypes.func,
 	}).isRequired,
-	onMasterWeightsSubmit: PropTypes.func.isRequired
+	onMasterWeightsSubmit: PropTypes.func.isRequired,
 };
 OnboardingPage.defaultProps = {
-	masterWeights: {}
+	masterWeights: {},
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		masterWeights: state.masterWeights
+		masterWeights: state.masterWeights,
 	};
 };
-const mapDispatchToProps = dispatch => ({
-	onMasterWeightsSubmit: masterWeights =>
-		dispatch(setMasterWeights(masterWeights))
+const mapDispatchToProps = (dispatch) => ({
+	onMasterWeightsSubmit: (masterWeights) =>
+		dispatch(setMasterWeights(masterWeights)),
 });
 
 export default withRouter(

@@ -7,11 +7,11 @@ import { updateWorkout } from '../actions/inProgressWorkout';
 import {
 	getDisplayName,
 	getWarmupWeights,
-	getWeightDistribution
+	getWeightDistribution,
 } from '../utils/workout';
 import { LeftArrowIcon } from '../utils/icons';
 import Button from '../components/Button';
-import { MenuContext } from '../context/menu-context';
+import MenuContext from '../context/menu-context';
 
 export class LiftPage extends Component {
 	constructor(props) {
@@ -20,14 +20,16 @@ export class LiftPage extends Component {
 	}
 
 	componentDidMount() {
-		this.context.setPageMenu(false);
+		const { setPageMenu } = this.context;
+		setPageMenu(false);
 	}
 
 	componentWillUnmount() {
-		this.context.setPageMenu(true);
+		const { setPageMenu } = this.context;
+		setPageMenu(true);
 	}
 
-	completeLift = result => {
+	completeLift = (result) => {
 		const { match, dispatch, history } = this.props;
 		const liftResult = { updates: { [match.params.id]: result } };
 		dispatch(updateWorkout(liftResult));
@@ -203,7 +205,7 @@ export class LiftPage extends Component {
 LiftPage.contextType = MenuContext;
 LiftPage.propTypes = {
 	match: PropTypes.shape({
-		params: PropTypes.object
+		params: PropTypes.object,
 	}),
 	masterWeights: PropTypes.shape({
 		bench: PropTypes.number,
@@ -211,13 +213,13 @@ LiftPage.propTypes = {
 		squat: PropTypes.number,
 		deadlift: PropTypes.number,
 		overhead: PropTypes.number,
-		chinup: PropTypes.object
+		chinup: PropTypes.object,
 	}),
 	dispatch: PropTypes.func.isRequired,
 	history: PropTypes.shape({
 		push: PropTypes.func,
-		goBack: PropTypes.func
-	}).isRequired
+		goBack: PropTypes.func,
+	}).isRequired,
 };
 LiftPage.defaultProps = {
 	masterWeights: {
@@ -226,16 +228,16 @@ LiftPage.defaultProps = {
 		squat: 0,
 		deadlift: 0,
 		overhead: 0,
-		chinup: {}
+		chinup: {},
 	},
 	match: {
-		params: {}
-	}
+		params: {},
+	},
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		masterWeights: state.masterWeights
+		masterWeights: state.masterWeights,
 	};
 };
 

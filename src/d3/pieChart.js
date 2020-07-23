@@ -26,7 +26,7 @@ const arcPath = d3
 // Tweens
 const arcEnterTween = (d) => {
 	const i = d3.interpolate(d.endAngle, d.startAngle);
-	return function (t) {
+	return function calcArc(t) {
 		d.startAngle = i(t);
 		return arcPath(d);
 	};
@@ -37,7 +37,7 @@ function arcUpdateTween(d) {
 	const i = d3.interpolate(this._current, d);
 	// update the current prop with new updated data
 	this._current = i(1);
-	return function (t) {
+	return function calcArc(t) {
 		return arcPath(i(t));
 	};
 }
@@ -155,11 +155,11 @@ pieChart.create = (element, data) => {
 	paths
 		.enter()
 		.append('path')
-		.attr('fill', function (d, i) {
+		.attr('fill', function determineFill(d, i) {
 			if (d.data.macro === 'leftover') return '#0000003D';
 			return `url(#gradient${i})`;
 		})
-		.each(function (d) {
+		.each(function updatePath(d) {
 			this._current = d;
 		})
 		.transition()

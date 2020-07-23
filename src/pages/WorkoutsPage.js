@@ -6,12 +6,12 @@ import moment from 'moment';
 import { Trail } from 'react-spring/renderprops';
 
 import { startWorkout } from '../actions/inProgressWorkout';
-import { setWorkoutsFilter } from '../actions/filters';
+import setWorkoutsFilter from '../actions/filters';
 import { getDisplayName } from '../utils/workout';
 import getVisibleWorkouts from '../utils/selectors';
 import SideNav from '../components/SideNav';
 import Button from '../components/Button';
-import { MenuContext } from '../context/menu-context';
+import MenuContext from '../context/menu-context';
 
 export class WorkoutsPage extends Component {
 	constructor(props) {
@@ -20,25 +20,29 @@ export class WorkoutsPage extends Component {
 	}
 
 	componentDidMount() {
-		const { id } = this.props.match.params;
+		const { match } = this.props;
+		const { id } = match.params;
 		if (id !== undefined && document.getElementById(id) !== null) {
 			document.getElementById(id).scrollIntoView({
-				behavior: 'smooth'
+				behavior: 'smooth',
 			});
 		}
 	}
 
 	componentWillUnmount() {
-		this.context.closeMenu();
+		const { closeMenu } = this.context;
+		closeMenu();
 	}
 
 	onStartWorkout = () => {
-		this.props.onStartWorkout(this.props.liftVariant);
-		this.props.history.push('/workout');
+		const { history, onStartWorkout, liftVariant } = this.props;
+		onStartWorkout(liftVariant);
+		history.push('/workout');
 	};
 
-	onFilterChange = e => {
-		this.props.onFilterChange(e.target.value);
+	onFilterChange = (e) => {
+		const { onFilterChange } = this.props;
+		onFilterChange(e.target.value);
 	};
 
 	render() {
@@ -85,17 +89,17 @@ export class WorkoutsPage extends Component {
 						</div>
 						<Trail
 							items={workouts}
-							keys={workout => workout.id}
+							keys={(workout) => workout.id}
 							from={{
 								opacity: 0,
-								transform: 'translate3d(0,-40px,0)'
+								transform: 'translate3d(0,-40px,0)',
 							}}
 							to={{
 								opacity: 1,
-								transform: 'translate3d(0,0px,0)'
+								transform: 'translate3d(0,0px,0)',
 							}}
 						>
-							{(workout, i) => props => {
+							{(workout, i) => (props) => {
 								const workoutKeys = Object.keys(workout);
 								return (
 									<div
@@ -110,7 +114,7 @@ export class WorkoutsPage extends Component {
 										<div className="workouts-page__date">
 											<p> {moment(workout.created).format('MMMM, D')} </p>
 										</div>
-										{workoutKeys.map(key => {
+										{workoutKeys.map((key) => {
 											if (key === 'id' || key === 'created') return '';
 											return (
 												<div className="workouts-page__lift" key={key}>
@@ -157,53 +161,53 @@ WorkoutsPage.contextType = MenuContext;
 WorkoutsPage.propTypes = {
 	match: PropTypes.shape({
 		params: PropTypes.shape({
-			id: PropTypes.string
+			id: PropTypes.string,
 		}),
-		path: PropTypes.string
+		path: PropTypes.string,
 	}),
 	liftVariant: PropTypes.shape({
 		a: PropTypes.number,
-		b: PropTypes.number
+		b: PropTypes.number,
 	}),
 	onStartWorkout: PropTypes.func.isRequired,
 	workouts: PropTypes.arrayOf(PropTypes.object),
 	filters: PropTypes.shape({
-		lift: PropTypes.string
+		lift: PropTypes.string,
 	}),
 	history: PropTypes.shape({
-		push: PropTypes.func
+		push: PropTypes.func,
 	}).isRequired,
-	onFilterChange: PropTypes.func.isRequired
+	onFilterChange: PropTypes.func.isRequired,
 };
 WorkoutsPage.defaultProps = {
 	workouts: [],
 	liftVariant: {
 		a: 0,
-		b: 0
+		b: 0,
 	},
 	match: {
 		params: {
-			id: ''
-		}
+			id: '',
+		},
 	},
 	filters: {
-		lift: ''
-	}
+		lift: '',
+	},
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	workouts: getVisibleWorkouts(state.workouts, state.filters),
 	liftVariant: state.liftVariant,
-	filters: state.filters
+	filters: state.filters,
 });
 
-const mapDispatchToProps = dispatch => ({
-	onStartWorkout: liftVariant => {
+const mapDispatchToProps = (dispatch) => ({
+	onStartWorkout: (liftVariant) => {
 		dispatch(startWorkout(liftVariant));
 	},
-	onFilterChange: lift => {
+	onFilterChange: (lift) => {
 		dispatch(setWorkoutsFilter(lift));
-	}
+	},
 });
 
 export default withRouter(

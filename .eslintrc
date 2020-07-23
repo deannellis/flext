@@ -17,6 +17,7 @@
 	"rules": {
 		"react/jsx-filename-extension": 0,
 		"no-tabs": 0,
+		"func-names": ["warn", "as-needed"],
 		"no-console": ["error", { "allow": ["warn"] }],
 		"indent": ["off", "tab"],
 		"arrow-parens": 0,

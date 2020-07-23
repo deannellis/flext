@@ -18,10 +18,10 @@ const y = d3.scaleLinear().range([graphHeight, 0]);
 // D3 LINE PATH GENERATOR
 const line = d3
 	.line()
-	.x(function (d) {
+	.x(function calcX(d) {
 		return x(new Date(d.date));
 	})
-	.y(function (d) {
+	.y(function calcY(d) {
 		return y(d.weight);
 	});
 
@@ -31,7 +31,7 @@ const xAxis = d3.axisBottom(x).ticks(4).tickFormat(d3.timeFormat('%b %d'));
 const yAxis = d3
 	.axisLeft(y)
 	.ticks(4)
-	.tickFormat((d) => d + 'lbs');
+	.tickFormat((d) => `${d}lbs`);
 
 lineGraph.create = (element, data) => {
 	// GRAPH
@@ -109,7 +109,6 @@ lineGraph.create = (element, data) => {
 	graph
 		.selectAll('circle')
 		.on('mouseover', (d, i, n) => {
-			console.log('hovered!!!');
 			d3.select(n[i])
 				.transition()
 				.duration(transitionDuration)
@@ -203,7 +202,6 @@ lineGraph.update = (element, data, graph) => {
 	graph
 		.selectAll('circle')
 		.on('mouseover', (d, i, n) => {
-			console.log('hovered!!!');
 			d3.select(n[i])
 				.transition()
 				.duration(transitionDuration)

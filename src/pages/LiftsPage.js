@@ -9,7 +9,7 @@ import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
 import LineGraph from '../components/LineGraph';
 import LiftCard from '../components/LiftCard';
-import { MenuContext } from '../context/menu-context';
+import MenuContext from '../context/menu-context';
 
 const lifts = ['bench', 'deadlift', 'overhead', 'row', 'squat'];
 
@@ -18,24 +18,26 @@ export class LiftsPage extends Component {
 		super(props);
 		this.state = {
 			activeTab: 0,
-			updateFormIsOpen: false
+			updateFormIsOpen: false,
 		};
 	}
 
 	componentWillUnmount() {
-		this.context.closeMenu();
+		const { closeMenu } = this.context;
+		closeMenu();
 	}
 
 	getData = () => {
 		const { workouts } = this.props;
-		const selectedLift = lifts[this.state.activeTab];
+		const { activeTab } = this.state;
+		const selectedLift = lifts[activeTab];
 		const filteredWorkouts = [];
-		workouts.forEach(workout => {
+		workouts.forEach((workout) => {
 			let workoutWithDate = {};
-			if (workout.hasOwnProperty(selectedLift)) {
+			if (Object.prototype.hasOwnProperty.call(workout, selectedLift)) {
 				workoutWithDate = {
 					...workout[selectedLift],
-					date: workout.created
+					date: workout.created,
 				};
 				filteredWorkouts.push(workoutWithDate);
 			}
@@ -43,21 +45,25 @@ export class LiftsPage extends Component {
 		return filteredWorkouts;
 	};
 
-	updateLiftWeight = update => {
-		this.props.updateLiftWeight(update);
+	updateLiftWeight = (update) => {
+		const { updateLiftWeight } = this.props;
+		updateLiftWeight(update);
 	};
 
-	handleKeyPress = e => {
+	handleKeyPress = (e) => {
+		const { toggleMenu } = this.context;
 		if (e.key === 'Escape') {
-			this.context.toggleMenu();
+			toggleMenu();
 		}
 	};
 
 	render() {
-		const { menuIsOpen } = this.context;
+		const { menuIsOpen, toggleMenu } = this.context;
+		const { match, masterWeights } = this.props;
+		const { activeTab, updateFormIsOpen } = this.state;
 		return (
 			<div className="page--with-side-nav">
-				<SideNav path={this.props.match.path} />
+				<SideNav path={match.path} />
 				<div className="lifts-page side-nav__page-content">
 					<div
 						className={
@@ -65,26 +71,26 @@ export class LiftsPage extends Component {
 								? 'side-nav__page-scrim'
 								: 'side-nav__page-scrim side-nav__page-scrim--hidden'
 						}
-						onClick={this.context.toggleMenu}
+						onClick={toggleMenu}
 						onKeyPress={this.handleKeyPress}
 						role="presentation"
 					/>
 					<Tabs
-						activeIndex={this.state.activeTab}
-						handleSelect={i => this.setState({ activeTab: i })}
-						labels={lifts.map(lift => getDisplayName(lift))}
+						activeIndex={activeTab}
+						handleSelect={(i) => this.setState({ activeTab: i })}
+						labels={lifts.map((lift) => getDisplayName(lift))}
 					>
 						<div className="card lifts-page__line-graph">
 							<h2>Weight Over Time</h2>
 							<LineGraph data={this.getData()} />
 						</div>
 						<LiftCard
-							lift={lifts[this.state.activeTab]}
-							weights={this.props.masterWeights}
-							formIsOpen={this.state.updateFormIsOpen}
+							lift={lifts[activeTab]}
+							weights={masterWeights}
+							formIsOpen={updateFormIsOpen}
 							toggleForm={() => {
-								this.setState(prevState => ({
-									updateFormIsOpen: !prevState.updateFormIsOpen
+								this.setState((prevState) => ({
+									updateFormIsOpen: !prevState.updateFormIsOpen,
 								}));
 							}}
 							updateWeight={this.updateLiftWeight}
@@ -98,7 +104,7 @@ export class LiftsPage extends Component {
 LiftsPage.contextType = MenuContext;
 LiftsPage.propTypes = {
 	match: PropTypes.shape({
-		path: PropTypes.string
+		path: PropTypes.string,
 	}),
 	workouts: PropTypes.arrayOf(PropTypes.object),
 	masterWeights: PropTypes.shape({
@@ -107,9 +113,9 @@ LiftsPage.propTypes = {
 		squat: 0,
 		deadlift: 0,
 		overhead: 0,
-		chinup: {}
+		chinup: {},
 	}),
-	updateLiftWeight: PropTypes.func.isRequired
+	updateLiftWeight: PropTypes.func.isRequired,
 };
 LiftsPage.defaultProps = {
 	match: { path: '' },
@@ -120,19 +126,19 @@ LiftsPage.defaultProps = {
 		squat: 0,
 		deadlift: 0,
 		overhead: 0,
-		chinup: {}
-	}
+		chinup: {},
+	},
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	workouts: state.workouts,
-	masterWeights: state.masterWeights
+	masterWeights: state.masterWeights,
 });
 
-const mapDispatchToProps = dispatch => ({
-	updateLiftWeight: update => {
+const mapDispatchToProps = (dispatch) => ({
+	updateLiftWeight: (update) => {
 		dispatch(setWeight({ update }));
-	}
+	},
 });
 
 export default withRouter(
