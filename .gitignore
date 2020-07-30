@@ -4,3 +4,7 @@ node_modules/
 .build/
 layout.md
 variables.env
+public/bundle.js
+public/bundle.js.map
+public/main.css
+public/main.css.map
