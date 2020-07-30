@@ -12,6 +12,8 @@ exports[`should render Home Page with props 1`] = `
   >
     <div
       className="side-nav__page-scrim side-nav__page-scrim--hidden"
+      onKeyPress={[Function]}
+      role="presentation"
     />
     <div
       className="dashboard__container side-nav__page-content"
@@ -121,6 +123,7 @@ exports[`should render Home Page with props 1`] = `
             },
           }
         }
+        resetMacros={[Function]}
         setMacros={[Function]}
         updateMacro={[Function]}
       />
@@ -129,36 +132,7 @@ exports[`should render Home Page with props 1`] = `
 </div>
 `;
 
-exports[`should render Home Page with welcome message 1`] = `
-<div
-  className="homepage__welcome"
->
-  <div
-    className="card"
-  >
-    <h2>
-      Welcome to flext!
-    </h2>
-    <p>
-      Let's begin by entering your starting weights
-    </p>
-    <Link
-      to="/onboarding"
-    >
-      <Button
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-        variant="primary"
-      >
-        Enter Weights
-      </Button>
-    </Link>
-  </div>
-</div>
-`;
-
-exports[`should render Home Page without props 1`] = `
+exports[`should render Home Page with required props 1`] = `
 <div
   className="page--with-side-nav"
 >
@@ -170,6 +144,8 @@ exports[`should render Home Page without props 1`] = `
   >
     <div
       className="side-nav__page-scrim side-nav__page-scrim--hidden"
+      onKeyPress={[Function]}
+      role="presentation"
     />
     <div
       className="dashboard__container side-nav__page-content"
@@ -216,10 +192,40 @@ exports[`should render Home Page without props 1`] = `
             },
           }
         }
+        resetMacros={[Function]}
         setMacros={[Function]}
         updateMacro={[Function]}
       />
     </div>
+  </div>
+</div>
+`;
+
+exports[`should render Home Page with welcome message 1`] = `
+<div
+  className="homepage__welcome"
+>
+  <div
+    className="card"
+  >
+    <h2>
+      Welcome to flext!
+    </h2>
+    <p>
+      Let's begin by entering your starting weights
+    </p>
+    <Link
+      to="/onboarding"
+    >
+      <Button
+        clickHandler={[Function]}
+        disabled={false}
+        type="button"
+        variant="primary"
+      >
+        Enter Weights
+      </Button>
+    </Link>
   </div>
 </div>
 `;

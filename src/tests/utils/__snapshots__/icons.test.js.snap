@@ -3,9 +3,9 @@
 exports[`should render dashboard icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -23,9 +23,9 @@ exports[`should render dashboard icon 1`] = `
 exports[`should render dashboard icon 2`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -43,9 +43,9 @@ exports[`should render dashboard icon 2`] = `
 exports[`should render dots icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -77,9 +77,9 @@ exports[`should render dots icon 1`] = `
 exports[`should render dumbbell icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -119,9 +119,9 @@ exports[`should render dumbbell icon 1`] = `
 exports[`should render graph icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -143,9 +143,9 @@ exports[`should render graph icon 1`] = `
 exports[`should render hamburger (menu) icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -183,9 +183,9 @@ exports[`should render hamburger (menu) icon 1`] = `
 exports[`should render left arrow icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title
@@ -203,9 +203,9 @@ exports[`should render left arrow icon 1`] = `
 exports[`should render right arrow icon 1`] = `
 <svg
   aria-labelledby="title"
-  height="32"
+  height={32}
   viewBox="0 0 512 512"
-  width="32"
+  width={32}
   xmlns="http://www.w3.org/2000/svg"
 >
   <title

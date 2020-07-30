@@ -1,23 +1,22 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
-import Button from "../components/Button";
-import SelectInput from "../components/SelectInput";
-import NumberInput from "../components/NumberInput";
+import Button from '../components/Button';
+import SelectInput from '../components/SelectInput';
+import NumberInput from '../components/NumberInput';
 
-export default ({ updateMacro, closeForm }) => (
+const UpdateMacroForm = ({ updateMacro, closeForm }) => (
 	<>
 		<Formik
 			initialValues={{
-				macro: "",
-				amount: 0
+				macro: '',
+				amount: 0,
 			}}
 			validationSchema={Yup.object({
-				macro: Yup.string().required("Required"),
-				amount: Yup.number()
-					.required("Required")
-					.min(0)
+				macro: Yup.string().required('Required'),
+				amount: Yup.number().required('Required').min(0),
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				updateMacro(values);
@@ -34,11 +33,12 @@ export default ({ updateMacro, closeForm }) => (
 				<NumberInput
 					label="Amount"
 					name="amount"
+					id="amount"
 					type="number"
 					min="0"
 					helperText="Enter amount in grams"
 				/>
-				<Button variant={"primary "} type="submit">
+				<Button variant="primary" type="submit">
 					submit
 				</Button>
 				<Button type="button" clickHandler={closeForm}>
@@ -48,4 +48,9 @@ export default ({ updateMacro, closeForm }) => (
 		</Formik>
 	</>
 );
+UpdateMacroForm.propTypes = {
+	updateMacro: PropTypes.func.isRequired,
+	closeForm: PropTypes.func.isRequired,
+};
 
+export default UpdateMacroForm;

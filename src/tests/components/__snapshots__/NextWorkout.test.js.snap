@@ -48,7 +48,6 @@ exports[`should render NextWorkout with props 1`] = `
     className="next-workout__button"
     clickHandler={[Function]}
     disabled={false}
-    onClick={[Function]}
     type="button"
     variant="primary"
   >
@@ -103,7 +102,6 @@ exports[`should render NextWorkout with props 2`] = `
     className="next-workout__button"
     clickHandler={[Function]}
     disabled={false}
-    onClick={[Function]}
     type="button"
     variant="primary"
   >
@@ -112,7 +110,7 @@ exports[`should render NextWorkout with props 2`] = `
 </div>
 `;
 
-exports[`should render NextWorkout without props 1`] = `
+exports[`should render NextWorkout with required props 1`] = `
 <div
   className="next-workout card"
 >
@@ -158,7 +156,6 @@ exports[`should render NextWorkout without props 1`] = `
     className="next-workout__button"
     clickHandler={[Function]}
     disabled={false}
-    onClick={[Function]}
     type="button"
     variant="primary"
   >

@@ -1,51 +1,29 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import moment from "moment";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 
-import { startWorkout } from "../actions/inProgressWorkout";
-import {
-	setTargetMacros,
-	updateMacro,
-	setCurrentDate,
-	resetCurrent
-} from "../actions/macros";
-import Button from "../components/Button";
-import SideNav from "../components/SideNav";
-import Calendar from "../components/Calendar";
-import NextWorkout from "../components/NextWorkout";
-import MacroTracker from "../components/MacroTracker";
-import { MenuContext } from "../context/menu-context";
+import { startWorkout } from '../actions/inProgressWorkout';
+import { setTargetMacros, updateMacro, resetCurrent } from '../actions/macros';
+import Button from '../components/Button';
+import SideNav from '../components/SideNav';
+import Calendar from '../components/Calendar';
+import NextWorkout from '../components/NextWorkout';
+import MacroTracker from '../components/MacroTracker';
+import MenuContext from '../context/menu-context';
 
 export class HomePage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			today: moment(),
-			hasMasterWeights: true
+			hasMasterWeights: true,
 		};
 		this.onSetMacros = this.onSetMacros.bind(this);
 	}
 
-	onStartWorkout = () => {
-		this.props.onStartWorkout(this.props.liftVariant);
-		this.props.history.push("/workout");
-	};
-
-	onSetMacros = macros => {
-		this.props.onSetMacros(macros);
-	};
-
-	onUpdateMacro = update => {
-		this.props.onUpdateMacro(update);
-	};
-
-	onClickWorkoutDate = id => {
-		this.props.history.push(`/workouts/${id}`);
-	};
-
 	// componentDidMount() {
 	//     const { dateObject } = this.props.macros;
+	// // REMOVED 'today: moment(),' from state
 	//     const { today } = this.state;
 	//     console.log(moment.isMoment(dateObject))
 	//     const formattedDateObject = dateObject.format("YYYY");
@@ -62,32 +40,70 @@ export class HomePage extends Component {
 	// }
 
 	componentDidMount() {
+		const { masterWeights } = this.props;
+		const { setPageMenu } = this.context;
 		if (
-			Object.entries(this.props.masterWeights).length === 0 &&
-			this.props.masterWeights.constructor === Object
+			Object.entries(masterWeights).length === 0 &&
+			masterWeights.constructor === Object
 		) {
 			this.setState({ hasMasterWeights: false });
-			this.context.setPageMenu(false);
+			setPageMenu(false);
 		}
 	}
 
 	componentWillUnmount() {
-		this.context.closeMenu();
-		if (!this.state.hasMasterWeights) {
-			this.context.setPageMenu(true);
+		const { closeMenu, setPageMenu } = this.context;
+		const { hasMasterWeights } = this.state;
+		closeMenu();
+		if (!hasMasterWeights) {
+			setPageMenu(true);
 		}
 	}
 
+	onStartWorkout = () => {
+		const { onStartWorkout, history, liftVariant } = this.props;
+		onStartWorkout(liftVariant);
+		history.push('/workout');
+	};
+
+	onSetMacros = (macros) => {
+		const { onSetMacros } = this.props;
+		onSetMacros(macros);
+	};
+
+	onUpdateMacro = (update) => {
+		const { onUpdateMacro } = this.props;
+		onUpdateMacro(update);
+	};
+
+	onResetCurrentMacros = () => {
+		const { onResetCurrentMacros } = this.props;
+		onResetCurrentMacros();
+	};
+
+	onClickWorkoutDate = (id) => {
+		const { history } = this.props;
+		history.push(`/workouts/${id}`);
+	};
+
+	handleKeyPress = (e) => {
+		const { toggleMenu } = this.context;
+		if (e.key === 'Escape') {
+			toggleMenu();
+		}
+	};
+
 	render() {
+		const { match, liftVariant, masterWeights, workouts, macros } = this.props;
 		if (
-			Object.entries(this.props.masterWeights).length === 0 &&
-			this.props.masterWeights.constructor === Object
+			Object.entries(masterWeights).length === 0 &&
+			masterWeights.constructor === Object
 		) {
 			return (
 				<div className="homepage__welcome">
 					<div className="card">
 						<h2>Welcome to flext!</h2>
-						<p>Let's begin by entering your starting weights</p>
+						<p>Let&apos;s begin by entering your starting weights</p>
 						<Link to="/onboarding">
 							<Button variant="primary">Enter Weights</Button>
 						</Link>
@@ -95,37 +111,40 @@ export class HomePage extends Component {
 				</div>
 			);
 		}
-		let { menuIsOpen, toggleMenu } = this.context;
+		const { menuIsOpen, toggleMenu } = this.context;
 
 		return (
 			<div className="page--with-side-nav">
-				<SideNav path={this.props.match.path} />
+				<SideNav path={match.path} />
 				<div className="side-nav__page-content">
 					<div
 						className={
 							menuIsOpen
-								? "side-nav__page-scrim"
-								: "side-nav__page-scrim side-nav__page-scrim--hidden"
+								? 'side-nav__page-scrim'
+								: 'side-nav__page-scrim side-nav__page-scrim--hidden'
 						}
 						onClick={toggleMenu}
-					></div>
+						onKeyPress={this.handleKeyPress}
+						role="presentation"
+					/>
 					<div className="dashboard__container side-nav__page-content">
 						<NextWorkout
-							liftVariant={this.props.liftVariant}
-							masterWeights={this.props.masterWeights}
+							liftVariant={liftVariant}
+							masterWeights={masterWeights}
 							onStartWorkout={this.onStartWorkout}
 						/>
 						<div className="card">
 							<Calendar
-								workouts={this.props.workouts}
+								workouts={workouts}
 								onClickWorkoutDate={this.onClickWorkoutDate}
 							/>
 						</div>
 						<MacroTracker
-							macros={this.props.macros}
+							macros={macros}
 							setMacros={this.onSetMacros}
 							updateMacro={this.onUpdateMacro}
-						></MacroTracker>
+							resetMacros={this.onResetCurrentMacros}
+						/>
 					</div>
 				</div>
 			</div>
@@ -133,6 +152,43 @@ export class HomePage extends Component {
 	}
 }
 HomePage.contextType = MenuContext;
+HomePage.propTypes = {
+	masterWeights: PropTypes.shape({
+		bench: PropTypes.number,
+		row: PropTypes.number,
+		squat: PropTypes.number,
+		deadlift: PropTypes.number,
+		overhead: PropTypes.number,
+		chinup: PropTypes.object,
+	}),
+	liftVariant: PropTypes.shape({
+		a: PropTypes.number,
+		b: PropTypes.number,
+	}),
+	workouts: PropTypes.arrayOf(PropTypes.object),
+	macros: PropTypes.shape({
+		target: PropTypes.shape({
+			protein: PropTypes.number,
+			carbs: PropTypes.number,
+			fat: PropTypes.number,
+		}),
+		current: PropTypes.shape({
+			protein: PropTypes.number,
+			carbs: PropTypes.number,
+			fat: PropTypes.number,
+		}),
+	}),
+	match: PropTypes.shape({
+		path: PropTypes.string,
+	}),
+	history: PropTypes.shape({
+		push: PropTypes.func,
+	}).isRequired,
+	onStartWorkout: PropTypes.func.isRequired,
+	onSetMacros: PropTypes.func.isRequired,
+	onUpdateMacro: PropTypes.func.isRequired,
+	onResetCurrentMacros: PropTypes.func.isRequired,
+};
 HomePage.defaultProps = {
 	masterWeights: {
 		bench: 0,
@@ -140,7 +196,7 @@ HomePage.defaultProps = {
 		squat: 0,
 		deadlift: 0,
 		overhead: 0,
-		chinup: {}
+		chinup: {},
 	},
 	liftVariant: { a: 0, b: 0 },
 	workouts: [],
@@ -148,35 +204,38 @@ HomePage.defaultProps = {
 		target: {
 			protein: 0,
 			carbs: 0,
-			fat: 0
+			fat: 0,
 		},
 		current: {
 			protein: 0,
 			carbs: 0,
-			fat: 0
-		}
+			fat: 0,
+		},
 	},
 	match: {
-		path: ""
-	}
+		path: '',
+	},
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	masterWeights: state.masterWeights,
 	liftVariant: state.liftVariant,
 	workouts: state.workouts,
-	macros: state.macros
+	macros: state.macros,
 });
-const mapDispatchToProps = dispatch => ({
-	onStartWorkout: liftVariant => {
+const mapDispatchToProps = (dispatch) => ({
+	onStartWorkout: (liftVariant) => {
 		dispatch(startWorkout(liftVariant));
 	},
-	onSetMacros: macros => {
+	onSetMacros: (macros) => {
 		dispatch(setTargetMacros(macros));
 	},
-	onUpdateMacro: update => {
+	onUpdateMacro: (update) => {
 		dispatch(updateMacro(update));
-	}
+	},
+	onResetCurrentMacros: () => {
+		dispatch(resetCurrent());
+	},
 });
 
 export default withRouter(

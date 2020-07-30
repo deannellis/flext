@@ -1,4 +1,4 @@
-export const setWorkoutsFilter = (lift = "") => ({
-	type: "SET_WORKOUTS_FILTER",
-	lift
+export default (lift = '') => ({
+	type: 'SET_WORKOUTS_FILTER',
+	lift,
 });

@@ -1,68 +1,107 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import Button from "./Button";
-import PieChart from "./PieChart";
-import { DotsIcon } from "../utils/icons";
+import Button from './Button';
+import PieChart from './PieChart';
+import { DotsIcon } from '../utils/icons';
 import UpdateMacroForm from '../forms/UpdateMacroForm';
 import SetMacrosForm from '../forms/SetMacrosForm';
+
+const getPieSlices = (target, current) => {
+	let leftover = 0;
+	const pieData = [];
+	const keys = Object.keys(current);
+
+	keys.forEach((key) => {
+		const item = {};
+		item.macro = key;
+		if (current[key] !== null) {
+			if (current[key] <= target[key]) {
+				item.amount = current[key];
+				const diff = target[key] - current[key];
+				leftover += diff;
+			} else {
+				item.amount = target[key];
+			}
+		} else {
+			item.amount = 0;
+			leftover += target[key];
+		}
+		pieData.push(item);
+	});
+
+	if (leftover !== 0) {
+		const leftoverObject = {
+			macro: 'leftover',
+			amount: leftover,
+		};
+		pieData.push(leftoverObject);
+	}
+	return pieData;
+};
 
 class MacroTracker extends Component {
 	constructor(props) {
 		super(props);
-		const { target, current } = this.props.macros;
+		// const { target, current } = this.props.macros;
 		this.state = {
 			displayUpdateForm: false,
 			displayOptionsMenu: false,
-			data: getPieSlices(target, current)
+			// data: getPieSlices(target, current),
 		};
 	}
 
-	onSubmitMacros = macros => {
+	onSubmitMacros = (macros) => {
+		const { updateMacro } = this.props;
 		this.setState({ displayUpdateForm: false });
-		this.props.updateMacro(macros);
+		updateMacro(macros);
 	};
 
 	onSetMacros = (macros, closeMenu) => {
-		this.props.setMacros(macros);
+		const { setMacros } = this.props;
+		setMacros(macros);
 		if (closeMenu) this.setState({ displayOptionsMenu: false });
 	};
 
 	render() {
-		const { target, current } = this.props.macros;
+		const { macros } = this.props;
+		const { target, current } = macros;
+		const { displayOptionsMenu, displayUpdateForm } = this.state;
 		const targetKeys = Object.keys(target);
 
 		return (
 			<div className="macro-tracker card">
 				<div className="macro-tracker__header">
 					<h2>Macros</h2>
-					<div
+					<button
 						onClick={() => {
 							this.setState({ displayOptionsMenu: true });
-							console.log("booyah");
 						}}
 						className="macro-tracker__menu-button"
+						type="button"
 					>
 						<DotsIcon size={24} />
-					</div>
+					</button>
 				</div>
 				{target.protein === null ? (
 					<>
 						<p>Enter Your Macros</p>
 						<p className="macro-tracker__helper-text">
 							Not sure what your macros are?
-							<br></br>
-							There are{" "}
+							<br />
+							There are{' '}
 							<a
 								href="https://www.google.com/search?q=calculating+macros+for+muscle+gain"
 								target="blank"
 							>
 								several calculators
-							</a>{" "}
+							</a>{' '}
 							online.
 						</p>
 						<SetMacrosForm
-							submitMacros={macros => {
-								this.props.setMacros(macros);
+							submitMacros={(enteredMacros) => {
+								const { setMacros } = this.props;
+								setMacros(enteredMacros);
 							}}
 						/>
 					</>
@@ -71,11 +110,11 @@ class MacroTracker extends Component {
 						<PieChart data={getPieSlices(target, current)} />
 						<div className="macro-tracker__macros">
 							{targetKeys.map((macro, i) => (
-								<div className="macro-tracker__macro" key={i}>
+								<div className="macro-tracker__macro" key={macro}>
 									<div
 										className="macro-tracker__macro-key"
-										id={"macro-key-" + i}
-									></div>
+										id={`macro-key-${i}`}
+									/>
 									<p>
 										<span>{macro}</span>
 										{` ${current[macro] !== null ? current[macro] : 0} of ${
@@ -89,13 +128,14 @@ class MacroTracker extends Component {
 							clickHandler={() => {
 								this.setState({ displayUpdateForm: true });
 							}}
-							variant={"primary"}
+							variant="primary"
 						>
 							Add macros
 						</Button>
 						<Button
 							clickHandler={() => {
-								this.props.resetMacros("current");
+								const { resetMacros } = this.props;
+								resetMacros('current');
 							}}
 						>
 							reset macros
@@ -104,9 +144,9 @@ class MacroTracker extends Component {
 				)}
 				<div
 					className={
-						this.state.displayUpdateForm
-							? "macro-tracker__overlay card__overlay"
-							: "macro-tracker__overlay card__overlay  card__overlay--hidden"
+						displayUpdateForm
+							? 'macro-tracker__overlay card__overlay'
+							: 'macro-tracker__overlay card__overlay  card__overlay--hidden'
 					}
 				>
 					<UpdateMacroForm
@@ -118,15 +158,15 @@ class MacroTracker extends Component {
 				</div>
 				<div
 					className={
-						this.state.displayOptionsMenu
-							? "macro-tracker__overlay card__overlay macro-tracker__menu"
-							: "macro-tracker__overlay card__overlay  card__overlay--hidden macro-tracker__menu"
+						displayOptionsMenu
+							? 'macro-tracker__overlay card__overlay macro-tracker__menu'
+							: 'macro-tracker__overlay card__overlay  card__overlay--hidden macro-tracker__menu'
 					}
 				>
 					<p>Update Target Macros</p>
 					<SetMacrosForm
 						submitMacros={this.onSetMacros}
-						current={this.props.macros.target}
+						current={macros.target}
 					/>
 					<div className="macro-tracker__menu-bottom">
 						<Button
@@ -142,56 +182,36 @@ class MacroTracker extends Component {
 		);
 	}
 }
+MacroTracker.propTypes = {
+	macros: PropTypes.shape({
+		target: PropTypes.shape({
+			protein: PropTypes.number,
+			carbs: PropTypes.number,
+			fat: PropTypes.number,
+		}),
+		current: PropTypes.shape({
+			protein: PropTypes.number,
+			carbs: PropTypes.number,
+			fat: PropTypes.number,
+		}),
+	}),
+	setMacros: PropTypes.func.isRequired,
+	updateMacro: PropTypes.func.isRequired,
+	resetMacros: PropTypes.func.isRequired,
+};
 MacroTracker.defaultProps = {
 	macros: {
 		target: {
 			protein: 0,
 			carbs: 0,
-			fat: 0
+			fat: 0,
 		},
 		current: {
 			protein: 0,
 			carbs: 0,
-			fat: 0
-		}
+			fat: 0,
+		},
 	},
-	setMacros: () => {
-		console.log("set macros (default prop)");
-	},
-	updateMacro: () => {
-		console.log("update macro (default prop)");
-	}
-};
-
-const getPieSlices = (target, current) => {
-	let leftover = 0;
-	let pieData = [];
-
-	for (let key in current) {
-		let item = {};
-		item.macro = key;
-		if (current[key] !== null) {
-			if (current[key] <= target[key]) {
-				item.amount = current[key];
-				const diff = target[key] - current[key];
-				leftover = leftover + diff;
-			} else {
-				item.amount = target[key];
-			}
-		} else {
-			item.amount = 0;
-			leftover = leftover + target[key];
-		}
-		pieData.push(item);
-	}
-	if (leftover !== 0) {
-		const leftoverObject = {
-			macro: "leftover",
-			amount: leftover
-		};
-		pieData.push(leftoverObject);
-	}
-	return pieData;
 };
 
 export default MacroTracker;

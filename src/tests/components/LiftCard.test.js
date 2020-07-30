@@ -1,27 +1,43 @@
-import React from "react";
-import { shallow } from "enzyme";
+import React from 'react';
+import { shallow } from 'enzyme';
 
-import LiftCard from "../../components/LiftCard";
-import { weights } from "../fixtures/workout";
+import LiftCard from '../../components/LiftCard';
+import { weights } from '../fixtures/workout';
 
-test("should render Lift Card without props", () => {
-	const wrapper = shallow(<LiftCard />);
-	expect(wrapper).toMatchSnapshot();
-});
+const defaultToggleForm = () => {};
+const defaultUpdateWeight = () => {};
 
-test("should render Lift Card with props", () => {
-	const weightsProp = weights;
+test('should render Lift Card with required props', () => {
 	const wrapper = shallow(
-		<LiftCard lift="row" weights={weightsProp} formIsOpen={true} />
+		<LiftCard
+			toggleForm={defaultToggleForm}
+			updateWeight={defaultUpdateWeight}
+		/>
 	);
 	expect(wrapper).toMatchSnapshot();
 });
 
-test("should open update weight form", () => {
-	const toggleForm = jest.fn();
-	const wrapper = shallow(<LiftCard toggleForm={toggleForm} />);
+test('should render Lift Card with props', () => {
+	const weightsProp = weights;
+	const wrapper = shallow(
+		<LiftCard
+			lift="row"
+			weights={weightsProp}
+			formIsOpen
+			toggleForm={defaultToggleForm}
+			updateWeight={defaultUpdateWeight}
+		/>
+	);
+	expect(wrapper).toMatchSnapshot();
+});
 
-	wrapper.find("Button").prop("clickHandler")();
+test('should open update weight form', () => {
+	const toggleForm = jest.fn();
+	const wrapper = shallow(
+		<LiftCard toggleForm={toggleForm} updateWeight={defaultUpdateWeight} />
+	);
+
+	wrapper.find('Button').prop('clickHandler')();
 
 	expect(toggleForm).toHaveBeenCalled();
 });

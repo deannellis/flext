@@ -16,6 +16,7 @@ exports[`should render SideNav with props 1`] = `
         className="side-nav__nav-item side-nav__nav-item--selected"
       >
         <DashboardIcon
+          fill="#fff"
           size={24}
         />
         <span>
@@ -31,6 +32,7 @@ exports[`should render SideNav with props 1`] = `
         className="side-nav__nav-item "
       >
         <GraphIcon
+          fill="#fff"
           size={24}
         />
         <span>
@@ -46,6 +48,7 @@ exports[`should render SideNav with props 1`] = `
         className="side-nav__nav-item "
       >
         <DumbbellIcon
+          fill="#fff"
           size={24}
         />
         <span>
@@ -73,6 +76,7 @@ exports[`should render SideNav without props 1`] = `
         className="side-nav__nav-item "
       >
         <DashboardIcon
+          fill="#fff"
           size={24}
         />
         <span>
@@ -88,6 +92,7 @@ exports[`should render SideNav without props 1`] = `
         className="side-nav__nav-item "
       >
         <GraphIcon
+          fill="#fff"
           size={24}
         />
         <span>
@@ -103,6 +108,7 @@ exports[`should render SideNav without props 1`] = `
         className="side-nav__nav-item "
       >
         <DumbbellIcon
+          fill="#fff"
           size={24}
         />
         <span>

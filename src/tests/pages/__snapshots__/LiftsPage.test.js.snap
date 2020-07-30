@@ -12,6 +12,8 @@ exports[`should render LiftsPage with props 1`] = `
   >
     <div
       className="side-nav__page-scrim side-nav__page-scrim--hidden"
+      onKeyPress={[Function]}
+      role="presentation"
     />
     <Tabs
       activeIndex={0}
@@ -81,6 +83,8 @@ exports[`should render LiftsPage without props 1`] = `
   >
     <div
       className="side-nav__page-scrim side-nav__page-scrim--hidden"
+      onKeyPress={[Function]}
+      role="presentation"
     />
     <Tabs
       activeIndex={0}

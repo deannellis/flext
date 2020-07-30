@@ -4,7 +4,9 @@ exports[`should render Workouts Page with props 1`] = `
 <div
   className="page--with-side-nav"
 >
-  <SideNav />
+  <SideNav
+    path=""
+  />
   <div
     className="workouts-page side-nav__page-content"
   >
@@ -18,13 +20,11 @@ exports[`should render Workouts Page with props 1`] = `
         className="workouts-page__header"
       >
         <h1>
-          3
-           total workouts
+          3 total workouts
         </h1>
         <Button
           clickHandler={[Function]}
           disabled={false}
-          onClick={[Function]}
           type="button"
           variant="primary"
         >
@@ -43,43 +43,55 @@ exports[`should render Workouts Page with props 1`] = `
           <option
             value=""
           >
-            All Lifts
+             All Lifts 
           </option>
           <option
             value="bench"
           >
+             
             Bench Press
+             
           </option>
           <option
             value="row"
           >
+             
             Row
+             
           </option>
           <option
             value="squat"
           >
+             
             Squat
+             
           </option>
           <option
             value="deadlift"
           >
+             
             Deadlift
+             
           </option>
           <option
             value="overhead"
           >
+             
             Overhead Press
+             
           </option>
           <option
             value="chinup"
           >
+             
             Chin-Ups
+             
           </option>
         </select>
         <label
           htmlFor="filter-select"
         >
-          Filter Workouts by Lift
+           Filter Workouts by Lift 
         </label>
       </div>
       <Component
@@ -168,7 +180,9 @@ exports[`should render Workouts Page without props 1`] = `
 <div
   className="page--with-side-nav"
 >
-  <SideNav />
+  <SideNav
+    path=""
+  />
   <div
     className="workouts-page side-nav__page-content"
   >
@@ -182,13 +196,11 @@ exports[`should render Workouts Page without props 1`] = `
         className="workouts-page__header"
       >
         <h1>
-          0
-           total workouts
+          0 total workouts
         </h1>
         <Button
           clickHandler={[Function]}
           disabled={false}
-          onClick={[Function]}
           type="button"
           variant="primary"
         >
@@ -207,43 +219,55 @@ exports[`should render Workouts Page without props 1`] = `
           <option
             value=""
           >
-            All Lifts
+             All Lifts 
           </option>
           <option
             value="bench"
           >
+             
             Bench Press
+             
           </option>
           <option
             value="row"
           >
+             
             Row
+             
           </option>
           <option
             value="squat"
           >
+             
             Squat
+             
           </option>
           <option
             value="deadlift"
           >
+             
             Deadlift
+             
           </option>
           <option
             value="overhead"
           >
+             
             Overhead Press
+             
           </option>
           <option
             value="chinup"
           >
+             
             Chin-Ups
+             
           </option>
         </select>
         <label
           htmlFor="filter-select"
         >
-          Filter Workouts by Lift
+           Filter Workouts by Lift 
         </label>
       </div>
       <Component
