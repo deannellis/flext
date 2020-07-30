@@ -144,8 +144,8 @@ class Calendar extends Component {
 				>
 					<RightArrowIcon size={24} />
 				</button>
-				{weekdaysAbbreviated.map((day) => (
-					<div className="calendar__weekday-short-name" key={day}>
+				{weekdaysAbbreviated.map((day, i) => (
+					<div className="calendar__weekday-short-name" key={i + day}>
 						{day}
 					</div>
 				))}
@@ -157,7 +157,7 @@ class Calendar extends Component {
 }
 Calendar.propTypes = {
 	onClickWorkoutDate: PropTypes.func.isRequired,
-	workouts: PropTypes.arrayOf(PropTypes.obj),
+	workouts: PropTypes.arrayOf(PropTypes.object),
 };
 Calendar.defaultProps = {
 	workouts: [],

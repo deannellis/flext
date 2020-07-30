@@ -4,7 +4,7 @@ import { useField } from 'formik';
 
 const SelectInput = ({ label, ...props }) => {
 	const [field, meta] = useField(props);
-	const { name, helperText, id } = props;
+	const { name, helperText, id, children } = props;
 	return (
 		<div className="input-group">
 			{meta.touched && meta.error ? (
@@ -19,8 +19,11 @@ const SelectInput = ({ label, ...props }) => {
 					meta.touched && meta.error ? 'input--error' : ''
 				}`}
 				{...field}
-				{...props}
-			/>
+				name={name}
+				id={id}
+			>
+				{children}
+			</select>
 			<label
 				htmlFor={id || name}
 				className={`label ${meta.touched && 'label--active'}`}
@@ -35,6 +38,7 @@ SelectInput.propTypes = {
 	name: PropTypes.string,
 	id: PropTypes.string.isRequired,
 	helperText: PropTypes.string,
+	children: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 SelectInput.defaultProps = {
 	label: '',

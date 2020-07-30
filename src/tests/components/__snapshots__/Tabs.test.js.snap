@@ -5,48 +5,54 @@ exports[`should render Tabs with props 1`] = `
   <div
     className="tabs__tablist"
   >
-    <a
+    <button
       className="tabs__tab"
-      key="tab-0"
+      key="tab-bench"
       onClick={[Function]}
+      type="button"
     >
       bench
-    </a>
-    <a
+    </button>
+    <button
       className="tabs__tab--active tabs__tab"
-      key="tab-1"
+      key="tab-row"
       onClick={[Function]}
+      type="button"
     >
       row
-    </a>
-    <a
+    </button>
+    <button
       className="tabs__tab"
-      key="tab-2"
+      key="tab-squat"
       onClick={[Function]}
+      type="button"
     >
       squat
-    </a>
-    <a
+    </button>
+    <button
       className="tabs__tab"
-      key="tab-3"
+      key="tab-deadlift"
       onClick={[Function]}
+      type="button"
     >
       deadlift
-    </a>
-    <a
+    </button>
+    <button
       className="tabs__tab"
-      key="tab-4"
+      key="tab-overhead"
       onClick={[Function]}
+      type="button"
     >
       overhead
-    </a>
-    <a
+    </button>
+    <button
       className="tabs__tab"
-      key="tab-5"
+      key="tab-chinup"
       onClick={[Function]}
+      type="button"
     >
       chinup
-    </a>
+    </button>
   </div>
   <div
     className="tabs__tab-content"
@@ -54,18 +60,59 @@ exports[`should render Tabs with props 1`] = `
 </Fragment>
 `;
 
-exports[`should render Tabs without props 1`] = `
+exports[`should render Tabs with required props 1`] = `
 <Fragment>
   <div
     className="tabs__tablist"
   >
-    <a
+    <button
       className="tabs__tab--active tabs__tab"
-      key="tab-0"
+      key="tab-bench"
       onClick={[Function]}
+      type="button"
     >
-      default prop
-    </a>
+      bench
+    </button>
+    <button
+      className="tabs__tab"
+      key="tab-row"
+      onClick={[Function]}
+      type="button"
+    >
+      row
+    </button>
+    <button
+      className="tabs__tab"
+      key="tab-squat"
+      onClick={[Function]}
+      type="button"
+    >
+      squat
+    </button>
+    <button
+      className="tabs__tab"
+      key="tab-deadlift"
+      onClick={[Function]}
+      type="button"
+    >
+      deadlift
+    </button>
+    <button
+      className="tabs__tab"
+      key="tab-overhead"
+      onClick={[Function]}
+      type="button"
+    >
+      overhead
+    </button>
+    <button
+      className="tabs__tab"
+      key="tab-chinup"
+      onClick={[Function]}
+      type="button"
+    >
+      chinup
+    </button>
   </div>
   <div
     className="tabs__tab-content"

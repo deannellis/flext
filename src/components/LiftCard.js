@@ -36,13 +36,13 @@ const LiftCard = ({ lift, weights, formIsOpen, toggleForm, updateWeight }) => {
 };
 LiftCard.propTypes = {
 	lift: PropTypes.string,
-	weights: {
+	weights: PropTypes.shape({
 		bench: PropTypes.number,
 		row: PropTypes.number,
 		squat: PropTypes.number,
 		deadlift: PropTypes.number,
 		overhead: PropTypes.number,
-	},
+	}),
 	formIsOpen: PropTypes.bool,
 	toggleForm: PropTypes.func.isRequired,
 	updateWeight: PropTypes.func.isRequired,

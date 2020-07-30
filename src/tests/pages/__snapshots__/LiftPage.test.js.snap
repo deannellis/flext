@@ -45,6 +45,14 @@ exports[`should render Lift Page with chinups 1`] = `
               chin-ups
             </span>
           </div>
+          <div
+            className="lift-page__chinup"
+          >
+            <p />
+            <span>
+              lbs
+            </span>
+          </div>
         </div>
         <h3>
           Enter your results:
@@ -55,7 +63,6 @@ exports[`should render Lift Page with chinups 1`] = `
         <Button
           clickHandler={[Function]}
           disabled={false}
-          onClick={[Function]}
           type="button"
           variant="primary"
         >
@@ -64,8 +71,8 @@ exports[`should render Lift Page with chinups 1`] = `
         <Button
           clickHandler={[Function]}
           disabled={false}
-          onClick={[Function]}
           type="button"
+          variant=""
         >
           No
         </Button>
@@ -74,6 +81,7 @@ exports[`should render Lift Page with chinups 1`] = `
     <button
       className="lift-page__action-button action-button"
       onClick={[Function]}
+      type="button"
     >
       <LeftArrowIcon
         fill="rgba(26, 33, 46, .84)"
@@ -118,7 +126,7 @@ exports[`should render Lift Page with props 1`] = `
               className="lift-page__set"
             >
               <span>
-                Set 
+                Set
                 1
               </span>
               <p>
@@ -173,7 +181,7 @@ exports[`should render Lift Page with props 1`] = `
               className="lift-page__set"
             >
               <span>
-                Set 
+                Set
                 2
               </span>
               <p>
@@ -228,7 +236,7 @@ exports[`should render Lift Page with props 1`] = `
               className="lift-page__set"
             >
               <span>
-                Set 
+                Set
                 3
               </span>
               <p>
@@ -466,24 +474,24 @@ exports[`should render Lift Page with props 1`] = `
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
+        variant=""
       >
         Less than 5
       </Button>
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
+        variant=""
       >
         Greater than 5
       </Button>
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
+        variant=""
       >
         Greater than 10
       </Button>
@@ -491,6 +499,7 @@ exports[`should render Lift Page with props 1`] = `
     <button
       className="lift-page__action-button action-button"
       onClick={[Function]}
+      type="button"
     >
       <LeftArrowIcon
         fill="rgba(26, 33, 46, .84)"
@@ -504,7 +513,7 @@ exports[`should render Lift Page with props 1`] = `
 </div>
 `;
 
-exports[`should render Lift Page without props 1`] = `
+exports[`should render Lift Page without required props 1`] = `
 <div
   className="lift-page__wrapper"
 >
@@ -533,7 +542,7 @@ exports[`should render Lift Page without props 1`] = `
               className="lift-page__set"
             >
               <span>
-                Set 
+                Set
                 1
               </span>
               <p>
@@ -588,7 +597,7 @@ exports[`should render Lift Page without props 1`] = `
               className="lift-page__set"
             >
               <span>
-                Set 
+                Set
                 2
               </span>
               <p>
@@ -643,7 +652,7 @@ exports[`should render Lift Page without props 1`] = `
               className="lift-page__set"
             >
               <span>
-                Set 
+                Set
                 3
               </span>
               <p>
@@ -878,24 +887,24 @@ exports[`should render Lift Page without props 1`] = `
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
+        variant=""
       >
         Less than 5
       </Button>
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
+        variant=""
       >
         Greater than 5
       </Button>
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
+        variant=""
       >
         Greater than 10
       </Button>
@@ -903,6 +912,7 @@ exports[`should render Lift Page without props 1`] = `
     <button
       className="lift-page__action-button action-button"
       onClick={[Function]}
+      type="button"
     >
       <LeftArrowIcon
         fill="rgba(26, 33, 46, .84)"

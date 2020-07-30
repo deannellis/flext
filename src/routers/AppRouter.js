@@ -35,7 +35,7 @@ const AppRouter = ({ toggleMenu, pageHasMenu }) => (
 				<Route path="/">
 					<h1>Root Route Here!</h1>
 					<Link to="/home">
-						<Button>Go Home</Button>
+						<Button clickHandler={() => {}}>Go Home</Button>
 					</Link>
 				</Route>
 			</Switch>

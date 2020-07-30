@@ -28,7 +28,7 @@ Tabs.propTypes = {
 	labels: PropTypes.arrayOf(PropTypes.string).isRequired,
 	activeIndex: PropTypes.number,
 	handleSelect: PropTypes.func.isRequired,
-	children: PropTypes.element,
+	children: PropTypes.arrayOf(PropTypes.element),
 };
 Tabs.defaultProps = {
 	activeIndex: 0,

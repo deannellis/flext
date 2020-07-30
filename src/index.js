@@ -28,11 +28,13 @@ class App extends Component {
 		};
 
 		this.state = {
+			/* eslint-disable react/no-unused-state */
 			menuIsOpen: false,
-			// toggleMenu: this.toggleMenu,
+			toggleMenu: this.toggleMenu,
 			pageHasMenu: true,
-			// setPageMenu: this.setPageMenu,
-			// closeMenu: this.closeMenu
+			setPageMenu: this.setPageMenu,
+			closeMenu: this.closeMenu,
+			/* eslint-enable react/no-unused-state */
 		};
 	}
 

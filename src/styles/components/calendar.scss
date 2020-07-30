@@ -24,6 +24,13 @@
 	cursor: pointer;
 	background: none;
 	border: none;
+	&:focus {
+		background: none;
+		outline: none;
+	}
+	&:hover {
+		background: $bg-black;
+	}
 }
 
 .calendar__weekday-short-name {
@@ -56,7 +63,7 @@
 	&:hover {
 		border: 1px solid $main-accent;
 		padding-bottom: 2px;
-		box-shadow: $depth-3;
+		box-shadow: $depth-4;
 	}
 }
 

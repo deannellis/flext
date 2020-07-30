@@ -11,18 +11,19 @@ const UpdateWeightForm = ({
 	currentWeight,
 	lift,
 	toggleForm,
-	updateWeight
+	updateWeight,
 }) => (
 	<>
 		<Formik
+			enableReinitialize
 			initialValues={{
-				[lift]: currentWeight
+				[lift]: currentWeight,
 			}}
 			validationSchema={Yup.object({
 				[lift]: Yup.number()
 					.max(1000, 'Weight can not exceed 1000lbs tough guy')
 					.min(44, 'Weight must be greater than bar weight')
-					.required('Required')
+					.required('Required'),
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				updateWeight(values);
@@ -35,6 +36,7 @@ const UpdateWeightForm = ({
 				<NumberInput
 					label="New Weight"
 					name={lift}
+					id={lift}
 					type="number"
 					min="44"
 					max="1000"
@@ -54,7 +56,7 @@ UpdateWeightForm.propTypes = {
 	currentWeight: PropTypes.number.isRequired,
 	lift: PropTypes.string.isRequired,
 	toggleForm: PropTypes.func.isRequired,
-	updateWeight: PropTypes.func.isRequired
+	updateWeight: PropTypes.func.isRequired,
 };
 
 export default UpdateWeightForm;

@@ -3,6 +3,7 @@
 exports[`should render Button with props 1`] = `
 <button
   className="button button--primary button--disabled"
+  onClick={[Function]}
   type="submit"
 >
   Button
@@ -12,6 +13,7 @@ exports[`should render Button with props 1`] = `
 exports[`should render Button without props 1`] = `
 <button
   className="button  "
+  onClick={[Function]}
   type="button"
 />
 `;

@@ -1,15 +1,11 @@
 const masterWeightsReducer = (state = {}, action) => {
-	const updatedMasterWeights = { ...state };
-	const { updates, update } = action;
-	const setWeightUpdates = { ...state };
-	const lift = Object.keys(update)[0];
-	const newWeight = update[lift];
-	const keys = Object.keys(updates);
-
 	switch (action.type) {
 		case 'SET_MASTER_WEIGHTS':
 			return action.weights;
-		case 'UPDATE_MASTER_WEIGHTS':
+		case 'UPDATE_MASTER_WEIGHTS': {
+			const updatedMasterWeights = { ...state };
+			const { updates } = action;
+			const keys = Object.keys(updates);
 			keys.forEach((key) => {
 				if (updates[key] !== null) {
 					if (key !== 'chinup') {
@@ -41,9 +37,15 @@ const masterWeightsReducer = (state = {}, action) => {
 			});
 
 			return updatedMasterWeights;
-		case 'SET_WEIGHT':
+		}
+		case 'SET_WEIGHT': {
+			const { update } = action;
+			const setWeightUpdates = { ...state };
+			const lift = Object.keys(update)[0];
+			const newWeight = update[lift];
 			setWeightUpdates[lift] = newWeight;
 			return setWeightUpdates;
+		}
 		default:
 			return state;
 	}

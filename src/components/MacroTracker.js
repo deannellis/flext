@@ -183,18 +183,18 @@ class MacroTracker extends Component {
 	}
 }
 MacroTracker.propTypes = {
-	macros: {
-		target: {
+	macros: PropTypes.shape({
+		target: PropTypes.shape({
 			protein: PropTypes.number,
 			carbs: PropTypes.number,
 			fat: PropTypes.number,
-		},
-		current: {
+		}),
+		current: PropTypes.shape({
 			protein: PropTypes.number,
 			carbs: PropTypes.number,
 			fat: PropTypes.number,
-		},
-	},
+		}),
+	}),
 	setMacros: PropTypes.func.isRequired,
 	updateMacro: PropTypes.func.isRequired,
 	resetMacros: PropTypes.func.isRequired,

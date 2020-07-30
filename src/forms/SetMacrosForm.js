@@ -10,20 +10,14 @@ const SetMacrosForm = ({ submitMacros, current }) => (
 	<>
 		<Formik
 			initialValues={{
-				protein: current.protein,
-				carbs: current.carbs,
-				fat: current.fat
+				protein: current.protein ? current.protein : 0,
+				carbs: current.carbs ? current.carbs : 0,
+				fat: current.fat ? current.fat : 0,
 			}}
 			validationSchema={Yup.object({
-				protein: Yup.number()
-					.required('Required')
-					.min(0),
-				carbs: Yup.number()
-					.required('Required')
-					.min(0),
-				fat: Yup.number()
-					.required('Required')
-					.min(0)
+				protein: Yup.number().required('Required').min(0),
+				carbs: Yup.number().required('Required').min(0),
+				fat: Yup.number().required('Required').min(0),
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				submitMacros(values, !!current);
@@ -34,6 +28,7 @@ const SetMacrosForm = ({ submitMacros, current }) => (
 				<NumberInput
 					label="Protein"
 					name="protein"
+					id="protein"
 					type="number"
 					min="0"
 					helperText="Enter protein in grams"
@@ -41,6 +36,7 @@ const SetMacrosForm = ({ submitMacros, current }) => (
 				<NumberInput
 					label="Carbs"
 					name="carbs"
+					id="carbs"
 					type="number"
 					min="0"
 					helperText="Enter carbs in grams"
@@ -48,6 +44,7 @@ const SetMacrosForm = ({ submitMacros, current }) => (
 				<NumberInput
 					label="Fat"
 					name="fat"
+					id="fat"
 					type="number"
 					min="0"
 					helperText="Enter fat in grams"
@@ -62,15 +59,15 @@ SetMacrosForm.propTypes = {
 	current: PropTypes.shape({
 		protein: PropTypes.number,
 		carbs: PropTypes.number,
-		fat: PropTypes.number
-	})
+		fat: PropTypes.number,
+	}),
 };
 SetMacrosForm.defaultProps = {
 	current: {
 		protein: 0,
 		carbs: 0,
-		fat: 0
-	}
+		fat: 0,
+	},
 };
 
 export default SetMacrosForm;

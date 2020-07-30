@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
 import { startWorkout } from '../actions/inProgressWorkout';
-import { setTargetMacros, updateMacro } from '../actions/macros';
+import { setTargetMacros, updateMacro, resetCurrent } from '../actions/macros';
 import Button from '../components/Button';
 import SideNav from '../components/SideNav';
 import Calendar from '../components/Calendar';
@@ -76,6 +76,11 @@ export class HomePage extends Component {
 		onUpdateMacro(update);
 	};
 
+	onResetCurrentMacros = () => {
+		const { onResetCurrentMacros } = this.props;
+		onResetCurrentMacros();
+	};
+
 	onClickWorkoutDate = (id) => {
 		const { history } = this.props;
 		history.push(`/workouts/${id}`);
@@ -138,6 +143,7 @@ export class HomePage extends Component {
 							macros={macros}
 							setMacros={this.onSetMacros}
 							updateMacro={this.onUpdateMacro}
+							resetMacros={this.onResetCurrentMacros}
 						/>
 					</div>
 				</div>
@@ -181,6 +187,7 @@ HomePage.propTypes = {
 	onStartWorkout: PropTypes.func.isRequired,
 	onSetMacros: PropTypes.func.isRequired,
 	onUpdateMacro: PropTypes.func.isRequired,
+	onResetCurrentMacros: PropTypes.func.isRequired,
 };
 HomePage.defaultProps = {
 	masterWeights: {
@@ -225,6 +232,9 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	onUpdateMacro: (update) => {
 		dispatch(updateMacro(update));
+	},
+	onResetCurrentMacros: () => {
+		dispatch(resetCurrent());
 	},
 });
 

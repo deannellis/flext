@@ -30,15 +30,15 @@ exports[`should render Lift Card with props 1`] = `
   <Button
     clickHandler={[Function]}
     disabled={false}
-    onClick={[Function]}
     type="button"
+    variant=""
   >
     Edit weight
   </Button>
   <div
     className="card__overlay"
   >
-    <_default
+    <UpdateWeightForm
       currentWeight={115}
       lift="row"
       toggleForm={[Function]}
@@ -48,7 +48,7 @@ exports[`should render Lift Card with props 1`] = `
 </div>
 `;
 
-exports[`should render Lift Card without props 1`] = `
+exports[`should render Lift Card with required props 1`] = `
 <div
   className="card lift-card"
   style={
@@ -78,15 +78,15 @@ exports[`should render Lift Card without props 1`] = `
   <Button
     clickHandler={[Function]}
     disabled={false}
-    onClick={[Function]}
     type="button"
+    variant=""
   >
     Edit weight
   </Button>
   <div
     className="card__overlay  card__overlay--hidden"
   >
-    <_default
+    <UpdateWeightForm
       currentWeight={0}
       lift="bench"
       toggleForm={[Function]}

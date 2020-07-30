@@ -19,7 +19,6 @@ exports[`should render WorkoutPage with props 1`] = `
       <Button
         clickHandler={[Function]}
         disabled={false}
-        onClick={[Function]}
         type="button"
         variant="primary"
       >
@@ -53,6 +52,7 @@ exports[`should render WorkoutPage with props 1`] = `
     <button
       className="lift-page__action-button action-button"
       onClick={[Function]}
+      type="button"
     >
       <LeftArrowIcon
         fill="rgba(26, 33, 46, .84)"
@@ -103,6 +103,7 @@ exports[`should render WorkoutPage without props 1`] = `
     <button
       className="lift-page__action-button action-button"
       onClick={[Function]}
+      type="button"
     >
       <LeftArrowIcon
         fill="rgba(26, 33, 46, .84)"

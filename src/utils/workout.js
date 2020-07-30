@@ -15,7 +15,7 @@ export const getWorkouts = ({ a = 0, b = 0 }) => {
 	return workouts;
 };
 
-export const getDisplayName = name => {
+export const getDisplayName = (name) => {
 	switch (name) {
 		case 'bench':
 			return 'Bench Press';
@@ -34,14 +34,14 @@ export const getDisplayName = name => {
 	}
 };
 
-export const getWarmupWeights = workWeight => {
+export const getWarmupWeights = (workWeight) => {
 	const warmup25 = workWeight * 0.25 > 44 ? workWeight * 0.25 : 44;
 	const warmup50 = workWeight * 0.5 > 44 ? workWeight * 0.5 : 44;
 	const warmup75 = workWeight * 0.75 > 44 ? workWeight * 0.75 : 44;
 	return [warmup25, warmup50, warmup75];
 };
 
-export const getWeightDistribution = weight => {
+export const getWeightDistribution = (weight) => {
 	if (weight === 44) {
 		return [0, 44, 0];
 	}
@@ -51,13 +51,13 @@ export const getWeightDistribution = weight => {
 
 export const getMonthWorkouts = (workouts, year) => {
 	const filteredWorkouts = workouts.filter(
-		workout => moment(workout.created).format('YYYY') === year
+		(workout) => moment(workout.created).format('YYYY') == year
 	);
 	const dates = {};
-	filteredWorkouts.forEach(workout => {
+	filteredWorkouts.forEach((workout) => {
 		const month = moment(workout.created).format('MMMM');
 		const day = parseInt(moment(workout.created).format('D'));
-		if (Object.prototype.hasOwnProperty.call(dates, 'month')) {
+		if (Object.prototype.hasOwnProperty.call(dates, month)) {
 			dates[month].push(day);
 		} else {
 			dates[month] = [day];
@@ -68,7 +68,7 @@ export const getMonthWorkouts = (workouts, year) => {
 
 export const getWorkoutIds = (workouts, currentMonth) => {
 	const dates = {};
-	workouts.forEach(workout => {
+	workouts.forEach((workout) => {
 		const month = moment(workout.created).format('MMMM');
 
 		if (month === currentMonth) {

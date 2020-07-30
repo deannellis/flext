@@ -12,13 +12,11 @@ const UpdateMacroForm = ({ updateMacro, closeForm }) => (
 		<Formik
 			initialValues={{
 				macro: '',
-				amount: 0
+				amount: 0,
 			}}
 			validationSchema={Yup.object({
 				macro: Yup.string().required('Required'),
-				amount: Yup.number()
-					.required('Required')
-					.min(0)
+				amount: Yup.number().required('Required').min(0),
 			})}
 			onSubmit={(values, { setSubmitting }) => {
 				updateMacro(values);
@@ -35,6 +33,7 @@ const UpdateMacroForm = ({ updateMacro, closeForm }) => (
 				<NumberInput
 					label="Amount"
 					name="amount"
+					id="amount"
 					type="number"
 					min="0"
 					helperText="Enter amount in grams"
@@ -51,7 +50,7 @@ const UpdateMacroForm = ({ updateMacro, closeForm }) => (
 );
 UpdateMacroForm.propTypes = {
 	updateMacro: PropTypes.func.isRequired,
-	closeForm: PropTypes.func.isRequired
+	closeForm: PropTypes.func.isRequired,
 };
 
 export default UpdateMacroForm;

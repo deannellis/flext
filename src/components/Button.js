@@ -20,7 +20,7 @@ Button.propTypes = {
 	variant: PropTypes.string,
 	disabled: PropTypes.bool,
 	type: PropTypes.string,
-	clickHandler: PropTypes.func.isRequired,
+	clickHandler: PropTypes.func,
 	children: PropTypes.node,
 };
 Button.defaultProps = {
@@ -28,6 +28,11 @@ Button.defaultProps = {
 	type: 'button',
 	variant: '',
 	children: '',
+	/* eslint-disable no-console */
+	clickHandler: () => {
+		console.log('click handler default prop (form submitted)');
+	},
+	/* eslint-enable no-console */
 };
 
 export default Button;

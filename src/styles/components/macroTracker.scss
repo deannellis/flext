@@ -93,6 +93,16 @@
 
 .macro-tracker__menu-button {
 	cursor: pointer;
+	background: none;
+	border: none;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	&:focus {
+		background: none;
+		outline: none;
+	}
+	&:hover {
+		background: $bg-black;
+	}
 }
 .macro-tracker__menu {
 	p {
@@ -105,4 +115,3 @@
 	align-self: stretch;
 	margin: 0 $xl-size;
 }
-

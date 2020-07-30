@@ -4,14 +4,31 @@ import { shallow } from 'enzyme';
 import MacroTracker from '../../components/MacroTracker';
 import { macros } from '../fixtures/macros';
 
-test('should render Macro Tracker without props', () => {
-    const wrapper = shallow(<MacroTracker />);
-    expect(wrapper).toMatchSnapshot();
+const setMacros = () => {};
+const updateMacro = () => {};
+const resetMacros = () => {};
+
+test('should render Macro Tracker with required props', () => {
+	const wrapper = shallow(
+		<MacroTracker
+			setMacros={setMacros}
+			updateMacro={updateMacro}
+			resetMacros={resetMacros}
+		/>
+	);
+	expect(wrapper).toMatchSnapshot();
 });
 
 test('should render Macro Tracker with props', () => {
-    const wrapper = shallow(<MacroTracker macros={macros} />);
-    expect(wrapper).toMatchSnapshot();
+	const wrapper = shallow(
+		<MacroTracker
+			macros={macros}
+			setMacros={setMacros}
+			updateMacro={updateMacro}
+			resetMacros={resetMacros}
+		/>
+	);
+	expect(wrapper).toMatchSnapshot();
 });
 
 // test('should open update form', () => {

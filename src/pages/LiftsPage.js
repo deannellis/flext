@@ -19,6 +19,7 @@ export class LiftsPage extends Component {
 		this.state = {
 			activeTab: 0,
 			updateFormIsOpen: false,
+			currentLift: lifts[0],
 		};
 	}
 
@@ -60,7 +61,7 @@ export class LiftsPage extends Component {
 	render() {
 		const { menuIsOpen, toggleMenu } = this.context;
 		const { match, masterWeights } = this.props;
-		const { activeTab, updateFormIsOpen } = this.state;
+		const { activeTab, updateFormIsOpen, currentLift } = this.state;
 		return (
 			<div className="page--with-side-nav">
 				<SideNav path={match.path} />
@@ -77,7 +78,9 @@ export class LiftsPage extends Component {
 					/>
 					<Tabs
 						activeIndex={activeTab}
-						handleSelect={(i) => this.setState({ activeTab: i })}
+						handleSelect={(i) => {
+							this.setState({ activeTab: i, currentLift: lifts[i] });
+						}}
 						labels={lifts.map((lift) => getDisplayName(lift))}
 					>
 						<div className="card lifts-page__line-graph">
@@ -85,7 +88,7 @@ export class LiftsPage extends Component {
 							<LineGraph data={this.getData()} />
 						</div>
 						<LiftCard
-							lift={lifts[activeTab]}
+							lift={currentLift}
 							weights={masterWeights}
 							formIsOpen={updateFormIsOpen}
 							toggleForm={() => {
@@ -113,7 +116,7 @@ LiftsPage.propTypes = {
 		squat: 0,
 		deadlift: 0,
 		overhead: 0,
-		chinup: {},
+		chinup: PropTypes.object,
 	}),
 	updateLiftWeight: PropTypes.func.isRequired,
 };

@@ -1,9 +1,9 @@
 const workoutsReducer = (state = [], action) => {
-	const { workout, created, currentWeight, id } = action;
-	let newWorkout = {};
-	const keys = Object.keys(workout);
 	switch (action.type) {
-		case 'ADD_WORKOUT':
+		case 'ADD_WORKOUT': {
+			const { workout, created, currentWeight, id } = action;
+			const keys = Object.keys(workout);
+			let newWorkout = {};
 			keys.forEach((key) => {
 				newWorkout = {
 					...newWorkout,
@@ -19,6 +19,7 @@ const workoutsReducer = (state = [], action) => {
 				id,
 			};
 			return [...state, newWorkout];
+		}
 		default:
 			return state;
 	}

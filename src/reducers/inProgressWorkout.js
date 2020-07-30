@@ -1,11 +1,8 @@
 const inProgressWorkoutReducer = (state = {}, action) => {
-	const { a, b, updates } = action;
-	let startingState = {};
-	const updatedState = { ...state };
-	const keys = Object.keys(updates);
-
 	switch (action.type) {
-		case 'START_WORKOUT':
+		case 'START_WORKOUT': {
+			const { a, b } = action;
+			let startingState = {};
 			if (a === 0) {
 				startingState = {
 					...startingState,
@@ -31,13 +28,18 @@ const inProgressWorkoutReducer = (state = {}, action) => {
 				};
 			}
 			return startingState;
-		case 'UPDATE_WORKOUT':
+		}
+		case 'UPDATE_WORKOUT': {
+			const updatedState = { ...state };
+			const { updates } = action;
+			const keys = Object.keys(updates);
 			keys.forEach((key) => {
 				if (Object.prototype.hasOwnProperty.call(updatedState, key)) {
 					updatedState[key] = updates[key];
 				}
 			});
 			return updatedState;
+		}
 		case 'RESET_WORKOUT':
 			return {};
 		default:

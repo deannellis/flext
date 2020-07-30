@@ -16,7 +16,10 @@ import MenuContext from '../context/menu-context';
 export class WorkoutsPage extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		const { workouts } = this.props;
+		this.state = {
+			workoutsState: workouts,
+		};
 	}
 
 	componentDidMount() {
@@ -27,6 +30,12 @@ export class WorkoutsPage extends Component {
 				behavior: 'smooth',
 			});
 		}
+	}
+
+	static getDerivedStateFromProps(nextProps) {
+		return {
+			workoutsState: nextProps.workouts,
+		};
 	}
 
 	componentWillUnmount() {
@@ -48,6 +57,7 @@ export class WorkoutsPage extends Component {
 	render() {
 		const { menuIsOpen } = this.context;
 		const { workouts, match, filters } = this.props;
+		const { workoutsState } = this.state;
 		workouts.sort((a, b) => new Date(b.created) - new Date(a.created));
 		return (
 			<div className="page--with-side-nav">
@@ -63,8 +73,9 @@ export class WorkoutsPage extends Component {
 					<div className="workouts-page__list">
 						<div className="workouts-page__header">
 							<h1>
-								{workouts.length}
-								total workouts
+								{`${workouts.length} total ${
+									workouts.length === 1 ? 'workout' : 'workouts'
+								}`}
 							</h1>
 							<Button variant="primary" clickHandler={this.onStartWorkout}>
 								Start Next Workout
@@ -88,7 +99,7 @@ export class WorkoutsPage extends Component {
 							<label htmlFor="filter-select"> Filter Workouts by Lift </label>
 						</div>
 						<Trail
-							items={workouts}
+							items={workoutsState}
 							keys={(workout) => workout.id}
 							from={{
 								opacity: 0,

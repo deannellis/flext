@@ -33,15 +33,15 @@ const NextWorkout = ({ liftVariant, masterWeights, onStartWorkout }) => {
 	);
 };
 NextWorkout.propTypes = {
-	liftVariant: { a: PropTypes.number, b: PropTypes.number },
-	masterWeights: {
+	liftVariant: PropTypes.shape({ a: PropTypes.number, b: PropTypes.number }),
+	masterWeights: PropTypes.shape({
 		bench: PropTypes.number,
 		row: PropTypes.number,
 		squat: PropTypes.number,
 		deadlift: PropTypes.number,
 		overhead: PropTypes.number,
 		chinup: PropTypes.object,
-	},
+	}),
 	onStartWorkout: PropTypes.func.isRequired,
 };
 NextWorkout.defaultProps = {
