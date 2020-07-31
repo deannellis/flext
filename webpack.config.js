@@ -1,15 +1,13 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
 	const isProduction = env === 'production';
-	console.log('isProd: ', isProduction);
 
 	return {
 		entry: './src/index.js',
 		output: {
-			path: path.join(__dirname, 'public'),
+			path: path.join(__dirname, 'public', 'dist'),
 			filename: 'bundle.js',
 		},
 		module: {
@@ -22,14 +20,6 @@ module.exports = (env) => {
 					},
 				},
 				{
-					test: /\.html$/,
-					use: [
-						{
-							loader: 'html-loader',
-						},
-					],
-				},
-				{
 					test: /\.s?css$/,
 					use: [
 						MiniCssExtractPlugin.loader,
@@ -39,17 +29,12 @@ module.exports = (env) => {
 				},
 			],
 		},
-		plugins: [
-			new HtmlWebPackPlugin({
-				template: './src/index.html',
-				filename: './index.html',
-			}),
-			new MiniCssExtractPlugin(),
-		],
+		plugins: [new MiniCssExtractPlugin()],
 		devtool: isProduction ? 'source-map' : 'inline-source-map',
 		devServer: {
 			contentBase: path.join(__dirname, 'public'),
 			historyApiFallback: true,
+			publicPath: '/dist/',
 		},
 	};
 };
