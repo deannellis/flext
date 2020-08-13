@@ -7,7 +7,7 @@ import { Trail } from 'react-spring/renderprops';
 
 import { getWorkouts, getDisplayName, getEmoji } from '../utils/workout';
 import Button from '../components/Button';
-import addWorkout from '../actions/workouts';
+import { startAddWorkout } from '../actions/workouts';
 import { resetWorkout } from '../actions/inProgressWorkout';
 import { updateMasterWeights } from '../actions/masterWeights';
 import updateLiftVariant from '../actions/liftVariant';
@@ -57,7 +57,7 @@ export class WorkoutPage extends Component {
 			currentWeight: masterWeights,
 			created,
 		};
-		dispatch(addWorkout(workoutPayload));
+		dispatch(startAddWorkout(workoutPayload));
 		dispatch(updateMasterWeights(inProgressWorkout));
 		dispatch(updateLiftVariant());
 		dispatch(resetWorkout());

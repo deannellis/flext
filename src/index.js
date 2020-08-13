@@ -6,6 +6,7 @@ import configureStore from './store/configureStore';
 import MenuContext from './context/menu-context';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import './firebase/firebase';
 
 class App extends Component {
 	constructor(props) {
@@ -49,7 +50,6 @@ class App extends Component {
 
 	render() {
 		const store = configureStore();
-		console.log('TEST');
 		const { pageHasMenu } = this.state;
 		return (
 			<Provider store={store}>
