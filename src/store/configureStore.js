@@ -12,7 +12,6 @@ import { saveState, loadState } from './localStorage';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
-	// const persistedState = loadState();
 	const store = createStore(
 		combineReducers({
 			filters: filtersReducer,
@@ -22,14 +21,8 @@ export default () => {
 			workouts: workoutsReducer,
 			macros: macrosReducer,
 		}),
-		// persistedState,
 		composeEnhancers(applyMiddleware(thunk))
-		// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	);
-
-	// store.subscribe(() => {
-	// 	saveState(store.getState());
-	// });
 
 	return store;
 };

@@ -1,6 +1,7 @@
 const masterWeightsReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'SET_MASTER_WEIGHTS':
+			console.log('halp!! ', action.weights);
 			return action.weights;
 		case 'UPDATE_MASTER_WEIGHTS': {
 			const updatedMasterWeights = { ...state };

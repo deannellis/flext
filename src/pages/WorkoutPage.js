@@ -14,8 +14,6 @@ import updateLiftVariant from '../actions/liftVariant';
 import { LeftArrowIcon } from '../utils/icons';
 import MenuContext from '../context/menu-context';
 
-export const Halp = 'halllllllp!!!!';
-
 export class WorkoutPage extends Component {
 	constructor(props) {
 		super(props);
