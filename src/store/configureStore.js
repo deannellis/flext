@@ -7,7 +7,6 @@ import masterWeightsReducer from '../reducers/masterWeights';
 import liftVariantReducer from '../reducers/liftVariant';
 import inProgressWorkoutReducer from '../reducers/inProgressWorkout';
 import workoutsReducer from '../reducers/workouts';
-import { saveState, loadState } from './localStorage';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -23,6 +22,6 @@ export default () => {
 		}),
 		composeEnhancers(applyMiddleware(thunk))
 	);
-
+	console.log('HEAAAALP', store);
 	return store;
 };
