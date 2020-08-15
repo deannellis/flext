@@ -3,15 +3,14 @@ import database from '../firebase/firebase';
 
 export const addWorkout = (workout) => ({
 	type: 'ADD_WORKOUT',
-	workout,
+	...workout,
 });
 
 export const startAddWorkout = (workoutData = {}) => {
-	return (dispatch) => {
+	return async (dispatch) => {
 		const { workout = {}, currentWeight = {}, created = 0 } = workoutData;
 		const workoutObject = { workout, currentWeight, created };
-
-		database
+		return database
 			.ref('workouts')
 			.push(workoutObject)
 			.then((ref) => {

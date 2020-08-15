@@ -53,7 +53,7 @@ export class WorkoutPage extends Component {
 		const workoutPayload = {
 			workout: inProgressWorkout,
 			currentWeight: masterWeights,
-			created,
+			created: created.valueOf(),
 		};
 		dispatch(startAddWorkout(workoutPayload));
 		dispatch(updateMasterWeights(inProgressWorkout));

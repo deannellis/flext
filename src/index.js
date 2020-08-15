@@ -50,7 +50,6 @@ class App extends Component {
 
 	render() {
 		const store = configureStore();
-		console.log('HELP! ', store);
 		const { pageHasMenu } = this.state;
 		return (
 			<Provider store={store}>
