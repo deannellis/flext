@@ -20,6 +20,9 @@ const workoutsReducer = (state = [], action) => {
 			};
 			return [...state, newWorkout];
 		}
+
+		case 'SET_WORKOUTS':
+			return action.workouts;
 		default:
 			return state;
 	}

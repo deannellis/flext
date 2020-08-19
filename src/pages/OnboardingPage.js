@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setMasterWeights } from '../actions/masterWeights';
+import { startSetMasterWeights } from '../actions/masterWeights';
 import OnboardingCard from '../components/OnboardingCard';
 import MenuContext from '../context/menu-context';
 
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
 	onMasterWeightsSubmit: (masterWeights) =>
-		dispatch(setMasterWeights(masterWeights)),
+		dispatch(startSetMasterWeights(masterWeights)),
 });
 
 export default withRouter(

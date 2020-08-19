@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import database from '../firebase/firebase';
 
 export const addWorkout = (workout) => ({
@@ -7,7 +6,7 @@ export const addWorkout = (workout) => ({
 });
 
 export const startAddWorkout = (workoutData = {}) => {
-	return async (dispatch) => {
+	return (dispatch) => {
 		const { workout = {}, currentWeight = {}, created = 0 } = workoutData;
 		const workoutObject = { workout, currentWeight, created };
 		return database
@@ -20,6 +19,30 @@ export const startAddWorkout = (workoutData = {}) => {
 						...workoutObject,
 					})
 				);
+			});
+	};
+};
+
+export const setWorkouts = (workouts) => ({
+	type: 'SET_WORKOUTS',
+	workouts,
+});
+
+export const startFetchWorkouts = () => {
+	return (dispatch) => {
+		return database
+			.ref('workouts')
+			.once('value')
+			.then((snapshot) => {
+				const workouts = [];
+				snapshot.forEach((child) => {
+					workouts.push({
+						id: child.key,
+						...child.val(),
+					});
+				});
+
+				dispatch(setWorkouts(workouts));
 			});
 	};
 };

@@ -1,14 +1,45 @@
 import configureMockstore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { addWorkout, startAddWorkout } from '../../actions/workouts';
-import { workoutData, id } from '../fixtures/workout';
+import {
+	addWorkout,
+	startAddWorkout,
+	setWorkouts,
+	startFetchWorkouts,
+} from '../../actions/workouts';
+import {
+	workoutData,
+	testId,
+	workouts,
+	weights,
+	workoutsLean,
+	workoutsFirebaseFormat,
+} from '../fixtures/workout';
 import database from '../../firebase/firebase';
 
 const createMockStore = configureMockstore([thunk]);
 
+beforeEach((done) => {
+	const workoutsData = {};
+	workouts.forEach((workout, i) => {
+		const { id, created } = workout;
+		workoutsData[id] = {
+			created,
+			currentWeight: weights,
+			workout: workoutsLean[i],
+		};
+	});
+	database
+		.ref('workouts')
+		.set(workoutsData)
+		.then(() => {
+			sentWorkouts = workoutsData;
+			done();
+		});
+});
+
 test('should return Add Workout action object', () => {
-	const action = addWorkout({ ...workoutData, id });
+	const action = addWorkout({ ...workoutData, id: testId });
 	expect(action).toEqual({
 		type: 'ADD_WORKOUT',
 		...workoutData,
@@ -59,6 +90,26 @@ test('should add workout with defaults to database and store', (done) => {
 				});
 				done();
 			});
+	});
+});
+
+test('should setup set workouts action with data', () => {
+	const action = setWorkouts(workouts);
+	expect(action).toEqual({
+		type: 'SET_WORKOUTS',
+		workouts,
+	});
+});
+
+test('should fetch expenses from firebase', (done) => {
+	const store = createMockStore({});
+	store.dispatch(startFetchWorkouts()).then(() => {
+		const actions = store.getActions();
+		expect(actions[0]).toEqual({
+			type: 'SET_WORKOUTS',
+			workouts: workoutsFirebaseFormat,
+		});
+		done();
 	});
 });
 

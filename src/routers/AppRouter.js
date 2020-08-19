@@ -1,42 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Router, Switch, Route, Link } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+
 import WorkoutRouter from './WorkoutRouter';
 import HomePage from '../pages/HomePage';
 import WorkoutsPage from '../pages/WorkoutsPage';
 import LiftsPage from '../pages/LiftsPage';
 import OnboardingPage from '../pages/OnboardingPage';
+import LoginPage from '../pages/LoginPage';
 import AppHeader from '../components/AppHeader';
-import Button from '../components/Button';
+import PrivateRoute from './PrivateRoute';
+
+export const history = createHistory();
 
 const AppRouter = ({ toggleMenu, pageHasMenu }) => (
-	<Router>
+	<Router history={history}>
 		<div>
 			<AppHeader toggleMenu={toggleMenu} pageHasMenu={pageHasMenu} />
 			<Switch>
-				<Route path="/home">
-					<HomePage />
-				</Route>
-				<Route path="/onboarding">
-					<OnboardingPage />
-				</Route>
-				<Route path="/workout">
-					<WorkoutRouter />
-				</Route>
-				<Route path="/workouts/:id">
-					<WorkoutsPage />
-				</Route>
-				<Route path="/workouts">
-					<WorkoutsPage />
-				</Route>
-				<Route path="/lifts">
-					<LiftsPage />
-				</Route>
-				<Route path="/">
-					<h1>Root Route Here!</h1>
-					<Link to="/home">
-						<Button clickHandler={() => {}}>Go Home</Button>
-					</Link>
+				<Route exact path="/" component={LoginPage} />
+				<PrivateRoute path="/home" component={HomePage} />
+				<PrivateRoute path="/onboarding" component={OnboardingPage} />
+				<PrivateRoute path="/workout" component={WorkoutRouter} />
+				<PrivateRoute path="/workouts/:id" component={WorkoutsPage} />
+				<PrivateRoute path="/workouts" component={WorkoutsPage} />
+				<PrivateRoute path="/lifts" component={LiftsPage} />
+				<Route>
+					<h1>Not Found</h1>
 				</Route>
 			</Switch>
 		</div>
