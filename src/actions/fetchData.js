@@ -1,10 +1,12 @@
+import { batchActions } from 'redux-batched-actions';
+
 import { startFetchWorkouts } from './workouts';
 import { startFetchMasterWeights } from './masterWeights';
 
 export default () => {
 	return (dispatch) => {
-		Promise.resolve(dispatch(startFetchWorkouts())).then(() =>
-			dispatch(startFetchMasterWeights())
+		return dispatch(
+			batchActions([startFetchWorkouts(), startFetchMasterWeights()])
 		);
 	};
 };

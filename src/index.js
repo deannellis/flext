@@ -8,7 +8,11 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import { firebase } from './firebase/firebase';
 import { startFetchWorkouts } from './actions/workouts';
+import { startFetchMasterWeights } from './actions/masterWeights';
+import { startFetchLiftVariant } from './actions/liftVariant';
+import { startFetchMacros } from './actions/macros';
 import { login, logout } from './actions/auth';
+import fetchData from './actions/fetchData';
 
 const store = configureStore();
 
@@ -74,15 +78,17 @@ const renderApp = () => {
 
 ReactDOM.render(<p>Loading...</p>, document.querySelector('#root'));
 
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(async (user) => {
 	if (user) {
 		store.dispatch(login(user.uid));
-		store.dispatch(startFetchWorkouts()).then(() => {
-			renderApp();
-			if (history.location.pathname === '/') {
-				history.push('/home');
-			}
-		});
+		await store.dispatch(startFetchWorkouts());
+		await store.dispatch(startFetchMasterWeights());
+		await store.dispatch(startFetchLiftVariant());
+		await store.dispatch(startFetchMacros());
+		renderApp();
+		if (history.location.pathname === '/') {
+			history.push('/home');
+		}
 	} else {
 		store.dispatch(logout());
 		renderApp();

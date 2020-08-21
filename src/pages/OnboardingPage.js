@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { startSetMasterWeights } from '../actions/masterWeights';
+import { startSyncLiftVariant } from '../actions/liftVariant';
 import OnboardingCard from '../components/OnboardingCard';
 import MenuContext from '../context/menu-context';
 
@@ -15,7 +16,9 @@ export class OnboardingPage extends Component {
 	componentDidMount() {
 		const { setPageMenu } = this.context;
 		setPageMenu(false);
-		const { masterWeights, history } = this.props;
+		const { history } = this.props;
+		let { masterWeights } = this.props;
+		if (masterWeights === null) masterWeights = {};
 		if (
 			Object.entries(masterWeights).length !== 0 &&
 			masterWeights.constructor === Object
@@ -29,9 +32,10 @@ export class OnboardingPage extends Component {
 		setPageMenu(true);
 	}
 
-	onMasterWeightsSubmit = (masterWeights) => {
-		const { history, onMasterWeightsSubmit } = this.props;
+	onMasterWeightsSubmit = async (masterWeights) => {
+		const { history, onMasterWeightsSubmit, onSyncLiftVariant } = this.props;
 		onMasterWeightsSubmit(masterWeights);
+		await onSyncLiftVariant();
 		history.push('/home');
 	};
 
@@ -65,6 +69,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 	onMasterWeightsSubmit: (masterWeights) =>
 		dispatch(startSetMasterWeights(masterWeights)),
+	onSyncLiftVariant: () => dispatch(startSyncLiftVariant()),
 });
 
 export default withRouter(

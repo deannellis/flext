@@ -36,10 +36,24 @@ export const startFetchWorkouts = () => {
 			.then((snapshot) => {
 				const workouts = [];
 				snapshot.forEach((child) => {
-					workouts.push({
-						id: child.key,
-						...child.val(),
+					const { currentWeight, workout, created } = child.val();
+					const keys = Object.keys(workout);
+					let newWorkout = {};
+					keys.forEach((key) => {
+						newWorkout = {
+							...newWorkout,
+							[key]: {
+								weight: currentWeight[key],
+								result: workout[key],
+							},
+						};
 					});
+					newWorkout = {
+						...newWorkout,
+						created,
+						id: child.key,
+					};
+					workouts.push(newWorkout);
 				});
 
 				dispatch(setWorkouts(workouts));

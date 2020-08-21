@@ -1,8 +1,8 @@
-const liftVariantReducerDefaultState = { a: 0, b: 0 };
+export const liftVariantReducerDefaultState = { a: 0, b: 0 };
 const liftVariantReducer = (state = liftVariantReducerDefaultState, action) => {
 	const updatedState = {
 		a: 0,
-		b: 0
+		b: 0,
 	};
 	switch (action.type) {
 		case 'UPDATE_LIFT_VARIANT':
@@ -15,6 +15,10 @@ const liftVariantReducer = (state = liftVariantReducerDefaultState, action) => {
 				updatedState.b = state.b + 1;
 			}
 			return updatedState;
+		case 'SYNC_LIFT_VARIANT':
+			return liftVariantReducerDefaultState;
+		case 'SET_LIFT_VARIANT':
+			return action.variant;
 		default:
 			return state;
 	}

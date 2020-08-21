@@ -6,6 +6,12 @@ export default (state = {}, action) => {
 			};
 		case 'LOGOUT':
 			return {};
+		case 'FART':
+			console.log('FARRRRT!');
+			return state;
+		case 'POOP':
+			console.log('POOOOOOP!');
+			return state;
 		default:
 			return state;
 	}

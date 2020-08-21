@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 
 import { startWorkout } from '../actions/inProgressWorkout';
-import { setTargetMacros, updateMacro, resetCurrent } from '../actions/macros';
+import {
+	startSetTargetMacros,
+	startUpdateMacro,
+	startResetCurrent,
+} from '../actions/macros';
 import Button from '../components/Button';
 import SideNav from '../components/SideNav';
 import Calendar from '../components/Calendar';
@@ -40,7 +44,8 @@ export class HomePage extends Component {
 	// }
 
 	componentDidMount() {
-		const { masterWeights } = this.props;
+		let { masterWeights } = this.props;
+		if (masterWeights === null) masterWeights = {};
 		const { setPageMenu } = this.context;
 		if (
 			Object.entries(masterWeights).length === 0 &&
@@ -72,8 +77,9 @@ export class HomePage extends Component {
 	};
 
 	onUpdateMacro = (update) => {
-		const { onUpdateMacro } = this.props;
-		onUpdateMacro(update);
+		const { onUpdateMacro, macros } = this.props;
+		const { current } = macros;
+		onUpdateMacro(update, current);
 	};
 
 	onResetCurrentMacros = () => {
@@ -94,7 +100,9 @@ export class HomePage extends Component {
 	};
 
 	render() {
-		const { match, liftVariant, masterWeights, workouts, macros } = this.props;
+		const { match, liftVariant, workouts, macros } = this.props;
+		let { masterWeights } = this.props;
+		if (masterWeights === null) masterWeights = {};
 		if (
 			Object.entries(masterWeights).length === 0 &&
 			masterWeights.constructor === Object
@@ -228,13 +236,13 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(startWorkout(liftVariant));
 	},
 	onSetMacros: (macros) => {
-		dispatch(setTargetMacros(macros));
+		dispatch(startSetTargetMacros(macros));
 	},
-	onUpdateMacro: (update) => {
-		dispatch(updateMacro(update));
+	onUpdateMacro: (update, current) => {
+		dispatch(startUpdateMacro(update, current));
 	},
 	onResetCurrentMacros: () => {
-		dispatch(resetCurrent());
+		dispatch(startResetCurrent());
 	},
 });
 
