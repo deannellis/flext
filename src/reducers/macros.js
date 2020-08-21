@@ -14,6 +14,14 @@ const macrosReducerDefaultState = {
 
 const macrosReducer = (state = macrosReducerDefaultState, action) => {
 	switch (action.type) {
+		case 'SET_MACROS': {
+			const { current, target } = action;
+			return {
+				current,
+				target,
+				dateObject: state.dateObject,
+			};
+		}
 		case 'SET_TARGET_MACROS': {
 			let setTargetUpdates = {};
 			setTargetUpdates = {
@@ -47,6 +55,8 @@ const macrosReducer = (state = macrosReducerDefaultState, action) => {
 			};
 			return resetCurrentUpdates;
 		}
+		case 'SYNC_MACROS':
+			return macrosReducerDefaultState;
 		default:
 			return state;
 	}

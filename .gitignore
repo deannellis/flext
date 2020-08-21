@@ -4,4 +4,6 @@ node_modules/
 .build/
 layout.md
 variables.env
+.env.development
+.env.test
 public/dist

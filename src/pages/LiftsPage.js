@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { setWeight } from '../actions/masterWeights';
+import { startSetWeight } from '../actions/masterWeights';
 import { getDisplayName } from '../utils/workout';
 import SideNav from '../components/SideNav';
 import Tabs from '../components/Tabs';
@@ -140,7 +140,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	updateLiftWeight: (update) => {
-		dispatch(setWeight({ update }));
+		dispatch(startSetWeight({ update }));
 	},
 });
 

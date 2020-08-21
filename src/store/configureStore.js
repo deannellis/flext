@@ -1,14 +1,19 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
 import filtersReducer from '../reducers/filters';
 import macrosReducer from '../reducers/macros';
 import masterWeightsReducer from '../reducers/masterWeights';
 import liftVariantReducer from '../reducers/liftVariant';
 import inProgressWorkoutReducer from '../reducers/inProgressWorkout';
 import workoutsReducer from '../reducers/workouts';
-import { saveState, loadState } from './localStorage';
+import authReducer from '../reducers/auth';
+// import { saveState, loadState } from './localStorage';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
-	const persistedState = loadState();
+	// const persistedState = loadState();
 	const store = createStore(
 		combineReducers({
 			filters: filtersReducer,
@@ -16,15 +21,14 @@ export default () => {
 			liftVariant: liftVariantReducer,
 			inProgressWorkout: inProgressWorkoutReducer,
 			workouts: workoutsReducer,
-			macros: macrosReducer
+			macros: macrosReducer,
+			auth: authReducer,
 		}),
-		persistedState,
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+		// persistedState,
+		composeEnhancers(applyMiddleware(thunk))
 	);
-
-	store.subscribe(() => {
-		saveState(store.getState());
-	});
-
+	// store.subscribe(() => {
+	// 	saveState(store.getState());
+	// });
 	return store;
 };

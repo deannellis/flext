@@ -14,14 +14,14 @@ const masterWeightsReducer = (state = {}, action) => {
 						if (updates[key] === 0) {
 							const deload = state[key] / 10;
 							if (state[key] - deload > 44) {
-								updatedMasterWeights[key] = state[key] - deload;
+								updatedMasterWeights[key] = Math.round(state[key] - deload);
 							} else {
 								updatedMasterWeights[key] = 44;
 							}
 						} else if (updates[key] === 1) {
-							updatedMasterWeights[key] = state[key] + increase;
+							updatedMasterWeights[key] = Math.round(state[key] + increase);
 						} else if (updates[key] === 2) {
-							updatedMasterWeights[key] = state[key] + increase * 2;
+							updatedMasterWeights[key] = Math.round(state[key] + increase * 2);
 						}
 					} else if (updates[key] === 1) {
 						const { negatives } = state[key];
@@ -43,7 +43,7 @@ const masterWeightsReducer = (state = {}, action) => {
 			const setWeightUpdates = { ...state };
 			const lift = Object.keys(update)[0];
 			const newWeight = update[lift];
-			setWeightUpdates[lift] = newWeight;
+			setWeightUpdates[lift] = Math.round(newWeight);
 			return setWeightUpdates;
 		}
 		default:
