@@ -6,11 +6,12 @@ export const addWorkout = (workout) => ({
 });
 
 export const startAddWorkout = (workoutData = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		const { workout = {}, currentWeight = {}, created = 0 } = workoutData;
 		const workoutObject = { workout, currentWeight, created };
 		return database
-			.ref('workouts')
+			.ref(`users/${uid}/workouts`)
 			.push(workoutObject)
 			.then((ref) => {
 				dispatch(
@@ -29,9 +30,10 @@ export const setWorkouts = (workouts) => ({
 });
 
 export const startFetchWorkouts = () => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('workouts')
+			.ref(`users/${uid}/workouts`)
 			.once('value')
 			.then((snapshot) => {
 				const workouts = [];

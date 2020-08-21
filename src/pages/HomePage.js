@@ -77,9 +77,8 @@ export class HomePage extends Component {
 	};
 
 	onUpdateMacro = (update) => {
-		const { onUpdateMacro, macros } = this.props;
-		const { current } = macros;
-		onUpdateMacro(update, current);
+		const { onUpdateMacro } = this.props;
+		onUpdateMacro(update);
 	};
 
 	onResetCurrentMacros = () => {
@@ -238,8 +237,8 @@ const mapDispatchToProps = (dispatch) => ({
 	onSetMacros: (macros) => {
 		dispatch(startSetTargetMacros(macros));
 	},
-	onUpdateMacro: (update, current) => {
-		dispatch(startUpdateMacro(update, current));
+	onUpdateMacro: (update) => {
+		dispatch(startUpdateMacro(update));
 	},
 	onResetCurrentMacros: () => {
 		dispatch(startResetCurrent());

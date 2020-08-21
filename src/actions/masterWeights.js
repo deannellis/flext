@@ -1,5 +1,4 @@
 import database from '../firebase/firebase';
-import { dispatch, zip } from 'd3';
 
 export const setMasterWeights = (weights) => ({
 	type: 'SET_MASTER_WEIGHTS',
@@ -26,9 +25,10 @@ export const startSetMasterWeights = ({
 		overhead,
 		chinup,
 	};
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('masterWeights')
+			.ref(`users/${uid}/masterWeights`)
 			.set(weightsData)
 			.then(() => {
 				dispatch(setMasterWeights(weightsData));
@@ -37,9 +37,10 @@ export const startSetMasterWeights = ({
 };
 
 export const startFetchMasterWeights = () => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('masterWeights')
+			.ref(`users/${uid}/masterWeights`)
 			.once('value')
 			.then((snapshot) => {
 				dispatch(setMasterWeights(snapshot.val()));
@@ -66,17 +67,14 @@ export const updateMasterWeights = ({
 	},
 });
 
-export const startUpdateMasterWeights = (
-	{
-		bench = null,
-		row = null,
-		squat = null,
-		deadlift = null,
-		overhead = null,
-		chinup = null,
-	} = {},
-	masterWeights
-) => {
+export const startUpdateMasterWeights = ({
+	bench = null,
+	row = null,
+	squat = null,
+	deadlift = null,
+	overhead = null,
+	chinup = null,
+} = {}) => {
 	const updates = {
 		bench,
 		row,
@@ -85,10 +83,11 @@ export const startUpdateMasterWeights = (
 		overhead,
 		chinup,
 	};
-	return (dispatch) => {
+	return (dispatch, getState) => {
 		const updatedMasterWeights = {};
-		const currentWeights = masterWeights;
+		const currentWeights = getState().masterWeights;
 		const keys = Object.keys(updates);
+		const { uid } = getState().auth;
 		keys.forEach((key) => {
 			if (updates[key] !== null) {
 				if (key !== 'chinup') {
@@ -127,7 +126,7 @@ export const startUpdateMasterWeights = (
 			}
 		});
 		return database
-			.ref('masterWeights')
+			.ref(`users/${uid}/masterWeights`)
 			.update(updatedMasterWeights)
 			.then(() => {
 				dispatch(updateMasterWeights(updates));
@@ -136,7 +135,6 @@ export const startUpdateMasterWeights = (
 };
 
 export const setWeight = (update) => {
-	console.log('pooop');
 	return {
 		type: 'SET_WEIGHT',
 		update,
@@ -144,9 +142,10 @@ export const setWeight = (update) => {
 };
 
 export const startSetWeight = ({ update = {} } = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('masterWeights')
+			.ref(`users/${uid}/masterWeights`)
 			.update(update)
 			.then(() => {
 				dispatch(setWeight(update));

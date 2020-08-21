@@ -55,8 +55,6 @@ export class WorkoutPage extends Component {
 		const {
 			inProgressWorkout,
 			masterWeights,
-			liftVariant,
-			dispatch,
 			history,
 			onStartAddWorkout,
 			onUpdateMasterWeights,
@@ -70,8 +68,8 @@ export class WorkoutPage extends Component {
 			created: created.valueOf(),
 		};
 		onStartAddWorkout(workoutPayload);
-		onUpdateMasterWeights(inProgressWorkout, masterWeights);
-		onUpdateLiftVariant(liftVariant);
+		onUpdateMasterWeights(inProgressWorkout);
+		onUpdateLiftVariant();
 		onResetWorkout();
 		history.push(`/home`);
 	};
@@ -241,11 +239,11 @@ const mapDispatchToProps = (dispatch) => ({
 	onStartAddWorkout: (workout) => {
 		dispatch(startAddWorkout(workout));
 	},
-	onUpdateMasterWeights: (inProgressWorkout, masterWeights) => {
-		dispatch(startUpdateMasterWeights(inProgressWorkout, masterWeights));
+	onUpdateMasterWeights: (inProgressWorkout) => {
+		dispatch(startUpdateMasterWeights(inProgressWorkout));
 	},
-	onUpdateLiftVariant: (current) => {
-		dispatch(startUpdateLiftVariant(current));
+	onUpdateLiftVariant: () => {
+		dispatch(startUpdateLiftVariant());
 	},
 	onResetWorkout: () => {
 		dispatch(resetWorkout());

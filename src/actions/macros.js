@@ -7,9 +7,10 @@ export const setMacros = (current = {}, target = {}) => ({
 });
 
 export const startFetchMacros = () => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('macros')
+			.ref(`users/${uid}/macros`)
 			.once('value')
 			.then((snapshot) => {
 				if (snapshot.val() !== null) {
@@ -34,9 +35,10 @@ export const startSetTargetMacros = ({
 	carbs = 0,
 	fat = 0,
 } = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('macros')
+			.ref(`users/${uid}/macros`)
 			.set({
 				target: { protein, carbs, fat },
 				current: { protein: 0, carbs: 0, fat: 0 },
@@ -55,11 +57,13 @@ export const updateMacro = ({ macro, amount }) => ({
 	},
 });
 
-export const startUpdateMacro = ({ macro = '', amount = 0 } = {}, current) => {
-	return (dispatch) => {
+export const startUpdateMacro = ({ macro = '', amount = 0 } = {}) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
+		const { current } = getState().macros;
 		const newAmount = current[macro] + amount;
 		return database
-			.ref(`macros/current/${macro}`)
+			.ref(`users/${uid}/macros/current/${macro}`)
 			.set(newAmount)
 			.then(() => {
 				dispatch(updateMacro({ macro, amount }));
@@ -75,26 +79,13 @@ export const setCurrentDate = ({ currentDate = 0 } = {}) => ({
 export const resetCurrent = () => ({ type: 'RESET_CURRENT' });
 
 export const startResetCurrent = () => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('macros/current')
+			.ref(`users/${uid}/macros/current`)
 			.set({ protein: 0, carbs: 0, fat: 0 })
 			.then(() => {
 				dispatch(resetCurrent());
 			});
 	};
 };
-
-// export const syncMacros = () => ({ type: 'SYNC_MACROS' });
-
-// export const startSyncMacros = () => {
-// 	return (dispatch) => {
-// 		console.log('called!!!');
-// 		return database
-// 			.ref('macros')
-// 			.set(macrosReducerDefaultState)
-// 			.then(() => {
-// 				dispatch(syncMacros());
-// 			});
-// 	};
-// };

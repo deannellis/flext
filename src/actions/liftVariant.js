@@ -4,8 +4,10 @@ import { liftVariantReducerDefaultState } from '../reducers/liftVariant';
 
 export const updateLiftVariant = () => ({ type: 'UPDATE_LIFT_VARIANT' });
 
-export const startUpdateLiftVariant = (current) => {
-	return (dispatch) => {
+export const startUpdateLiftVariant = () => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
+		const current = getState().liftVariant;
 		const updatedVariant = {
 			a: 0,
 			b: 0,
@@ -19,7 +21,7 @@ export const startUpdateLiftVariant = (current) => {
 			updatedVariant.b = current.b + 1;
 		}
 		return database
-			.ref('liftVariant')
+			.ref(`users/${uid}/liftVariant`)
 			.update(updatedVariant)
 			.then(() => {
 				dispatch(updateLiftVariant());
@@ -32,9 +34,10 @@ export const syncLiftVariant = () => ({
 });
 
 export const startSyncLiftVariant = () => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('liftVariant')
+			.ref(`users/${uid}/liftVariant`)
 			.set(liftVariantReducerDefaultState)
 			.then(() => {
 				dispatch(syncLiftVariant());
@@ -48,9 +51,10 @@ export const setLiftVariant = (variant) => ({
 });
 
 export const startFetchLiftVariant = () => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		const { uid } = getState().auth;
 		return database
-			.ref('liftVariant')
+			.ref(`users/${uid}/liftVariant`)
 			.once('value')
 			.then((snapshot) => {
 				dispatch(setLiftVariant(snapshot.val()));

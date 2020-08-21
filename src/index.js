@@ -12,7 +12,6 @@ import { startFetchMasterWeights } from './actions/masterWeights';
 import { startFetchLiftVariant } from './actions/liftVariant';
 import { startFetchMacros } from './actions/macros';
 import { login, logout } from './actions/auth';
-import fetchData from './actions/fetchData';
 
 const store = configureStore();
 
