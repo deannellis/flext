@@ -68,6 +68,7 @@ class MacroTracker extends Component {
 		const { target, current } = macros;
 		const { displayOptionsMenu, displayUpdateForm } = this.state;
 		const targetKeys = Object.keys(target);
+		// console.log('usob', macros.c)
 
 		return (
 			<div className="macro-tracker card">
@@ -164,10 +165,7 @@ class MacroTracker extends Component {
 					}
 				>
 					<p>Update Target Macros</p>
-					<SetMacrosForm
-						submitMacros={this.onSetMacros}
-						current={macros.target}
-					/>
+					<SetMacrosForm submitMacros={this.onSetMacros} current={target} />
 					<div className="macro-tracker__menu-bottom">
 						<Button
 							clickHandler={() => {

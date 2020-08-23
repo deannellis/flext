@@ -3,6 +3,7 @@ node_modules/
 *.log
 .build/
 layout.md
+variables.env
 .env.development
 .env.test
 public/dist

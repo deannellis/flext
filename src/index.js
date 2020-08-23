@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import MenuContext from './context/menu-context';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import { firebase } from './firebase/firebase';
+import { startFetchWorkouts } from './actions/workouts';
+import { startFetchMasterWeights } from './actions/masterWeights';
+import { startFetchLiftVariant } from './actions/liftVariant';
+import { startFetchMacros } from './actions/macros';
+import { login, logout } from './actions/auth';
+
+const store = configureStore();
 
 class App extends Component {
 	constructor(props) {
@@ -48,8 +56,6 @@ class App extends Component {
 	}
 
 	render() {
-		const store = configureStore();
-		console.log('TEST');
 		const { pageHasMenu } = this.state;
 		return (
 			<Provider store={store}>
@@ -61,4 +67,30 @@ class App extends Component {
 	}
 }
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+let hasRendered = false;
+const renderApp = () => {
+	if (!hasRendered) {
+		ReactDOM.render(<App />, document.querySelector('#root'));
+	}
+	hasRendered = true;
+};
+
+ReactDOM.render(<p>Loading...</p>, document.querySelector('#root'));
+
+firebase.auth().onAuthStateChanged(async (user) => {
+	if (user) {
+		store.dispatch(login(user.uid));
+		await store.dispatch(startFetchWorkouts());
+		await store.dispatch(startFetchMasterWeights());
+		await store.dispatch(startFetchLiftVariant());
+		await store.dispatch(startFetchMacros());
+		renderApp();
+		if (history.location.pathname === '/') {
+			history.push('/home');
+		}
+	} else {
+		store.dispatch(logout());
+		renderApp();
+		history.push('/');
+	}
+});

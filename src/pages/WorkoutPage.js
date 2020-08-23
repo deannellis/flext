@@ -7,14 +7,12 @@ import { Trail } from 'react-spring/renderprops';
 
 import { getWorkouts, getDisplayName, getEmoji } from '../utils/workout';
 import Button from '../components/Button';
-import addWorkout from '../actions/workouts';
-import { resetWorkout } from '../actions/inProgressWorkout';
-import { updateMasterWeights } from '../actions/masterWeights';
-import updateLiftVariant from '../actions/liftVariant';
+import { startAddWorkout } from '../actions/workouts';
+import { resetWorkout, startWorkout } from '../actions/inProgressWorkout';
+import { startUpdateMasterWeights } from '../actions/masterWeights';
+import { startUpdateLiftVariant } from '../actions/liftVariant';
 import { LeftArrowIcon } from '../utils/icons';
 import MenuContext from '../context/menu-context';
-
-export const Halp = 'halllllllp!!!!';
 
 export class WorkoutPage extends Component {
 	constructor(props) {
@@ -27,9 +25,13 @@ export class WorkoutPage extends Component {
 
 	componentDidMount() {
 		let complete = true;
-		const { inProgressWorkout } = this.props;
+		const { inProgressWorkout, onStartWorkout } = this.props;
 		const { setPageMenu } = this.context;
 		const workoutKeys = Object.keys(inProgressWorkout);
+		if (workoutKeys.length === 0) {
+			complete = false;
+			onStartWorkout();
+		}
 		workoutKeys.forEach((lift) => {
 			if (inProgressWorkout[lift] === null) complete = false;
 		});
@@ -50,17 +52,25 @@ export class WorkoutPage extends Component {
 	};
 
 	completeWorkout = () => {
-		const { inProgressWorkout, masterWeights, dispatch, history } = this.props;
+		const {
+			inProgressWorkout,
+			masterWeights,
+			history,
+			onStartAddWorkout,
+			onUpdateMasterWeights,
+			onUpdateLiftVariant,
+			onResetWorkout,
+		} = this.props;
 		const { created } = this.state;
 		const workoutPayload = {
 			workout: inProgressWorkout,
 			currentWeight: masterWeights,
-			created,
+			created: created.valueOf(),
 		};
-		dispatch(addWorkout(workoutPayload));
-		dispatch(updateMasterWeights(inProgressWorkout));
-		dispatch(updateLiftVariant());
-		dispatch(resetWorkout());
+		onStartAddWorkout(workoutPayload);
+		onUpdateMasterWeights(inProgressWorkout);
+		onUpdateLiftVariant();
+		onResetWorkout();
 		history.push(`/home`);
 	};
 
@@ -191,7 +201,6 @@ WorkoutPage.propTypes = {
 		push: PropTypes.func,
 		goBack: PropTypes.func,
 	}).isRequired,
-	dispatch: PropTypes.func.isRequired,
 };
 WorkoutPage.defaultProps = {
 	masterWeights: {
@@ -223,5 +232,24 @@ const mapStateToProps = (state) => {
 		inProgressWorkout: state.inProgressWorkout,
 	};
 };
+const mapDispatchToProps = (dispatch) => ({
+	onStartWorkout: () => {
+		dispatch(startWorkout());
+	},
+	onStartAddWorkout: (workout) => {
+		dispatch(startAddWorkout(workout));
+	},
+	onUpdateMasterWeights: (inProgressWorkout) => {
+		dispatch(startUpdateMasterWeights(inProgressWorkout));
+	},
+	onUpdateLiftVariant: () => {
+		dispatch(startUpdateLiftVariant());
+	},
+	onResetWorkout: () => {
+		dispatch(resetWorkout());
+	},
+});
 
-export default withRouter(connect(mapStateToProps)(WorkoutPage));
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(WorkoutPage)
+);
