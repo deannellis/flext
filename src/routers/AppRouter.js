@@ -11,6 +11,7 @@ import OnboardingPage from '../pages/OnboardingPage';
 import LoginPage from '../pages/LoginPage';
 import AppHeader from '../components/AppHeader';
 import PrivateRoute from './PrivateRoute';
+import NotFoundPage from '../pages/NotFoundPage';
 
 export const history = createHistory();
 
@@ -26,9 +27,7 @@ const AppRouter = ({ toggleMenu, pageHasMenu }) => (
 				<PrivateRoute path="/workouts/:id" component={WorkoutsPage} />
 				<PrivateRoute path="/workouts" component={WorkoutsPage} />
 				<PrivateRoute path="/lifts" component={LiftsPage} />
-				<Route>
-					<h1>Not Found</h1>
-				</Route>
+				<Route component={NotFoundPage} />
 			</Switch>
 		</div>
 	</Router>

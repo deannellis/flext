@@ -1,0 +1,10 @@
+.not-found-page {
+	display: flex;
+	height: 70vh;
+	justify-content: center;
+	div {
+		align-self: center;
+		text-align: center;
+		padding: $l-size;
+	}
+}
