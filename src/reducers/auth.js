@@ -3,7 +3,7 @@ export default (state = {}, action) => {
 		case 'LOGIN':
 			return {
 				uid: action.uid,
-				photoUrl: null,
+				photoUrl: action.photoUrl,
 				displayName: action.displayName,
 				email: action.email,
 			};
