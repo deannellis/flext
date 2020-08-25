@@ -3,15 +3,12 @@ export default (state = {}, action) => {
 		case 'LOGIN':
 			return {
 				uid: action.uid,
+				photoUrl: action.photoUrl,
+				displayName: action.displayName,
+				email: action.email,
 			};
 		case 'LOGOUT':
 			return {};
-		case 'FART':
-			console.log('FARRRRT!');
-			return state;
-		case 'POOP':
-			console.log('POOOOOOP!');
-			return state;
 		default:
 			return state;
 	}

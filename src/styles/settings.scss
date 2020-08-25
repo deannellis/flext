@@ -1,19 +1,24 @@
 // Colors
-$text-black: rgba(26, 33, 46, .84);
-$sub-text-black: rgba(26, 33, 46, .64);
-$bg-black: #232C3D;
-$bg-secondary: #525F78;
+$text-black: rgba(26, 33, 46, 0.84);
+$sub-text-black: rgba(26, 33, 46, 0.64);
+$bg-black: #232c3d;
+$bg-secondary: #525f78;
 $bg-tertiary: #293346;
-$bg-tertiary-o72: #293346B8;
-$active-text: #49A55B;
-$main-accent: #64FF6C;
-$main-accent-o82: #64FF6CD1;
-$secondary-accent: #3FD747;
+$bg-tertiary-o72: #293346b8;
+$active-text: #49a55b;
+$main-accent: #64ff6c;
+$main-accent-o82: #64ff6cd1;
+$secondary-accent: #3fd747;
 $danger: rgb(251, 0, 115);
 
-$gradient-fallback: rgb(15,19,27);
-$gradient-bg: linear-gradient(177deg, rgba(15,19,27,1) 0%, rgba(35,44,61,1) 24%, rgba(35,44,61,1) 52%, rgba(17,20,27,1) 100%);
-
+$gradient-fallback: rgb(15, 19, 27);
+$gradient-bg: linear-gradient(
+	177deg,
+	rgba(15, 19, 27, 1) 0%,
+	rgba(35, 44, 61, 1) 24%,
+	rgba(35, 44, 61, 1) 52%,
+	rgba(17, 20, 27, 1) 100%
+);
 
 // Spacing
 $xs-size: 1rem;
@@ -24,19 +29,29 @@ $xl-size: 4.8rem;
 
 // Breakpoints
 @mixin for-phone-only {
-    @media (max-width: 599px) { @content; }
+	@media (max-width: 599px) {
+		@content;
+	}
 }
 @mixin for-tablet-portrait-up {
-    @media (min-width: 600px) { @content; }
+	@media (min-width: 600px) {
+		@content;
+	}
 }
 @mixin for-tablet-landscape-up {
-    @media (min-width: 900px) { @content; }
+	@media (min-width: 900px) {
+		@content;
+	}
 }
 @mixin for-desktop-up {
-    @media (min-width: 1200px) { @content; }
+	@media (min-width: 1200px) {
+		@content;
+	}
 }
 @mixin for-big-desktop-up {
-    @media (min-width: 1800px) { @content; }
+	@media (min-width: 1800px) {
+		@content;
+	}
 }
 
 // Box Shaddows
@@ -44,7 +59,7 @@ $depth-1: 0 1px 3px rgba(29, 29, 37, 0.12), 0 1px 2px rgba(29, 29, 37, 0.24);
 $depth-2: 0 3px 6px rgba(29, 29, 37, 0.16), 0 3px 6px rgba(29, 29, 37, 0.23);
 $depth-3: 0 10px 20px rgba(29, 29, 37, 0.19), 0 6px 6px rgba(29, 29, 37, 0.23);
 $depth-4: 0 14px 28px rgba(29, 29, 37, 0.25), 0 10px 10px rgba(29, 29, 37, 0.22);
-$depth-5: 0 19px 38px rgba(29, 29, 37, 0.30), 0 15px 12px rgba(29, 29, 37, 0.22);
+$depth-5: 0 19px 38px rgba(29, 29, 37, 0.3), 0 15px 12px rgba(29, 29, 37, 0.22);
 
 // Z-Index
 $z-top: 50;
@@ -53,8 +68,9 @@ $z-2: 2;
 $z-3: 1;
 $z-bottom: -50;
 
-
 // Font
 $display-font: 'Josefin Sans', sans-serif;
 $body-font: 'Roboto', sans-serif;
 
+// Animation
+$default-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);

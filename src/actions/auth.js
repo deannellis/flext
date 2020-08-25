@@ -6,9 +6,12 @@ export const startLogin = () => {
 	};
 };
 
-export const login = (uid) => ({
+export const login = (uid, photoUrl, displayName, email) => ({
 	type: 'LOGIN',
 	uid,
+	photoUrl,
+	displayName,
+	email,
 });
 
 export const startLogout = () => {

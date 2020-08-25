@@ -79,7 +79,8 @@ ReactDOM.render(<p>Loading...</p>, document.querySelector('#root'));
 
 firebase.auth().onAuthStateChanged(async (user) => {
 	if (user) {
-		store.dispatch(login(user.uid));
+		const { uid, photoURL, displayName, email } = user;
+		store.dispatch(login(uid, photoURL, displayName, email));
 		await store.dispatch(startFetchWorkouts());
 		await store.dispatch(startFetchMasterWeights());
 		await store.dispatch(startFetchLiftVariant());

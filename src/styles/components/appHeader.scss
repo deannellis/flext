@@ -50,3 +50,47 @@
 	display: flex;
 	align-items: center;
 }
+
+.app-header__right-content {
+	img {
+		transition: all 0.1s cubic-bezier(0.47, 0, 0.745, 0.715);
+		height: $xl-size;
+		border-radius: $xl-size;
+		box-shadow: $depth-3;
+		margin-right: 2px;
+		&:hover,
+		&.app-header__profile-pic--active {
+			margin-right: 0;
+			box-shadow: $depth-5;
+			border: 2px solid $main-accent;
+			height: calc(#{$xl-size} + 4px);
+		}
+	}
+}
+
+.app-header__menu--hidden {
+	display: none;
+	pointer-events: none;
+}
+
+.app-header__menu {
+	position: absolute;
+	right: $m-size;
+	top: 7.4rem;
+	// height: 320px;
+	width: 320px;
+	background: $bg-tertiary;
+	padding: $m-size;
+	border-radius: 4px;
+	box-shadow: $depth-2;
+	text-align: center;
+	img {
+		height: 9.6rem;
+		border-radius: 9.6rem;
+		box-shadow: $depth-3;
+	}
+	div {
+		border-top: 1px solid $bg-secondary;
+		padding-top: $s-size;
+	}
+}
