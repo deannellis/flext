@@ -8,7 +8,7 @@ import HomePage from '../pages/HomePage';
 import WorkoutsPage from '../pages/WorkoutsPage';
 import LiftsPage from '../pages/LiftsPage';
 import OnboardingPage from '../pages/OnboardingPage';
-import LoginPage from '../pages/LoginPage';
+import LoginPage from '../pages/LandingPage';
 import AppHeader from '../components/AppHeader';
 import PrivateRoute from './PrivateRoute';
 import NotFoundPage from '../pages/NotFoundPage';
