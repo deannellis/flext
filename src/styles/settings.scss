@@ -19,6 +19,13 @@ $gradient-bg: linear-gradient(
 	rgba(35, 44, 61, 1) 52%,
 	rgba(17, 20, 27, 1) 100%
 );
+$landing-gradient: linear-gradient(
+	90deg,
+	rgba(35, 44, 61, 1) 0%,
+	rgba(35, 44, 61, 1) 24%,
+	rgba(35, 44, 61, 0) 50%,
+	rgba(35, 44, 61, 0) 100%
+);
 
 // Spacing
 $xs-size: 1rem;

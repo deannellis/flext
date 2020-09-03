@@ -34,6 +34,10 @@ module.exports = (env) => {
 						{ loader: 'sass-loader', options: { sourceMap: true } },
 					],
 				},
+				{
+					test: /\.(png|jpg)$/,
+					loader: 'url-loader',
+				},
 			],
 		},
 		plugins: [
