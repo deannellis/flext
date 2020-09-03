@@ -21,6 +21,7 @@ class AppHeader extends Component {
 			photoUrl,
 			displayName,
 			email,
+			isAuthenticated,
 		} = this.props;
 		return (
 			<div
@@ -41,18 +42,20 @@ class AppHeader extends Component {
 					<h1>flext</h1>
 				</div>
 				<div className="app-header__right-content">
-					<img
-						className={
-							this.state.menuIsOpen ? 'app-header__profile-pic--active' : ''
-						}
-						src={photoUrl ? photoUrl : './images/defaultUser.png'}
-						alt="user"
-						onClick={() => {
-							this.setState((prevState) => ({
-								menuIsOpen: !prevState.menuIsOpen,
-							}));
-						}}
-					/>
+					{isAuthenticated && (
+						<img
+							className={
+								this.state.menuIsOpen ? 'app-header__profile-pic--active' : ''
+							}
+							src={photoUrl ? photoUrl : './images/defaultUser.png'}
+							alt="user"
+							onClick={() => {
+								this.setState((prevState) => ({
+									menuIsOpen: !prevState.menuIsOpen,
+								}));
+							}}
+						/>
+					)}
 				</div>
 				<div
 					className={
@@ -92,6 +95,7 @@ AppHeader.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
+	isAuthenticated: !!state.auth.uid,
 	photoUrl: state.auth.photoUrl,
 	displayName: state.auth.displayName,
 	email: state.auth.email,
