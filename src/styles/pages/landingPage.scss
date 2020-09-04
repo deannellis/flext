@@ -1,14 +1,38 @@
+.landing-page {
+	display: flex;
+	flex-direction: column;
+}
+
+.landing-page__hero,
+.landing-page__section-2,
+.landing-page__section-3,
+.landing-page__section-4 {
+	height: 64rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	div {
+		max-width: 45%;
+	}
+	h1 {
+		font-family: 'Ubuntu', sans-serif;
+		font-weight: 300;
+		font-size: 3.6rem;
+		line-height: 1.4;
+	}
+	img {
+		height: 40rem;
+	}
+}
+
 .landing-page__hero {
 	background-image: url(/images/img-noise-361x370.png);
 	background-image: $landing-gradient, url(/images/img-noise-361x370.png);
 	background-repeat: repeat;
-	height: 80vh;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+	// height: 80vh;
 
 	div {
-		max-width: 45%;
+		margin-left: $xl-size;
 		h1 {
 			font-family: 'Ubuntu', sans-serif;
 			font-weight: 300;
@@ -21,6 +45,7 @@
 			height: $xl-size;
 			img {
 				margin-right: $m-size;
+				height: 3.2rem;
 			}
 		}
 	}
@@ -29,7 +54,19 @@
 .landing-page__hero-image {
 	img {
 		opacity: 0.9;
-		height: 40rem;
-		margin-right: $l-size;
+		// height: 40rem;
+		margin-right: $xl-size;
+	}
+}
+
+.landing-page__section-2,
+.landing-page__section-4 {
+	background: $bg-secondary;
+}
+
+.landing-page__section-3,
+.landing-page__section-4 {
+	img {
+		box-shadow: $depth-3;
 	}
 }

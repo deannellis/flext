@@ -1,0 +1,10 @@
+.app-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 7.2rem;
+	box-shadow: $depth-3;
+	a {
+		color: #fff;
+	}
+}

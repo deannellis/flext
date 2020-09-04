@@ -75,6 +75,7 @@ class AppHeader extends Component {
 					<div>
 						<Button
 							clickHandler={() => {
+								this.setState({ menuIsOpen: false });
 								startLogout();
 							}}
 						>
