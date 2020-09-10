@@ -9,35 +9,69 @@
 .landing-page__section-4 {
 	height: 64rem;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	@include for-tablet-landscape-up {
+		justify-content: space-around;
+		flex-direction: row;
+	}
+	@include for-phone-only {
+		text-align: center;
+	}
 	div {
-		max-width: 45%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@include for-tablet-landscape-up {
+			display: block;
+			max-width: 45%;
+		}
 	}
 	h1 {
 		font-family: 'Ubuntu', sans-serif;
 		font-weight: 300;
-		font-size: 3.6rem;
+		font-size: 2.8rem;
+		margin: $l-size;
+		@include for-tablet-landscape-up {
+			margin: 0;
+			font-size: 3.6rem;
+		}
 		line-height: 1.4;
 	}
 	img {
-		height: 40rem;
+		height: 28rem;
+		@include for-tablet-landscape-up {
+			height: 40rem;
+		}
 	}
 }
 
 .landing-page__hero {
 	background-image: url(/images/img-noise-361x370.png);
-	background-image: $landing-gradient, url(/images/img-noise-361x370.png);
+	background-image: $landing-gradient--mobile,
+		url(/images/img-noise-361x370.png);
+	@include for-tablet-landscape-up {
+		background-image: $landing-gradient, url(/images/img-noise-361x370.png);
+	}
 	background-repeat: repeat;
 	// height: 80vh;
 
 	div {
-		margin-left: $xl-size;
+		@include for-tablet-landscape-up {
+			margin-left: $xl-size;
+		}
+		// width: 100%;
 		h1 {
 			font-family: 'Ubuntu', sans-serif;
 			font-weight: 300;
-			font-size: 4.8rem;
+			font-size: 2.8rem;
 			line-height: 1.4;
+			margin: $l-size;
+			@include for-tablet-landscape-up {
+				font-size: 4.8rem;
+				margin: 0;
+			}
 		}
 		button {
 			display: flex;
@@ -55,13 +89,21 @@
 	img {
 		opacity: 0.9;
 		// height: 40rem;
-		margin-right: $xl-size;
+		margin-top: $l-size;
+		@include for-tablet-landscape-up {
+			margin-top: 0;
+			margin-right: $xl-size;
+		}
 	}
 }
 
 .landing-page__section-2,
 .landing-page__section-4 {
-	background: $bg-secondary;
+	background: linear-gradient(180deg, #525f78 0%, #3e4759 100%);
+}
+
+.landing-page__section-3 {
+	background: linear-gradient(180deg, #313e57 0%, #232c3d 100%);
 }
 
 .landing-page__section-3,

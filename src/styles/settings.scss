@@ -11,6 +11,7 @@ $main-accent-o82: #64ff6cd1;
 $secondary-accent: #3fd747;
 $danger: rgb(251, 0, 115);
 
+// Gradients
 $gradient-fallback: rgb(15, 19, 27);
 $gradient-bg: linear-gradient(
 	177deg,
@@ -21,6 +22,12 @@ $gradient-bg: linear-gradient(
 );
 $landing-gradient: linear-gradient(
 	90deg,
+	rgba(35, 44, 61, 1) 0%,
+	rgba(35, 44, 61, 1) 24%,
+	rgba(35, 44, 61, 0) 50%,
+	rgba(35, 44, 61, 0) 100%
+);
+$landing-gradient--mobile: linear-gradient(
 	rgba(35, 44, 61, 1) 0%,
 	rgba(35, 44, 61, 1) 24%,
 	rgba(35, 44, 61, 0) 50%,
