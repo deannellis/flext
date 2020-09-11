@@ -201,6 +201,11 @@ WorkoutPage.propTypes = {
 		push: PropTypes.func,
 		goBack: PropTypes.func,
 	}).isRequired,
+	onStartWorkout: PropTypes.func.isRequired,
+	onStartAddWorkout: PropTypes.func.isRequired,
+	onUpdateMasterWeights: PropTypes.func.isRequired,
+	onUpdateLiftVariant: PropTypes.func.isRequired,
+	onResetWorkout: PropTypes.func.isRequired,
 };
 WorkoutPage.defaultProps = {
 	masterWeights: {

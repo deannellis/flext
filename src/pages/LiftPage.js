@@ -42,6 +42,7 @@ export class LiftPage extends Component {
 		const workWeight = masterWeights[id];
 		const workReps = ['5 reps', '5 reps', 'AMRAP*'];
 		const { negatives, ups, chinupWeight } = masterWeights.chinup;
+		/* eslint-disable react/no-array-index-key */
 		return (
 			<div className="lift-page__wrapper">
 				<div className="lift-page">
@@ -199,6 +200,7 @@ export class LiftPage extends Component {
 					</button>
 				</div>
 			</div>
+			/* eslint-ensable react/no-array-index-key */
 		);
 	}
 }

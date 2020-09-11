@@ -52,6 +52,11 @@
 }
 
 .app-header__right-content {
+	button {
+		background: none;
+		border: none;
+		outline: none;
+	}
 	img {
 		transition: all 0.1s cubic-bezier(0.47, 0, 0.745, 0.715);
 		height: $xl-size;

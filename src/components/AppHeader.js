@@ -17,12 +17,14 @@ class AppHeader extends Component {
 		const {
 			toggleMenu,
 			pageHasMenu,
-			startLogout,
+			onStartLogout,
 			photoUrl,
 			displayName,
 			email,
 			isAuthenticated,
 		} = this.props;
+		const { menuIsOpen } = this.state;
+
 		return (
 			<div
 				className={
@@ -43,25 +45,25 @@ class AppHeader extends Component {
 				</div>
 				<div className="app-header__right-content">
 					{isAuthenticated && (
-						<img
-							className={
-								this.state.menuIsOpen ? 'app-header__profile-pic--active' : ''
-							}
-							src={photoUrl ? photoUrl : './images/defaultUser.png'}
-							alt="user"
+						<button
+							type="button"
 							onClick={() => {
 								this.setState((prevState) => ({
 									menuIsOpen: !prevState.menuIsOpen,
 								}));
 							}}
-						/>
+						>
+							<img
+								className={menuIsOpen ? 'app-header__profile-pic--active' : ''}
+								src={photoUrl ? photoUrl : './images/defaultUser.png'}
+								alt="user"
+							/>
+						</button>
 					)}
 				</div>
 				<div
 					className={
-						this.state.menuIsOpen
-							? 'app-header__menu'
-							: 'app-header__menu--hidden'
+						menuIsOpen ? 'app-header__menu' : 'app-header__menu--hidden'
 					}
 				>
 					<img
@@ -76,7 +78,7 @@ class AppHeader extends Component {
 						<Button
 							clickHandler={() => {
 								this.setState({ menuIsOpen: false });
-								startLogout();
+								onStartLogout();
 							}}
 						>
 							Log out
@@ -89,10 +91,18 @@ class AppHeader extends Component {
 }
 AppHeader.propTypes = {
 	toggleMenu: PropTypes.func.isRequired,
+	onStartLogout: PropTypes.func.isRequired,
 	pageHasMenu: PropTypes.bool,
+	photoUrl: PropTypes.string,
+	displayName: PropTypes.string,
+	email: PropTypes.string,
+	isAuthenticated: PropTypes.bool.isRequired,
 };
 AppHeader.defaultProps = {
 	pageHasMenu: true,
+	photoUrl: null,
+	displayName: null,
+	email: null,
 };
 
 const mapStateToProps = (state) => ({
@@ -102,7 +112,7 @@ const mapStateToProps = (state) => ({
 	email: state.auth.email,
 });
 const mapDispatchToProps = (dispatch) => ({
-	startLogout: () => dispatch(startLogout()),
+	onStartLogout: () => dispatch(startLogout()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

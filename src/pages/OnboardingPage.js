@@ -56,6 +56,7 @@ OnboardingPage.propTypes = {
 		push: PropTypes.func,
 	}).isRequired,
 	onMasterWeightsSubmit: PropTypes.func.isRequired,
+	onSyncLiftVariant: PropTypes.func.isRequired,
 };
 OnboardingPage.defaultProps = {
 	masterWeights: {},

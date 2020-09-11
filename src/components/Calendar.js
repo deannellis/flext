@@ -144,8 +144,8 @@ class Calendar extends Component {
 				>
 					<RightArrowIcon size={24} />
 				</button>
-				{weekdaysAbbreviated.map((day, i) => (
-					<div className="calendar__weekday-short-name" key={i + day}>
+				{weekdaysAbbreviated.map((day) => (
+					<div className="calendar__weekday-short-name" key={day}>
 						{day}
 					</div>
 				))}
