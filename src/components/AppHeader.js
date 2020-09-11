@@ -56,6 +56,7 @@ class AppHeader extends Component {
 							<img
 								className={menuIsOpen ? 'app-header__profile-pic--active' : ''}
 								src={photoUrl ? photoUrl : './images/defaultUser.png'}
+								referrerpolicy="no-referrer"
 								alt="user"
 							/>
 						</button>
