@@ -32,6 +32,7 @@
 			{
 				"allow": [
 					"__REDUX_DEVTOOLS_EXTENSION__",
+					"__REDUX_DEVTOOLS_EXTENSION_COMPOSE__",
 					"_current",
 					"_chart",
 					"_rootNode",
@@ -59,6 +60,8 @@
 			{
 				"exceptions": ["input", "select"]
 			}
-		]
+		],
+		"react/jsx-curly-newline": 0,
+		"no-unneeded-ternary": ["error", { "defaultAssignment": true }]
 	}
 }

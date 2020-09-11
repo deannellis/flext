@@ -51,7 +51,7 @@ export const getWeightDistribution = (weight) => {
 
 export const getMonthWorkouts = (workouts, year) => {
 	const filteredWorkouts = workouts.filter(
-		(workout) => moment(workout.created).format('YYYY') == year
+		(workout) => moment(workout.created).format('YYYY') === year
 	);
 	const dates = {};
 	filteredWorkouts.forEach((workout) => {
