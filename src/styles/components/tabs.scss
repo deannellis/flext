@@ -11,6 +11,12 @@
 	}
 }
 
+.tabs__tab-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .tabs__tab {
 	text-transform: uppercase;
 	text-align: center;
@@ -30,10 +36,31 @@
 }
 
 .tabs__tab--active {
-	border-bottom: 2px solid $main-accent-o82;
 	color: $active-text;
 	font-weight: 700;
 	opacity: 1;
+}
+
+.tabs__underline--active {
+	height: 2px;
+	background: $main-accent-o82;
+	width: 100%;
+	padding-top: 0;
+	animation-name: animate-in;
+	animation-duration: 0.5s;
+}
+
+@keyframes animate-in {
+	from {
+		height: 0;
+		width: 0;
+		padding-top: 2px;
+	}
+	to {
+		height: 2px;
+		width: 100%;
+		padding-top: 0;
+	}
 }
 
 .tabs__tab-content {

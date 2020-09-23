@@ -6,18 +6,23 @@ const Tabs = ({ labels, activeIndex, handleSelect, children }) => {
 		<>
 			<div className="tabs__tablist">
 				{labels.map((label, i) => (
-					<button
-						className={
-							activeIndex === i ? 'tabs__tab--active tabs__tab' : 'tabs__tab'
-						}
-						onClick={() => {
-							handleSelect(i);
-						}}
-						key={`tab-${label}`}
-						type="button"
-					>
-						{label}
-					</button>
+					<div className="tabs__tab-wrapper">
+						<button
+							className={
+								activeIndex === i ? 'tabs__tab--active tabs__tab' : 'tabs__tab'
+							}
+							onClick={() => {
+								handleSelect(i);
+							}}
+							key={`tab-${label}`}
+							type="button"
+						>
+							{label}
+						</button>
+						<span
+							className={activeIndex === i ? 'tabs__underline--active' : ''}
+						/>
+					</div>
 				))}
 			</div>
 			<div className="tabs__tab-content">{children}</div>
