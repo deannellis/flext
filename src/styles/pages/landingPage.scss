@@ -55,13 +55,12 @@
 		background-image: $landing-gradient, url(/images/img-noise-361x370.png);
 	}
 	background-repeat: repeat;
-	// height: 80vh;
 
 	div {
 		@include for-tablet-landscape-up {
 			margin-left: $xl-size;
 		}
-		// width: 100%;
+
 		h1 {
 			font-family: 'Ubuntu', sans-serif;
 			font-weight: 300;
@@ -88,7 +87,6 @@
 .landing-page__hero-image {
 	img {
 		opacity: 0.9;
-		// height: 40rem;
 		margin-top: $l-size;
 		@include for-tablet-landscape-up {
 			margin-top: 0;
