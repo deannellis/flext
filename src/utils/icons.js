@@ -17,11 +17,11 @@ export const HamburgerIcon = ({ fill, size }) => (
 );
 HamburgerIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 HamburgerIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
 };
 
 export const DumbbellIcon = ({ fill, size }) => (
@@ -63,11 +63,11 @@ export const DumbbellIcon = ({ fill, size }) => (
 );
 DumbbellIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 DumbbellIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
 };
 
 export const DashboardIcon = ({ fill, size }) => (
@@ -87,11 +87,11 @@ export const DashboardIcon = ({ fill, size }) => (
 );
 DashboardIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 DashboardIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
 };
 
 export const GraphIcon = ({ fill, size }) => (
@@ -115,11 +115,11 @@ export const GraphIcon = ({ fill, size }) => (
 );
 GraphIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 GraphIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
 };
 
 export const RightArrowIcon = ({ fill, size }) => (
@@ -139,11 +139,11 @@ export const RightArrowIcon = ({ fill, size }) => (
 );
 RightArrowIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 RightArrowIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
 };
 
 export const LeftArrowIcon = ({ fill, size }) => (
@@ -163,11 +163,11 @@ export const LeftArrowIcon = ({ fill, size }) => (
 );
 LeftArrowIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 LeftArrowIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
 };
 
 export const DotsIcon = ({ fill, size }) => (
@@ -186,9 +186,42 @@ export const DotsIcon = ({ fill, size }) => (
 );
 DotsIcon.defaultProps = {
 	fill: '#fff',
-	size: 32
+	size: 32,
 };
 DotsIcon.propTypes = {
 	fill: PropTypes.string,
-	size: PropTypes.number
+	size: PropTypes.number,
+};
+
+export const InfoIcon = ({ fill, size }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={size}
+		height={size}
+		viewBox="0 0 512 512"
+		aria-labelledby="title"
+	>
+		<title id="title">Info Icon</title>
+		<circle cx="256" cy="164.91" r="31.11" fill={fill} />
+		<path
+			d="M281.88 250.15v102.54a25.88 25.88 0 11-51.76 0V250.15a25.88 25.88 0 1151.76 0z"
+			fill={fill}
+		/>
+		<path
+			d="M256 32C132.29 32 32 132.29 32 256s100.29 224 224 224 224-100.29 224-224S379.71 32 256 32zm130.23 354.23c-71.31 72.54-187.92 73.53-260.46 2.22S52.24 200.53 123.55 128l2.22-2.22c71.31-72.54 187.92-73.53 260.46-2.22s73.53 187.91 2.22 260.44q-1.09 1.12-2.22 2.23z"
+			fill={fill}
+		/>
+		<path
+			d="M256 32C132.29 32 32 132.29 32 256s100.29 224 224 224 224-100.29 224-224S379.71 32 256 32zm130.23 354.23c-71.31 72.54-187.92 73.53-260.46 2.22S52.24 200.53 123.55 128l2.22-2.22c71.31-72.54 187.92-73.53 260.46-2.22s73.53 187.91 2.22 260.44q-1.09 1.12-2.22 2.23z"
+			fill={fill}
+		/>
+	</svg>
+);
+InfoIcon.defaultProps = {
+	fill: '#fff',
+	size: 32,
+};
+InfoIcon.propTypes = {
+	fill: PropTypes.string,
+	size: PropTypes.number,
 };

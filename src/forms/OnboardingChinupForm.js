@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Button from '../components/Button';
+import HelpTip from '../components/HelpTip';
 
 class ChinupForm extends Component {
 	constructor(props) {
@@ -55,9 +57,14 @@ class ChinupForm extends Component {
 
 	render() {
 		const { ups, negatives, weight } = this.state;
+		const helpText =
+			"5 negatives is a good place to start, if you're not sure how many reps you can complete";
 		return (
-			<>
-				<h2>Configure your starting Chinup reps</h2>
+			<div className="form__wrapper">
+				<div className="form__header">
+					<h2>Configure your starting Chinup reps</h2>
+					<HelpTip helpText={helpText} />
+				</div>
 				<form className="form" onSubmit={this.onSubmit}>
 					<div className="input-group">
 						<div className="input__error" />
@@ -111,7 +118,7 @@ class ChinupForm extends Component {
 					</div>
 					<Button type="submit">submit</Button>
 				</form>
-			</>
+			</div>
 		);
 	}
 }

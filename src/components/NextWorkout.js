@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 
 import { getWorkouts, getDisplayName } from '../utils/workout';
 import Button from './Button';
+import HelpTip from './HelpTip';
 
 const NextWorkout = ({ liftVariant, masterWeights, onStartWorkout }) => {
+	const helpText = 'It is recommended rest a day between workouts';
 	return (
 		<div className="next-workout card">
-			<h2>Next Workout</h2>
+			<div className="next-workout__header">
+				<h2>Next Workout</h2>
+				<HelpTip helpText={helpText} />
+			</div>
 			<div className="next-workout__lifts">
 				{getWorkouts(liftVariant).map((workout) => {
 					return (
