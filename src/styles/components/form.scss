@@ -2,8 +2,22 @@
 	display: flex;
 	flex-direction: column;
 	padding: $s-size $m-size;
+	min-width: 24rem;
 	max-width: 28rem;
-	// background-color: $bg-tertiary;
+}
+
+.form__wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 28rem;
+}
+
+.form__header {
+	display: flex;
+	h2 {
+		margin-right: $s-size;
+	}
 }
 
 .input-group {

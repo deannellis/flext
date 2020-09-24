@@ -5,13 +5,19 @@ import * as Yup from 'yup';
 
 import Button from '../components/Button';
 import NumberInput from '../components/NumberInput';
+import HelpTip from '../components/HelpTip';
 
 const OnboardingWeightsForm = ({ submitWeights }) => {
 	const maxMessage = 'Weight can not exceed 1000lbs tough guy';
 	const minMessage = 'Weight must be greater than bar weight (44 lbs)';
+	const helpText =
+		"Start with the unweighted bar, if you're not sure how much weight you can lift. Most bars weigh 44lb.";
 	return (
-		<>
-			<h2>Enter your starting weights</h2>
+		<div className="form__wrapper">
+			<div className="form__header">
+				<h2>Enter your starting weights</h2>
+				<HelpTip helpText={helpText} />
+			</div>
 			<Formik
 				initialValues={{
 					bench: 44,
@@ -96,7 +102,7 @@ const OnboardingWeightsForm = ({ submitWeights }) => {
 					<Button type="submit">next</Button>
 				</Form>
 			</Formik>
-		</>
+		</div>
 	);
 };
 OnboardingWeightsForm.propTypes = {
