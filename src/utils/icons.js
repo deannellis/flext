@@ -170,6 +170,30 @@ LeftArrowIcon.propTypes = {
 	size: PropTypes.number,
 };
 
+export const DownArrowIcon = ({ fill, size }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={size}
+		height={size}
+		viewBox="0 0 512 512"
+		aria-labelledby="title"
+	>
+		<title id="title">Down Arrow Icon</title>
+		<path
+			d="M256 289.5L109.37 142.87a16 16 0 00-22.63 0L64.11 165.5a16 16 0 000 22.63L218.94 343a16.23 16.23 0 002.67 3.57l22.63 22.62a17.14 17.14 0 0023.52 0l22.63-22.62a16.23 16.23 0 002.67-3.57l154.83-154.87a16 16 0 000-22.63l-22.63-22.63a16 16 0 00-22.63 0z"
+			fill={fill}
+		/>
+	</svg>
+);
+DownArrowIcon.defaultProps = {
+	fill: '#fff',
+	size: 32,
+};
+DownArrowIcon.propTypes = {
+	fill: PropTypes.string,
+	size: PropTypes.number,
+};
+
 export const DotsIcon = ({ fill, size }) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"

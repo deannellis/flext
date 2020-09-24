@@ -1,0 +1,48 @@
+.program-card {
+	// transition: $default-transition;
+	h3 {
+		cursor: pointer;
+		margin: 0 0 $xs-size;
+	}
+	ul {
+		margin: 0;
+		line-height: 2.4rem;
+	}
+	svg {
+		margin-right: $xs-size;
+	}
+	width: 43.2rem;
+
+	div:not(.program-card__details-area) {
+		padding: $xs-size;
+	}
+
+	div:nth-child(even) {
+		background: $bg-secondary;
+	}
+}
+
+.program-card__details {
+	margin-top: $xs-size;
+}
+
+.program-card__details-area {
+	overflow: hidden;
+	opacity: 1;
+	transition: opacity 0.4s cubic-bezier(0.47, 0, 0.745, 0.715),
+		max-height 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+	height: auto;
+	max-height: 27.2rem;
+	background: $bg-secondary;
+	padding: $s-size $s-size $m-size;
+	ul {
+		padding-inline-start: 28px;
+	}
+}
+
+.program-card__details-area--closed {
+	@extend .program-card__details-area;
+	padding: 0;
+	max-height: 0;
+	opacity: 0;
+}

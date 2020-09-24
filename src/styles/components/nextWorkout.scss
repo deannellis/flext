@@ -20,4 +20,7 @@
 .next-workout__header {
 	display: flex;
 	justify-content: space-between;
+	h2 {
+		margin-right: $s-size;
+	}
 }

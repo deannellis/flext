@@ -15,6 +15,7 @@ import Calendar from '../components/Calendar';
 import NextWorkout from '../components/NextWorkout';
 import MacroTracker from '../components/MacroTracker';
 import MenuContext from '../context/menu-context';
+import ProgramCard from '../components/ProgramCard';
 
 export class HomePage extends Component {
 	constructor(props) {
@@ -152,6 +153,7 @@ export class HomePage extends Component {
 							updateMacro={this.onUpdateMacro}
 							resetMacros={this.onResetCurrentMacros}
 						/>
+						<ProgramCard />
 					</div>
 				</div>
 			</div>
