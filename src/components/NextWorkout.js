@@ -6,7 +6,7 @@ import Button from './Button';
 import HelpTip from './HelpTip';
 
 const NextWorkout = ({ liftVariant, masterWeights, onStartWorkout }) => {
-	const helpText = 'It is recommended rest a day between workouts';
+	const helpText = 'It is recommended to rest a day between workouts';
 	return (
 		<div className="next-workout card">
 			<div className="next-workout__header">
