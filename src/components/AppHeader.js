@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { HamburgerIcon } from '../utils/icons';
 import Button from './Button';
 import { startLogout } from '../actions/auth';
+import OutsideClick from '../utils/OutsideClick';
 
 class AppHeader extends Component {
 	constructor(props) {
@@ -67,24 +69,32 @@ class AppHeader extends Component {
 						menuIsOpen ? 'app-header__menu' : 'app-header__menu--hidden'
 					}
 				>
-					<img
-						src={photoUrl ? photoUrl : './images/defaultUser.png'}
-						alt="user"
-					/>
-					<p>
-						<strong>{displayName}</strong>
-					</p>
-					<p>{email}</p>
-					<div>
-						<Button
-							clickHandler={() => {
+					<OutsideClick
+						onClickOutside={() => {
+							if (menuIsOpen) {
 								this.setState({ menuIsOpen: false });
-								onStartLogout();
-							}}
-						>
-							Log out
-						</Button>
-					</div>
+							}
+						}}
+					>
+						<img
+							src={photoUrl ? photoUrl : './images/defaultUser.png'}
+							alt="user"
+						/>
+						<p>
+							<strong>{displayName}</strong>
+						</p>
+						<p>{email}</p>
+						<div>
+							<Button
+								clickHandler={() => {
+									this.setState({ menuIsOpen: false });
+									onStartLogout();
+								}}
+							>
+								Log out
+							</Button>
+						</div>
+					</OutsideClick>
 				</div>
 			</div>
 		);
