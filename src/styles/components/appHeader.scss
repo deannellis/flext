@@ -85,7 +85,7 @@
 	// height: 320px;
 	width: 320px;
 	background: $bg-tertiary;
-	padding: $m-size;
+	padding: $m-size 0;
 	border-radius: 4px;
 	box-shadow: $depth-2;
 	text-align: center;
@@ -94,7 +94,7 @@
 		border-radius: 9.6rem;
 		box-shadow: $depth-3;
 	}
-	div {
+	div:not(:first-child) {
 		border-top: 1px solid $bg-secondary;
 		padding-top: $s-size;
 	}
