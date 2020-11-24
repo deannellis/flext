@@ -4,7 +4,7 @@ const AppFooter = () => {
 	return (
 		<footer className="app-footer">
 			<p>
-				©<a href="http://deannellisdesign.com/">Dean Nellis</a>{' '}
+				©<a href="http://deannellis.me/">Dean Nellis</a>{' '}
 				{new Date().getFullYear()}
 			</p>
 		</footer>
