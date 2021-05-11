@@ -29,5 +29,3 @@ npm run dev-server
 - [Firebase](http://firebase.google.com/)
 - [Webpack](https://webpack.js.org/)
 
-### Macro Tracker Demo
-![visualization demo](https://deannellis.me/static/flextRecordingR2-64-400-069c1b263f7c1223d5afc16108eda7fd.gif)
